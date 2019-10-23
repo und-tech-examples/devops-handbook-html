@@ -1,0 +1,1209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>DOHB-ch_07</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../../page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="../../calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../../../p4zbp-8mxvm.html">The DevOps Handbook How to Create World-Class Agility, Reliability & Security in Technology Organizations
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Gene Kim, Patrick Debois, John Willis, Jez Humble, John Allspaw
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="DOHB-ch_06.html" class="calibreAPrev">previous page</a>
+        
+
+        
+          <a href="DOHB-ch_08.html" class="calibreANext"> next page</a>
+        
+      </div>
+    
+
+    
+<a id="ep-file-18" class="calibre1"></a><a data-ep_ppid="Page-__-113" id="Page-__-113" class="calibre1"></a><a data-ep_ppid="Page-__-114" id="Page-__-114" class="calibre1"></a><div id="_idContainer044" class="calibre10"> <span epub:type="pagebreak" id="pg76" title="76"></span> <h1 class="chapter-title-b" data-ep_lpid="ch7" id="_idParaDest-17" title="7 How to Design Our Organization and Architecture with Conway’s Law in Mind"><span epub:type="pagebreak" id="pg77" title="77"></span><span class="chapter-number-b">7</span>How to Design Our Organization and Architecture with Conway’s Law in Mind </h1>
+ <p class="body">In the previous chapters, we identified a value stream to start our DevOps transformation and established shared goals and practices to enable a dedicated transformation team to improve how we deliver value to the customer. </p>
+ <p class="body">In this chapter, we will start thinking about how to organize ourselves to best achieve our value stream goals. After all, how we organize our teams affects how we perform our work. Dr. Melvin Conway performed a famous experiment in 1968 with a contract research organization that had eight people who were commissioned to produce a COBOL and an ALGOL compiler. <span id="ch7-1"></span>He observed, “After some initial estimates of difficulty and time, five people were assigned to the COBOL job and three to the ALGOL job. The resulting COBOL compiler ran in five phases, the ALGOL compiler ran in three.” </p>
+ <p class="body" id="ch7-2">These observations led to what is now known as Conway’s Law, which states that “organizations which design systems...are constrained to produce designs which are copies of the communication structures of these organizations….The larger an organization is, the less flexibility it has and the more pronounced the phenomenon.” <span id="ch7-3"></span>Eric S. Raymond, author of the book <i class="calibre5">The Cathedral and the Bazaar: Musings on Linux and Open Source by an Accidental Revolutionary</i>, crafted a simplified (and now, more famous) version of Conway’s Law in his Jargon File: “The organization of the software and the organization of the software team will be congruent; commonly stated as ‘if you have four groups working on a compiler, you’ll get a 4-pass compiler.’” </p>
+ <p class="body">In other words, how we organize our teams has a powerful effect on the software we produce, as well as our resulting architectural and production outcomes. In order to get fast flow of work from Development into Operations, with high quality and great customer outcomes, we must organize our teams <span epub:type="pagebreak" id="pg78" title="78"></span>and our work so that Conway’s Law works to our advantage. Done poorly, Conway’s Law will prevent teams from working safely and independently; instead, they will be tightly-coupled together, all waiting on each other for work to be done, with even small changes creating potentially global, catastrophic consequences. </p>
+ <p class="body" data-ep_ppid="Page-__-115" id="Page-__-115">An example of how Conway’s Law can either impede or reinforce our goals can be seen in a technology that was developed at Etsy called Sprouter. <span id="ch7-4"></span>Etsy’s DevOps journey began in 2009, and is one of the most admired DevOps organizations, with 2014 revenue of nearly $200 million and a successful IPO in 2015. </p>
+ <p class="body">Originally developed in 2007, Sprouter connected people, processes, and technology in ways that created many undesired outcomes. Sprouter, shorthand for “stored procedure router,” was originally designed to help make life easier for the developers and database teams. <span id="ch7-5"></span>As Ross Snyder, a senior engineer at Etsy, said during his presentation at Surge 2011, “Sprouter was designed to allow the Dev teams to write PHP code in the application, the DBAs to write SQL inside Postgres, with Sprouter helping them meet in the middle.” </p>
+ <p class="body">Sprouter resided between their front-end PHP application and the Postgres database, centralizing access to the database and hiding the database implementation from the application layer. The problem was that adding any changes to business logic resulted in significant friction between developers and the database teams. <span id="ch7-6"></span>As Snyder observed, “For nearly any new site functionality, Sprouter required that the DBAs write a new stored procedure. As a result, every time developers wanted to add new functionality, they would need something from the DBAs, which often required them to wade through a ton of bureaucracy.” <span id="ch7-7"></span>In other words, developers creating new functionality had a dependency on the DBA team, which needed to be prioritized, communicated, and coordinated, resulting in work sitting in queues, meetings, longer lead times, and so forth. This is because Sprouter created a tight coupling between the development and database teams, preventing developers from being able to independently develop, test, and deploy their code into production. </p>
+ <p class="body">Also, the database stored procedures were tightly-coupled to Sprouter—any time a stored procedure was changed, it required changes to Sprouter too. The result was that Sprouter became an ever-larger single point of failure. <span id="ch7-8"></span>Snyder explained that everything was so tightly-coupled and required such a high level of synchronization as a result, that almost every deployment caused a mini-outage. </p>
+ <p class="body" data-ep_ppid="Page-__-116" id="Page-__-116"><span epub:type="pagebreak" id="pg79" title="79"></span>Both the problems associated with Sprouter and their eventual solution can be explained by Conway’s Law. <span id="ch7-9"></span>Etsy initially had two teams, the developers and the DBAs, who were each responsible for two layers of the service, the application logic layer and stored procedure layer. Two teams working on two layers, as Conway’s Law predicts. Sprouter was intended to make life easier for both teams, but it didn’t work as expected—when business rules changed, instead of changing only two layers, they now needed to make changes to three layers (in the application, in the stored procedures, and now in Sprouter). The resulting challenges of coordinating and prioritizing work across three teams significantly increased lead times and caused reliability problems. </p>
+ <p class="body" id="ch7-10">In the spring of 2009, as part of what Snyder called “the great Etsy cultural transformation,” Chad Dickerson joined as their new CTO. Dickerson put into motion many things, including a massive investment into site stability, having developers perform their own deployments into production, as well as beginning a two-year journey to eliminate Sprouter. </p>
+ <p class="body">To do this, the team decided to move all the business logic from the database layer into the application layer, removing the need for Sprouter. They created a small team that wrote a PHP Object Relational Mapping (ORM) layer,<sup class="footnotes"><span id="footnote-035-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-035">†</a></span></sup> enabling the front-end developers to make calls directly to the database and reducing the number of teams required to change business logic from three teams down to one team. </p>
+ <p class="body" id="ch7-11">As Snyder described, “We started using the ORM for any new areas of the site and migrated small parts of our site from Sprouter to the ORM over time. It took us two years to migrate the entire site off of Sprouter. And even though we all grumbled about Sprouter the entire time, it remained in production throughout.” </p>
+ <p class="body">By eliminating Sprouter, they also eliminated the problems associated with multiple teams needing to coordinate for business logic changes, decreased the number of handoffs, and significantly increased the speed and success of production deployments, improving site stability. Furthermore, because small teams could independently develop and deploy their code without requiring another team to make changes in other areas of the system, developer productivity increased. </p>
+ <p class="body"><span epub:type="pagebreak" id="pg80" title="80"></span>Sprouter was finally removed from production and Etsy’s version control repositories in early 2001. <span id="ch7-12"></span>As Snyder said, “Wow, it felt good.”<sup class="footnotes"><span id="footnote-034-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-034">‡</a></span></sup> </p>
+ <p class="body" data-ep_ppid="Page-__-117" id="Page-__-117">As Snyder and Etsy experienced, how we design our organization dictates how work is performed, and, therefore, the outcomes we achieve. Throughout the rest of this chapter we will explore how Conway’s Law can negatively impact the performance of our value stream, and, more importantly, how we organize our teams to use Conway’s Law to our advantage. </p>
+ <h2 id="sigil_toc_id_57" class="calibre7">ORGANIZATIONAL ARCHETYPES </h2>
+ <p class="body">In the field of decision sciences, there are three primary types of organizational structures that inform how we design our DevOps value streams with Conway’s Law in mind: <i class="calibre5">functional</i>, <i class="calibre5">matrix,</i> and<i class="calibre5"> market</i>. <span id="ch7-14"></span>They are defined by Dr. Roberto Fernandez as follows: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black">Functional-oriented organizations optimize for expertise, division of labor, or reducing cost. These organizations centralize expertise, which helps enable career growth and skill development, and often have tall hierarchical organizational structures. This has been the prevailing method of organization for Operations (i.e., server admins, network admins, database admins, and so forth are all organized into separate groups).</span> </li>
+ <li class="bullets"><span class="black">Matrix-oriented organizations attempt to combine functional and market orientation. However, as many who work in or manage matrix organizations observe, matrix organizations often result in complicated organizational structures, such as individual contributors reporting to two managers or more, and sometimes achieving neither of the goals of functional or market orientation.</span> </li>
+ <li class="bullets"><span class="black">Market-oriented organizations optimize for responding quickly to customer needs. These organizations tend to be flat, composed of multiple, cross-functional disciplines (e.g., marketing, engineering, etc.), which often lead to potential redundancies across the organization. This is how many prominent organizations adopting DevOps operate—in extreme examples, such as at <span epub:type="pagebreak" id="pg81" title="81"></span>Amazon or Netflix, each service team is simultaneously responsible for feature delivery and service support.<sup class="footnotes"><span id="footnote-033-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-033">§</a></span></sup></span> </li>
+ </ul>
+ <p class="body">With these three categories of organizations in mind, let’s explore further how an overly functional orientation, especially in Operations, can cause undesired outcomes in the technology value stream, as Conway’s Law would predict. </p>
+ <h2 data-ep_ppid="Page-__-118" id="Page-__-118" class="calibre7">PROBLEMS OFTEN CAUSED BY OVERLY FUNCTIONAL ORIENTATION (“OPTIMIZING FOR COST”) </h2>
+ <p class="body">In traditional IT Operations organizations, we often use functional orientation to organize our teams by their specialties. We put the database administrators in one group, the network administrators in another, the server administrators in a third, and so forth. One of the most visible consequences of this is long lead times, especially for complex activities like large deployments where we must open up tickets with multiple groups and coordinate work handoffs, resulting in our work waiting in long queues at every step. </p>
+ <p class="body">Compounding the issue, the person performing the work often has little visibility or understanding of how their work relates to any value stream goals (e.g., “I’m just configuring servers because someone told me to.”). This places workers in a creativity and motivation vacuum. </p>
+ <p class="body">The problem is exacerbated when each Operations functional area has to serve multiple value streams (i.e., multiple Development teams) who all compete for their scarce cycles. In order for Development teams to get their work done in a timely manner, we often have to escalate issues to a manager or director, and eventually to someone (usually an executive) who can finally prioritize the work against the global organizational goals instead of the functional silo goals. This decision must then get cascaded down into each of the functional areas to change the local priorities, and this, in turn, slows down other teams. When every team expedites their work, the net result is that every project ends up moving at the same slow crawl. </p>
+ <p class="body">In addition to long queues and long lead times, this situation results in poor handoffs, large amounts of re-work, quality issues, bottlenecks, and delays. <span epub:type="pagebreak" id="pg82" title="82"></span>This gridlock impedes the achievement of important organizational goals, which often far outweigh the desire to reduce costs.<sup class="footnotes"><span id="footnote-032-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-032">¶</a></span></sup> </p>
+ <p class="body">Similarly, functional orientation can also be found with centralized QA and Infosec functions, which may have worked fine (or at least, well enough) when performing less frequent software releases. However, as we increase the number of Development teams and their deployment and release frequencies, most functionally-oriented organizations will have difficulty keeping up and delivering satisfactory outcomes, especially when their work is being performed manually. Now we’ll study how market oriented organizations work. </p>
+ <h2 data-ep_ppid="Page-__-119" id="Page-__-119" class="calibre7">ENABLE MARKET-ORIENTED TEAMS (“OPTIMIZING FOR SPEED”) </h2>
+ <p class="body">Broadly speaking, to achieve DevOps outcomes, we need to reduce the effects of functional orientation (“optimizing for cost”) and enable market orientation (“optimizing for speed”) so we can have many small teams working safely and independently, quickly delivering value to the customer. </p>
+ <p class="body">Taken to the extreme, market-oriented teams are responsible not only for feature development, but also for testing, securing, deploying, and supporting their service in production, from idea conception to retirement. These teams are designed to be cross-functional and independent—able to design and run user experiments, build and deliver new features, deploy and run their service in production, and fix any defects without manual dependencies on other teams, thus enabling them to move faster. This model has been adopted by Amazon and Netflix and is touted by Amazon as one of the primary reasons behind their ability to move fast even as they grow. </p>
+ <p class="body">To achieve market orientation, we won’t do a large, top-down reorganization, which often creates large amounts of disruption, fear, and paralysis. Instead, we will embed the functional engineers and skills (e.g., Ops, QA, Infosec) into each service team, or provide their capabilities to teams through automated <span epub:type="pagebreak" id="pg83" title="83"></span>self-service platforms that provide production-like environments, initiate automated tests, or perform deployments. </p>
+ <p class="body">This enables each service team to independently deliver value to the customer without having to open tickets with other groups, such as IT Operations, QA, or Infosec.<sup class="footnotes"><span id="footnote-031-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-031">**</a></span></sup> </p>
+ <h2 id="sigil_toc_id_58" class="calibre7">MAKING FUNCTIONAL ORIENTATION WORK </h2>
+ <p class="body">Having just recommended market-orientated teams, it is worth pointing out that it is possible to create effective, high-velocity organizations with functional orientation. Cross-functional and market-oriented teams are one way to achieve fast flow and reliability, but they are not the only path. We can also achieve our desired DevOps outcomes through functional orientation, as long as everyone in the value stream views customer and organizational outcomes as a shared goal, regardless of where they reside in the organization. </p>
+ <p class="captions" data-ep_ppid="Page-__-120" id="Page-__-120"><img alt="" src="../Images/ch_07.png" class="ep_cover_page"/> <b class="captions1">Figure 12:</b> Functional vs. market orientation </p>
+ <p class="captions">Left: Functional orientation: all work flows through centralized IT Operations; Right: Market orientation: all product teams can deploy their loosely-coupled components self-service into production. (Source: Humble, Molesky, and O’Reilly, <i class="captions2">Lean Enterprise</i>, Kindle edition, 4523 &amp; 4592.) </p>
+ <p class="body"><span epub:type="pagebreak" id="pg84" title="84"></span>For example, high performance with a functional-oriented and centralized Operations group is possible, as long as service teams get what they need from Operations reliably and quickly (ideally on demand) and vice-versa. Many of the most admired DevOps organizations retain functional orientation of Operations, including Etsy, Google, and GitHub. </p>
+ <p class="body">What these organizations have in common is a high-trust culture that enables all departments to work together effectively, where all work is transparently prioritized and there is sufficient slack in the system to allow high-priority work to be completed quickly. This is, in part, enabled by automated self-service platforms that build quality into the products everyone is building. </p>
+ <p class="body" id="ch7-16">In the Lean manufacturing movement of the 1980s, many researchers were puzzled by Toyota’s functional orientation, which was at odds with the best practice of having cross-functional, market-oriented teams. They were so puzzled it was called “the second Toyota paradox.” </p>
+ <a data-ep_ppid="Page-__-121" id="Page-__-121" class="calibre1"></a><p class="body" id="ch7-17">As Mike Rother wrote in <i class="calibre5">Toyota Kata</i>, “As tempting as it seems, one cannot reorganize your way to continuous improvement and adaptiveness. What is decisive is not the form of the organization, but how people act and react. The roots of Toyota’s success lie not in its organizational structures, but in developing capability and habits in its people. It surprises many people, in fact, to find that Toyota is largely organized in a traditional, functional-department style.” It is this development of habits and capabilities in people and the workforce that are the focus of our next sections. </p>
+ <h2 id="sigil_toc_id_59" class="calibre7">TESTING, OPERATIONS, AND SECURITY AS EVERYONE’S JOB, EVERY DAY </h2>
+ <p class="body">In high-performing organizations, everyone within the team shares a common goal—quality, availability, and security aren’t the responsibility of individual departments, but are a part of everyone’s job, every day. </p>
+ <p class="body">This means that the most urgent problem of the day may be working on or deploying a customer feature or fixing a Severity 1 production incident. Alternatively, the day may require reviewing a fellow engineer’s change, applying emergency security patches to production servers, or making improvements so that fellow engineers are more productive. </p>
+ <p class="body" id="ch7-18">Reflecting on shared goals between Development and Operations, Jody Mulkey, CTO at Ticketmaster, said, “For almost 25 years, I used an American football <span epub:type="pagebreak" id="pg85" title="85"></span>metaphor to describe Dev and Ops. You know, Ops is defense, who keeps the other team from scoring, and Dev is offense, trying to score goals. And one day, I realized how flawed this metaphor was, because they never all play on the field at the same time. They’re not actually on the same team!” </p>
+ <p class="body" id="ch7-19">He continued, “The analogy I use now is that Ops are the offensive linemen, and Dev are the ‘skill’ positions (like the quarterback and wide receivers) whose job it is to move the ball down the field—the job of Ops is to help make sure Dev has enough time to properly execute the plays.” </p>
+ <p class="body">A striking example of how shared pain can reinforce shared goals is when Facebook was undergoing enormous growth in 2009. They were experiencing significant problems related to code deployments—while not all issues caused customer-impacting issues, there was chronic firefighting and long hours. <span id="ch7-20"></span>Pedro Canahuati, their director of production engineering, described a meeting full of Ops engineers where someone asked that all people not working on an incident close their laptops, and no one could. </p>
+ <p class="body" data-ep_ppid="Page-__-122" id="Page-__-122">One of the most significant things they did to help change the outcomes of deployments was to have all Facebook engineers, engineering managers, and architects rotate through on-call duty for the services they built. By doing this, everyone who worked on the service experienced visceral feedback on the upstream architectural and coding decisions they made, which made an enormous positive impact on the downstream outcomes. </p>
+ <h2 id="sigil_toc_id_60" class="calibre7">ENABLE EVERY TEAM MEMBER TO BE A GENERALIST </h2>
+ <p class="body">In extreme cases of a functionally-oriented Operations organization, we have departments of specialists, such as network administrators, storage administrators, and so forth. <span id="ch7-21"></span>When departments over-specialize, it causes <i class="calibre5">siloization</i>, which Dr. Spear describes as when departments “operate more like sovereign states.” Any complex operational activity then requires multiple handoffs and queues between the different areas of the infrastructure, leading to longer lead times (e.g., because every network change must be made by someone in the networking department). </p>
+ <p class="body">Because we rely upon an ever increasing number of technologies, we must have engineers who have specialized and achieved mastery in the technology areas we need. However, we don’t want to create specialists who are “frozen in time,” only understanding and able to contribute to that one area of the value stream. </p>
+ <p class="body"><span epub:type="pagebreak" id="pg86" title="86"></span>One countermeasure is to enable and encourage every team member to be a generalist. We do this by providing opportunities for engineers to learn all the skills necessary to build and run the systems they are responsible for, and regularly rotating people through different roles. The term <i class="calibre5">full stack engineer</i> is now commonly used (sometimes as a rich source of parody) to describe generalists who are familiar—at least have a general level of understanding—with the entire application stack (e.g., application code, databases, operating systems, networking, cloud). </p>
+ <div data-ep_ppid="Page-__-123" id="Page-__-123" class="calibre10"> <p class="captions"><b class="captions1">Table 2:</b> Specialists vs. Generalists vs. “E-shaped” Staff (experience, expertise, exploration, and execution) </p>
+ <div class="table"> <img alt="Table 2" class="ep_cover_page" src="../Images/table-2.jpg"/> </div>
+ </div>
+ <p class="captions">(Source: Scott Prugh, “Continuous Delivery,” ScaledAgileFramework.com, February 14, 2013, <a href="http://scaledagileframework.com/continuous-delivery/" class="calibre1">http://scaledagileframework.com/continuous-delivery/</a>.) </p>
+ <p class="body" id="ch7-22">Scott Prugh writes that CSG International has undergone a transformation that brings most resources required to build and run the product onto one team, including analysis, architecture, development, test, and operations. <span id="ch7-23"></span>“By cross-training and growing engineering skills, generalists can do orders of magnitude more work than their specialist counterparts, and it also improves our overall flow of work by removing queues and wait time.” This approach is at odds with traditional hiring practices, but, as Prugh explains, it is well worth it. <span id="ch7-24"></span>“Traditional managers will often object to hiring engineers with generalist skill sets, arguing that they are more expensive and that ‘I can hire two server administrators for every multi-<span epub:type="pagebreak" id="pg87" title="87"></span>skilled operations engineer.’” However, the business benefits of enabling faster flow are overwhelming. <span id="ch7-25"></span>Furthermore, as Prugh notes, “[I]nvesting in cross training is the right thing for [employees’] career growth, and makes everyone’s work more fun.” </p>
+ <a data-ep_ppid="Page-__-124" id="Page-__-124" class="calibre1"></a><p class="body" id="ch7-26">When we value people merely for their existing skills or performance in their current role rather than for their ability to acquire and deploy new skills, we (often inadvertently) reinforce what Dr. Carol Dweck describes as the <i class="calibre5">fixed mindset</i>, where people view their intelligence and abilities as static “givens” that can’t be changed in meaningful ways. </p>
+ <p class="body">Instead, we want to encourage learning, help people overcome learning anxiety, help ensure that people have relevant skills and a defined career road map, and so forth. By doing this, we help foster a <i class="calibre5">growth mindset</i> in our engineers—after all, a learning organization requires people who are willing to learn. By encouraging everyone to learn, as well as providing training and support, we create the most sustainable and least expensive way to create greatness in our teams—by investing in the development of the people we already have. </p>
+ <p class="body" id="ch7-27">As Jason Cox, Director of Systems Engineering at Disney, described, “Inside of Operations, we had to change our hiring practices. We looked for people who had ‘curiosity, courage, and candor,’ who were not only capable of being generalists but also renegades...We want to promote positive disruption so our business doesn’t get stuck and can move into the future.” As we’ll see in the next section, how we fund our teams also affects our outcomes. </p>
+ <h2 id="sigil_toc_id_61" class="calibre7">FUND NOT PROJECTS, BUT SERVICES AND PRODUCTS </h2>
+ <p class="body">Another way to enable high-performing outcomes is to create stable service teams with ongoing funding to execute their own strategy and road map of initiatives. These teams have the dedicated engineers needed to deliver on concrete commitments made to internal and external customers, such as features, stories, and tasks. </p>
+ <p class="body">Contrast this to the more traditional model where Development and Test teams are assigned to a “project” and then reassigned to another project as soon as the project is completed and funding runs out. This leads to all sorts of undesired outcomes, including developers being unable to see the long-term consequences of decisions they make (a form of feedback) and a funding model that only values and pays for the earliest stages of the software life <span epub:type="pagebreak" id="pg88" title="88"></span>cycle—which, tragically, is also the least expensive part for successful products or services.<span id="footnote-030-backlink"><a class="calibre1" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-030">††</a></span> </p>
+ <p class="body">Our goal with a product-based funding model is to value the achievement of organizational and customer outcomes, such as revenue, customer lifetime value, or customer adoption rate, ideally with the minimum of output (e.g., amount of effort or time, lines of code). Contrast this to how projects are typically measured, such as whether it was completed within the promised budget, time, and scope. </p>
+ <h2 data-ep_ppid="Page-__-125" id="Page-__-125" class="calibre7">DESIGN TEAM BOUNDARIES IN ACCORDANCE WITH CONWAY’S LAW </h2>
+ <p class="body">As organizations grow, one of the largest challenges is maintaining effective communication and coordination between people and teams. All too often, when people and teams reside on a different floor, in a different building, or in a different time zone, creating and maintaining a shared understanding and mutual trust becomes more difficult, impeding effective collaboration. Collaboration is also impeded when the primary communication mechanisms are work tickets and change requests, or worse, when teams are separated by contractual boundaries, such as when work is performed by an outsourced team. </p>
+ <p class="body">As we saw in the Etsy Sprouter example at the beginning of this chapter, the way we organize teams can create poor outcomes, a side effect of Conway’s Law. These include splitting teams by function (e.g., by putting developers and testers in different locations or by outsourcing testers entirely) or by architectural layer (e.g., application, database). </p>
+ <p class="body">These configurations require significant communication and coordination between teams, but still results in a high amount of rework, disagreements over specifications, poor handoffs, and people sitting idle waiting for somebody else. </p>
+ <p class="body">Ideally, our software architecture should enable small teams to be independently productive, sufficiently decoupled from each other so that work can be done without excessive or unnecessary communication and coordination. </p>
+ <h2 id="sigil_toc_id_62" class="calibre7"><span epub:type="pagebreak" id="pg89" title="89" class="calibre9"></span>CREATE LOOSELY-COUPLED ARCHITECTURES TO ENABLE DEVELOPER PRODUCTIVITY AND SAFETY </h2>
+ <p class="body">When we have a tightly-coupled architecture, small changes can result in large scale failures. As a result, anyone working in one part of the system must constantly coordinate with anyone else working in another part of the system they may affect, including navigating complex and bureaucratic change management processes. </p>
+ <p class="body" data-ep_ppid="Page-__-126" id="Page-__-126">Furthermore, to test that the entire system works together requires integrating changes with the changes from hundreds, or even thousands, of other developers, which may, in turn, have dependencies on tens, hundreds, or thousands of interconnected systems. Testing is done in scarce integration test environments, which often require weeks to obtain and configure. The result is not only long lead times for changes (typically measured in weeks or months) but also low developer productivity and poor deployment outcomes. </p>
+ <p class="body">In contrast, when we have an architecture that enables small teams of developers to independently implement, test, and deploy code into production safely and quickly, we can increase and maintain developer productivity and improve deployment outcomes. These characteristics can be found in <i class="calibre5">service-oriented architectures</i> (SOAs) first described in the 1990s, in which services are independently testable and deployable. A key feature of SOAs is that they’re composed of <i class="calibre5">loosely-coupled</i> services with <i class="calibre5">bounded contexts</i>.<sup class="footnotes"><span id="footnote-029-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-029">‡‡</a></span></sup> </p>
+ <p class="body">Having architecture that is loosely-coupled means that services can update in production independently, without having to update other services. Services must be decoupled from other services and, just as important, from shared databases (although they can share a database <i class="calibre5">service</i>, provided they don’t have any common schemas). </p>
+ <p class="body">Bounded contexts are described in the book <i class="calibre5">Domain Driven Design</i> by Eric J. Evans. The idea is that developers should be able to understand and update the code of a service without knowing anything about the internals of its peer services. Services interact with their peers strictly through APIs and thus don’t share data structures, database schemata, or other internal representations of objects. Bounded contexts ensure that services are compartmentalized and have well-defined interfaces, which also enables easier testing. </p>
+ <p class="body" id="ch7-30"><span epub:type="pagebreak" id="pg90" title="90"></span>Randy Shoup, former Engineering Director for Google App Engine, observed that “organizations with these types of service-oriented architectures, such as Google and Amazon, have incredible flexibility and scalability. These organizations have tens of thousands of developers where small teams can still be incredibly productive.” </p>
+ <h3 id="sigil_toc_id_63" class="calibre11">KEEP TEAM SIZES SMALL (THE “TWO-PIZZA TEAM” RULE) </h3>
+ <p class="body">Conway’s Law helps us design our team boundaries in the context of desired communication patterns, but it also encourages us to keep our team sizes small, reducing the amount of inter-team communication and encouraging us to keep the scope of each team’s domain small and bounded. </p>
+ <a data-ep_ppid="Page-__-127" id="Page-__-127" class="calibre1"></a><p class="body" id="ch7-31">As part of its transformation initiative away from a monolithic code base in 2002, Amazon used the <i class="calibre5">two-pizza</i> rule to keep team sizes small—a team only as large as can be fed with two pizzas—usually about five to ten people. </p>
+ <p class="body">This limit on size has four important effects: </p>
+ <ol class="calibre15"> <li class="bullets"><span class="black">It ensures the team has a clear, shared understanding of the system they are working on. As teams get larger, the amount of communication required for everybody to know what’s going on scales in a combinatorial fashion.</span> </li>
+ <li class="bullets"><span class="black">It limits the growth rate of the product or service being worked on. By limiting the size of the team, we limit the rate at which their system can evolve. This also helps to ensure the team maintains a shared understanding of the system.</span> </li>
+ <li class="bullets"><span class="black">It decentralizes power and enables autonomy. Each two-pizza team (2PT) is as autonomous as possible. The team’s lead, working with the executive team, decides on the key business metric that the team is responsible for, known as the fitness function, which becomes the overall evaluation criteria for the team’s experiments. The team is then able to act autonomously to maximize that metric.<sup class="footnotes"><span id="footnote-028-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_07.html#footnote-028">§§</a></span></sup></span> </li>
+ <li class="bullets"><span class="black">Leading a 2PT is a way for employees to gain some leadership experience in an environment where failure does not have catastrophic consequences. An essential element of Amazon’s strategy <span epub:type="pagebreak" id="pg91" title="91"></span>was the link between the organizational structure of a 2PT and the architectural approach of a service-oriented architecture.</span> </li>
+ </ol>
+ <p class="body" id="ch7-33">Amazon CTO Werner Vogels explained the advantages of this structure to Larry Dignan of <i class="calibre5">Baseline</i> in 2005. Dignan writes: </p>
+ <p class="blockquote">“Small teams are fast...and don’t get bogged down in so-called administrivia….Each group assigned to a particular business is completely responsible for it….The team scopes the fix, designs it, builds it, implements it and monitors its ongoing use. This way, technology programmers and architects get direct feedback from the business people who use their code or applications—in regular meetings and informal conversations.” </p>
+ <p class="body">Another example of how architecture can profoundly improve productivity is the API Enablement program at Target, Inc. </p>
+ <p class="case-study-header" data-ep_ppid="Page-__-128" id="Page-__-128">Case Study <br class="calibre16"/>API Enablement at Target (2015) </p>
+ <p class="case-study" id="ch7-34">Target is the sixth-largest retailer in the US and spends over $1 billion on technology annually. Heather Mickman, a director of development for Target, described the beginnings of their DevOps journey: “In the bad old days, it used to take ten different teams to provision a server at Target, and when things broke, we tended to stop making changes to prevent further issues, which of course makes everything worse.” </p>
+ <p class="case-study">The hardships associated with getting environments and performing deployments created significant difficulties for development teams, as did getting access to data they needed. <span id="ch7-35"></span>As Mickman described: </p>
+ <p class="case-study-block-quote">The problem was that much of our core data, such as information on inventory, pricing, and stores, was locked up in legacy systems and mainframes. We often had multiple sources of truths of data, especially between e-commerce and our physical stores, which were owned by different teams, with different data structures and different priorities....The result was that if a new development team wanted to build something for our guests, it would take three to six months to build the integrations to get the data they needed. Worse, it would take another three to six months to do the manual <span epub:type="pagebreak" id="pg92" title="92"></span>testing to make sure they didn’t break anything critical, because of how many custom point-to-point integrations we had in a very tightly-coupled system. Having to manage the interactions with the twenty to thirty different teams, along with all their dependencies, required lots of project managers, because of all the coordination and handoffs. It meant that development was spending all their time waiting in queues, instead of delivering results and getting stuff done. </p>
+ <p class="case-study">This long lead time for retrieving and creating data in their systems of record was jeopardizing important business goals, such as integrating the supply chain operations of Target’s physical stores and their e-commerce site, which now required getting inventory to stores and customer homes. This pushed the Target supply chain well beyond what it was designed for, which was merely to facilitate the movement of goods from vendors to distribution centers and stores. </p>
+ <p class="case-study" id="ch7-36">In an attempt to solve the data problem, in 2012 Mickman led the API Enablement team to enable development teams to “deliver new capabilities in days instead of months.” They wanted any engineering team inside of Target to be able to get and store the data they needed, such as information on their products or their stores, including operating hours, location, whether there was as Starbucks on-site, and so forth. </p>
+ <p class="case-study" data-ep_ppid="Page-__-129" id="Page-__-129">Time constraints played a large role in team selection. Mickman explained that: </p>
+ <p class="case-study-block-quote" id="ch7-37">Because our team also needed to deliver capabilities in days, not months, I needed a team who could do the work, not give it to contractors—we wanted people with kickass engineering skills, not people who knew how to manage contracts. And to make sure our work wasn’t sitting in queue, we needed to own the entire stack, which meant that we took over the Ops requirements as well....We brought in many new tools to support continuous integration and continuous delivery. And because we knew that if we succeeded, we would have to scale with extremely high growth, we brought in new tools such as the Cassandra database and Kafka message broker. When we asked for permission, we were told no, but we did it anyway, because we knew we needed it. </p>
+ <p class="case-study" id="ch7-38">In the following two years, the API Enablement team enabled fifty-three new business capabilities, including Ship to Store and Gift Registry, as well <span epub:type="pagebreak" id="pg93" title="93"></span>as their integrations with Instacart and Pinterest. As Mickman described, “Working with Pinterest suddenly became very easy, because we just provided them our APIs.” </p>
+ <p class="case-study">In 2014, the API Enablement team served over 1.5 billion API calls per month. By 2015, this had grown to seventeen billion calls per month spanning ninety different APIs. To support this capability, they routinely performed eighty deployments per week. </p>
+ <p class="case-study" id="ch7-39">These changes have created major business benefits for Target—digital sales increased 42% during the 2014 holiday season and increased another 32% in Q2. During the Black Friday weekend of 2015, over 280k in-store pickup orders were created. By 2015, their goal is to enable 450 of their 1,800 stores to be able to fulfill e-commerce orders, up from one hundred. </p>
+ <p class="case-study" id="ch7-40">“The API Enablement team shows what a team of passionate change agents can do,” Mickman says. “And it help set us up for the next stage, which is to expand DevOps across the entire technology organization.” </p>
+ <h2 id="sigil_toc_id_64" class="calibre7">CONCLUSION </h2>
+ <p class="body">Through the Etsy and Target case studies, we can see how architecture and organizational design can dramatically improve our outcomes. Done incorrectly, Conway’s Law will ensure that the organization creates poor outcomes, preventing safety and agility. Done well, the organization enables developers to safely and independently develop, test, and deploy value to the customer. </p>
+ <hr class="calibre13"/>
+ <div class="_idfootnotes"> <aside class="_idfootnote" epub:type="footnote" id="footnote-035"> <p class="footnotes2"><span><a data-ep_ppid="Page-__-130" id="Page-__-130" class="calibre1"></a>†</span><span> </span>Among many things, an ORM abstracts a database, enabling developers to do queries and data manipulation as if they were merely another object in the programming language. Popular ORMs include Hibernate for Java, SQLAlchemy for Python, and ActiveRecord for Ruby on Rails. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-034"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_07.html#footnote-034-backlink">‡</a></span><span id="ch7-13"> </span>Sprouter was one of many technologies used in development and production that Etsy eliminated as part of their transformation. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-033"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_07.html#footnote-033-backlink">§</a></span><span> </span>However, as will be explained later, equally prominent organizations such as Etsy and GitHub have functional orientation. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-032"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_07.html#footnote-032-backlink">¶</a></span><span id="ch7-15"> </span>Adrian Cockcroft remarked, “For companies who are now coming off of five-year IT outsourcing contracts, it’s like they’ve been frozen in time, during one of the most disruptive times in technology.” In other words, IT outsourcing is a tactic used to control costs through contractually-enforced stasis, with firm fixed prices that schedule annual cost reductions. However, it often results in organizations being unable to respond to changing business and technology needs. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-031"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_07.html#footnote-031-backlink">**</a></span><span> </span>For the remainder of this books, we will use <i class="calibre5">service teams</i> interchangeably with <i class="calibre5">feature teams</i>, <i class="calibre5">product teams</i>, <i class="calibre5">development teams,</i> and <i class="calibre5">delivery teams</i>. The intent is to specify the team primarily developing, testing, and securing the code so that value is delivered to the customer. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-030"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_07.html#footnote-030-backlink">††</a></span><span id="ch7-28"> </span>As John Lauderbach, currently VP of Information Technology at Roche Bros. Supermarkets, quipped, “Every new application is like a free puppy. It’s not the upfront capital cost that kills you…It’s the ongoing maintenance and support.” </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-029"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_07.html#footnote-029-backlink">‡‡</a></span><span id="ch7-29"> </span>These properties are also found in “microservices,” which build upon the principles of SOA. One popular set of patterns for modern web architecture based on these principles is the “12-factor app.” </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-028"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_07.html#footnote-028-backlink">§§</a></span><span id="ch7-32"> </span>In the Netflix culture, one of the seven key values is “highly aligned, loosely-coupled.” </p>
+ </aside>
+ </div>
+ </div>
+<div class="calibre10"> <div id="_idContainer045" class="calibre10"> </div>
+ </div>
+<img id="floatBarImgId" src="chrome-extension://dbkmjjclgbiooljcegcddagnddjedmed/pics/save2-32.png" class="calibre3"/>
+
+
+
+  </div>
+
+  
+  <div class="calibreToc">
+    <h2><a href="../../../p4zbp-8mxvm.html"> Table of contents</a></h2>
+     <div>
+  <ul>
+    <li>
+      <a href="DOHB-0-FM-preface.html">Preface</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_1">Aha!</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_2">Gene Kim</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_3">Jez Humble</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#Page-__-13">Patrick Debois</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_4">John Willis</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_5">SPREADING THE AHA! MOMENT</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-foreword.html">Foreword</a>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-introduction.html">Imagine a World Where Dev and Ops Become DevOps</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_6">An Introduction to The DevOps Handbook</a>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_7">THE PROBLEM: SOMETHING IN YOUR ORGANIZATION MUST NEED IMPROVEMENT (OR YOU WOULDN’T BE READING THIS BOOK)</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_8">THE CORE, CHRONIC CONFLICT</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_9">DOWNWARD SPIRAL IN THREE ACTS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-25">WHY DOES THIS DOWNWARD SPIRAL HAPPEN EVERYWHERE?</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_10">THE COSTS: HUMAN AND ECONOMIC</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_11">THE ETHICS OF DEVOPS: THERE IS A BETTER WAY</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-27">BREAKING THE DOWNWARD SPIRAL WITH DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_12">THE BUSINESS VALUE OF DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_13">DEVOPS HELPS SCALE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_14">THE UNIVERSALITY OF THE SOLUTION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_15">THE DEVOPS HANDBOOK: AN ESSENTIAL GUIDE</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_01_text.html">Part I The Three Ways</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_01_text.html#sigil_toc_id_16">A BRIEF HISTORY</a>
+          <ul>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_17">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_18">THE AGILE MANIFESTO</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_19">AGILE INFRASTRUCTURE AND VELOCITY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_20">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_21">TOYOTA KATA</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_01.html">1 Agile, Continuous Delivery, and the Three Ways</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_22">THE MANUFACTURING VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#Page-__-43">THE TECHNOLOGY VALUE STREAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_23">FOCUS ON DEPLOYMENT LEAD TIME</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_24">Defining Lead Time vs. Processing Time</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#Page-__-45">The Common Scenario: Deployment Lead Times Requiring Months</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_25">Our DevOps Ideal: Deployment Lead Times of Minutes</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_26">OBSERVING “%C/A” AS A MEASURE OF REWORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_27">THE THREE WAYS: THE PRINCIPLES UNDERPINNING DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_28">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_02.html">2 The First Way: The Principles of Flow</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_29">MAKE OUR WORK VISIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#Page-__-52">LIMIT WORK IN PROCESS (WIP)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_30">REDUCE BATCH SIZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_31">REDUCE THE NUMBER OF HANDOFFS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_32">CONTINUALLY IDENTIFY AND ELEVATE OUR CONSTRAINTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_33">ELIMINATE HARDSHIPS AND WASTE IN THE VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_34">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_03.html">3 The Second Way: The Principles of Feedback</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_35">WORKING SAFELY WITHIN COMPLEX SYSTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-64">SEE PROBLEMS AS THEY OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_36">SWARM AND SOLVE PROBLEMS TO BUILD NEW KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_37">KEEP PUSHING QUALITY CLOSER TO THE SOURCE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-69">ENABLE OPTIMIZING FOR DOWNSTREAM WORK CENTERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_38">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_04.html">4 The Third Way: The Principles of Continual Learning and Experimentation</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_39">ENABLING ORGANIZATIONAL LEARNING AND A SAFETY CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_40">INSTITUTIONALIZE THE IMPROVEMENT OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_41">TRANSFORM LOCAL DISCOVERIES INTO GLOBAL IMPROVEMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#Page-__-78">INJECT RESILIENCE PATTERNS INTO OUR DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_42">LEADERS REINFORCE A LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_43">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_44">PART I CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_02_text.html">Part II Where to Start</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_02_text.html#sigil_toc_id_45">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_05.html">5 Selecting Which Value Stream to Start With</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_46">GREENFIELD VS. BROWNFIELD SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_47">CONSIDER BOTH SYSTEMS OF RECORD AND SYSTEMS OF ENGAGEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_48">START WITH THE MOST SYMPATHETIC AND INNOVATIVE GROUPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_49">EXPANDING DEVOPS ACROSS OUR ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#Page-__-96">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_06.html">6 Understanding the Work in Our Value Stream, Making it Visible, and Expanding it Across the Organization</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-100">IDENTIFYING THE TEAMS SUPPORTING OUR VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-101">CREATE A VALUE STREAM MAP TO SEE THE WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_50">CREATING A DEDICATED TRANSFORMATION TEAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_51">AGREE ON A SHARED GOAL</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_52">KEEP OUR IMPROVEMENT PLANNING HORIZONS SHORT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_53">RESERVE 20% OF CYCLES FOR NON-FUNCTIONAL REQUIREMENTS AND REDUCING TECHNICAL DEBT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_54">INCREASE THE VISIBILITY OF WORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_55">USE TOOLS TO REINFORCE DESIRED BEHAVIOR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_56">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_07.html">7 How to Design Our Organization and Architecture with Conway’s Law in Mind</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_57">ORGANIZATIONAL ARCHETYPES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-118">PROBLEMS OFTEN CAUSED BY OVERLY FUNCTIONAL ORIENTATION (“OPTIMIZING FOR COST”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-119">ENABLE MARKET-ORIENTED TEAMS (“OPTIMIZING FOR SPEED”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_58">MAKING FUNCTIONAL ORIENTATION WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_59">TESTING, OPERATIONS, AND SECURITY AS EVERYONE’S JOB, EVERY DAY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_60">ENABLE EVERY TEAM MEMBER TO BE A GENERALIST</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_61">FUND NOT PROJECTS, BUT SERVICES AND PRODUCTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-125">DESIGN TEAM BOUNDARIES IN ACCORDANCE WITH CONWAY’S LAW</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_62">CREATE LOOSELY-COUPLED ARCHITECTURES TO ENABLE DEVELOPER PRODUCTIVITY AND SAFETY</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_07.html#sigil_toc_id_63">KEEP TEAM SIZES SMALL (THE “TWO-PIZZA TEAM” RULE)</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_64">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_08.html">8 How to Get Great Outcomes by Integrating Operations into the Daily Work of Development</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_65">CREATE SHARED SERVICES TO INCREASE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_66">EMBED OPS ENGINEERS INTO OUR SERVICE TEAMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_67">ASSIGN AN OPS LIAISON TO EACH SERVICE TEAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_68">INTEGRATE OPS INTO DEV RITUALS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_69">INVITE OPS TO OUR DEV STANDUPS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_70">INVITE OPS TO OUR DEV RETROSPECTIVES</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_71">MAKE RELEVANT OPS WORK VISIBLE ON SHARED KANBAN BOARDS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_72">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_73">PART II CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_03.html">PART III—THE FIRST WAY: THE TECHNICAL PRACTICES OF FLOW</a>
+      <ul>
+        <li>
+          <a href="DOHB-ch_09.html">9 Create the Foundations of Our Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-149">ENABLE ON DEMAND CREATION OF DEV, TEST, AND PRODUCTION ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_74">CREATE OUR SINGLE REPOSITORY OF TRUTH FOR THE ENTIRE SYSTEM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-153">MAKE INFRASTRUCTURE EASIER TO REBUILD THAN TO REPAIR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_75">MODIFY OUR DEFINITION OF DEVELOPMENT “DONE” TO INCLUDE RUNNING IN PRODUCTION-LIKE ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_76">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_10.html">10 Enable Fast and Reliable Automated Testing</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_10.html#Page-__-161">CONTINUOUSLY BUILD, TEST, AND INTEGRATE OUR CODE AND ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_77">BUILD A FAST AND RELIABLE AUTOMATED VALIDATION TEST SUITE</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_78">CATCH ERRORS AS EARLY IN OUR AUTOMATED TESTING AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_79">ENSURE TESTS RUN QUICKLY (IN PARALLEL, IF NECESSARY)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_80">WRITE OUR AUTOMATED TESTS BEFORE WE WRITE THE CODE (“TEST-DRIVEN DEVELOPMENT”)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_81">AUTOMATE AS MANY OF OUR MANUAL TESTS AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_82">INTEGRATE PERFORMANCE TESTING INTO OUR TEST SUITE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_83">INTEGRATE NON-FUNCTIONAL REQUIREMENTS TESTING INTO OUR TEST SUITE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_84">PULL OUR ANDON CORD WHEN THE DEPLOYMENT PIPELINE BREAKS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_85">WHY WE NEED TO PULL THE ANDON CORD</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_86">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_11.html">11 Enable and Practice Continuous Integration</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_11.html#sigil_toc_id_87">SMALL BATCH DEVELOPMENT AND WHAT HAPPENS WHEN WE COMMIT CODE TO TRUNK INFREQUENTLY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-182">ADOPT TRUNK-BASED DEVELOPMENT PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-185">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_12.html">12 Automate and Enable Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_88">AUTOMATE OUR DEPLOYMENT PROCESS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_89">ENABLE AUTOMATED SELF-SERVICE DEPLOYMENTS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_90">INTEGRATE CODE DEPLOYMENT INTO THE DEPLOYMENT PIPELINE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-199">DECOUPLE DEPLOYMENTS FROM RELEASES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_91">ENVIRONMENT-BASED RELEASE PATTERNS</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_92">The Blue-Green Deployment Pattern</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_93">Dealing with Database Changes</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_94">The Canary and Cluster Immune System Release Patterns</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_95">APPLICATION-BASED PATTERNS TO ENABLE SAFER RELEASES</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_96">Implement Feature Toggles</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_97">Perform Dark Launches</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-209">SURVEY OF CONTINUOUS DELIVERY AND CONTINUOUS DEPLOYMENT IN PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_98">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_13.html">13 Architect for Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-214">AN ARCHITECTURE THAT ENABLES PRODUCTIVITY, TESTABILITY, AND SAFETY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_99">ARCHITECTURAL ARCHETYPES: MONOLITHS VS. MICROSERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_100">USE THE STRANGLER APPLICATION PATTERN TO SAFELY EVOLVE OUR ENTERPRISE ARCHITECTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-222">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_101">PART III CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_04_text.html">PART IV—THE SECOND WAY: THE TECHNICAL PRACTICES OF FEEDBACK</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_04_text.html#sigil_toc_id_102">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_14.html">14 Create Telemetry to Enable Seeing and Solving Problems</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_14.html#Page-__-233">CREATE OUR CENTRALIZED TELEMETRY INFRASTRUCTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_103">CREATE APPLICATION LOGGING TELEMETRY THAT HELPS PRODUCTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_104">USE TELEMETRY TO GUIDE PROBLEM SOLVING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_105">ENABLE CREATION OF PRODUCTION METRICS AS PART OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_106">CREATE SELF-SERVICE ACCESS TO TELEMETRY AND INFORMATION RADIATORS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_107">FIND AND FILL ANY TELEMETRY GAPS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_108">APPLICATION AND BUSINESS METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#Page-__-247">INFRASTRUCTURE METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_109">OVERLAYING OTHER RELEVANT INFORMATION ONTO OUR METRICS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_110">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_15.html">15 Analyze Telemetry to Better Anticipate Problems and Achieve Goals</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_111">USE MEANS AND STANDARD DEVIATIONS TO DETECT POTENTIAL PROBLEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_112">INSTRUMENT AND ALERT ON UNDESIRED OUTCOMES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_113">PROBLEMS THAT ARISE WHEN OUR TELEMETRY DATA HAS NON-GAUSSIAN DISTRIBUTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_114">USING ANOMALY DETECTION TECHNIQUES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_115">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_16.html">16 Enable Feedback So Development and Operations Can Safely Deploy Code</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_116">USE TELEMETRY TO MAKE DEPLOYMENTS SAFER</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_117">DEV SHARES PAGER ROTATION DUTIES WITH OPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#Page-__-271">HAVE DEVELOPERS FOLLOW WORK DOWNSTREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_118">HAVE DEVELOPERS INITIALLY SELF-MANAGE THEIR PRODUCTION SERVICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_119">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_17.html">17 Integrate Hypothesis-Driven Development and A/B Testing into Our Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-283">A BRIEF HISTORY OF A/B TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-284">INTEGRATING A/B TESTING INTO OUR FEATURE TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#sigil_toc_id_120">INTEGRATE A/B TESTING INTO OUR RELEASE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-286">INTEGRATING A/B TESTING INTO OUR FEATURE PLANNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-288">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_18.html">18 Create Review and Coordination Processes to Increase Quality of Our Current Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_121">THE DANGERS OF CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_122">POTENTIAL DANGERS OF “OVERLY CONTROLLING CHANGES”</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-296">ENABLE COORDINATION AND SCHEDULING OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_123">ENABLE PEER REVIEW OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-300">POTENTIAL DANGERS OF DOING MORE MANUAL TESTING AND CHANGE FREEZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#section-below">ENABLE PAIR PROGRAMMING TO IMPROVE ALL OUR CHANGES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_18.html#Page-__-303">EVALUATING THE EFFECTIVENESS OF PULL REQUEST PROCESSES</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_124">FEARLESSLY CUT BUREAUCRATIC PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_125">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_126">PART IV CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_05_text.html">PART V—THE THIRD WAY: THE TECHNICAL PRACTICES OF CONTINUAL LEARNING AND EXPERIMENTATION</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_05_text.html#sigil_toc_id_127">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_19.html">19 Enable and Inject Learning into Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-315">ESTABLISH A JUST, LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_128">SCHEDULE BLAMELESS POST-MORTEM MEETINGS AFTER ACCIDENTS OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_129">PUBLISH OUR POST-MORTEMS AS WIDELY AS POSSIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_130">DECREASE INCIDENT TOLERANCES TO FIND EVER-WEAKER FAILURE SIGNALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-322">REDEFINE FAILURE AND ENCOURAGE CALCULATED RISK-TAKING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_131">INJECT PRODUCTION FAILURES TO ENABLE RESILIENCE AND LEARNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-324">INSTITUTE GAME DAYS TO REHEARSE FAILURES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_132">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_20.html">20 Convert Local Discoveries into Global Improvements</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_133">USE CHAT ROOMS AND CHAT BOTS TO AUTOMATE AND CAPTURE ORGANIZATIONAL KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_134">AUTOMATE STANDARDIZED PROCESSES IN SOFTWARE FOR RE-USE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_135">CREATE A SINGLE, SHARED SOURCE CODE REPOSITORY FOR OUR ENTIRE ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_136">SPREAD KNOWLEDGE BY USING AUTOMATED TESTS AS DOCUMENTATION AND COMMUNITIES OF PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_137">DESIGN FOR OPERATIONS THROUGH CODIFIED NON-FUNCTIONAL REQUIREMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_138">BUILD REUSABLE OPERATIONS USER STORIES INTO DEVELOPMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#Page-__-336">ENSURE TECHNOLOGY CHOICES HELP ACHIEVE ORGANIZATIONAL GOALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_139">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_21.html">21 Reserve Time to Create Organizational Learning and Improvement</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-342">INSTITUTIONALIZE RITUALS TO PAY DOWN TECHNICAL DEBT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_140">ENABLE EVERYONE TO TEACH AND LEARN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_141">SHARE YOUR EXPERIENCES FROM DEVOPS CONFERENCES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-347">CREATE INTERNAL CONSULTING AND COACHES TO SPREAD PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_142">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_143">CONCLUSION TO PART V</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_22.html">22 Information Security as Everyone’s Job, Every Day</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_144">INTEGRATE SECURITY INTO DEVELOPMENT ITERATION DEMONSTRATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-357">INTEGRATE SECURITY INTO DEFECT TRACKING AND POST-MORTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_145">INTEGRATE PREVENTIVE SECURITY CONTROLS INTO SHARED SOURCE CODE REPOSITORIES AND SHARED SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-359">INTEGRATE SECURITY INTO OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_146">ENSURE SECURITY OF THE APPLICATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_147">ENSURE SECURITY OF OUR SOFTWARE SUPPLY CHAIN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-366">ENSURE SECURITY OF THE ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_148">INTEGRATE INFORMATION SECURITY INTO PRODUCTION TELEMETRY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_149">CREATING SECURITY TELEMETRY IN OUR APPLICATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_150">CREATING SECURITY TELEMETRY IN OUR ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_151">PROTECT OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_152">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23.html">23 Protecting the Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_153">INTEGRATE SECURITY AND COMPLIANCE INTO CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_154">RE-CATEGORIZE THE MAJORITY OF OUR LOWER RISK CHANGES AS STANDARD CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_155">WHAT TO DO WHEN CHANGES ARE CATEGORIZED AS NORMAL CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_156">REDUCE RELIANCE ON SEPARATION OF DUTY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_157">ENSURE DOCUMENTATION AND PROOF FOR AUDITORS AND COMPLIANCE OFFICERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#Page-__-384">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_158">PART VI CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23-CTA.html">A Call to Action</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23-CTA.html#sigil_toc_id_159">Conclusion to the DevOps Handbook</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM.html">Appendices</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-1">APPENDIX 1 THE CONVERGENCE OF DEVOPS</a>
+          <ul>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_160">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_161">THE AGILE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_162">THE VELOCITY CONFERENCE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_163">THE AGILE INFRASTRUCTURE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_164">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_165">THE TOYOTA KATA MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_166">THE LEAN STARTUP MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_167">THE LEAN UX MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_168">THE RUGGED COMPUTING MOVEMENT</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-2">APPENDIX 2 THEORY OF CONSTRAINTS AND CORE, CHRONIC CONFLICTS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-3">APPENDIX 3 TABULAR FORM OF DOWNWARD SPIRAL</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-4">APPENDIX 4 THE DANGERS OF HANDOFFS AND QUEUES</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-5">APPENDIX 5 MYTHS OF INDUSTRIAL SAFETY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-6">APPENDIX 6 THE TOYOTA ANDON CORD</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-7">APPENDIX 7 COTS SOFTWARE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-8">APPENDIX 8 POST-MORTEM MEETINGS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-9">APPENDIX 9 THE SIMIAN ARMY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-10">APPENDIX 10 TRANSPARENT UPTIME</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html">Additional Resources</a>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html#_idParaDest-46">Endnotes</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_169">INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-409">PART I INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_170">CHAPTER 1</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_171">CHAPTER 2</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_172">CHAPTER 3</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_173">CHAPTER 4</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_174">CHAPTER 5</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_175">CHAPTER 6</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_176">CHAPTER 7</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_177">CHAPTER 8</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_178">CHAPTER 9</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_179">CHAPTER 10</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_180">CHAPTER 11</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_181">CHAPTER 12</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_182">CHAPTER 13</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_183">CHAPTER 14</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-430">CHAPTER 15</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_184">CHAPTER 16</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_185">CHAPTER 17</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_186">CHAPTER 18</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_187">CHAPTER 19</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_188">CHAPTER 20</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_189">CHAPTER 21</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_190">CHAPTER 22</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-445">CHAPTER 23</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_191">CONCLUSION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_192">APPENDIX</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-index.html">Index</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-index.html#index_list">Symbols Numbers A B C D E F G H I J K L M N O P Q R S T U V W Y Z</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-ack.html">Acknowledgments</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_193">Jez Humble</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_194">John Willis</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_195">Patrick Debois</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#Page-__-494">Gene Kim</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-aut.html">Author Biographies</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_196">GENE KIM</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_197">JEZ HUMBLE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_198">PATRICK DEBOIS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_199">JOHN WILLIS</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+  </div>
+  
+
+  <div class="calibreEbNav">
+    
+      <a href="DOHB-ch_06.html" class="calibreAPrev">previous page</a>
+    
+
+    <a href="../../../p4zbp-8mxvm.html" class="calibreAHome"> start</a>
+
+    
+      <a href="DOHB-ch_08.html" class="calibreANext"> next page</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

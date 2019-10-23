@@ -1,0 +1,1245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>DOHB-ch_22</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../../page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="../../calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../../../p4zbp-8mxvm.html">The DevOps Handbook How to Create World-Class Agility, Reliability & Security in Technology Organizations
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Gene Kim, Patrick Debois, John Willis, Jez Humble, John Allspaw
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="DOHB-pt_06.html" class="calibreAPrev">previous page</a>
+        
+
+        
+          <a href="DOHB-ch_23.html" class="calibreANext"> next page</a>
+        
+      </div>
+    
+
+    
+<a id="ep-file-41" class="calibre1"></a><a data-ep_ppid="Page-__-355" id="Page-__-355" class="calibre1"></a><h1 class="chapter-title-b" data-ep_lpid="ch22" id="_idParaDest-40"><span epub:type="pagebreak" id="pg313" title="313"></span><span class="chapter-number1">22</span>Information Security as Everyone’s Job, Every Day </h1>
+<p class="body" id="ch22-1">One of the top objections to implementing DevOps principles and patterns has been, “Information security and compliance won’t let us.” And yet, DevOps may be one of the best ways to better integrate information security into the daily work of everyone in the technology value stream. </p>
+<p class="body">When Infosec is organized as a silo outside of Development and Operations, many problems arise. James Wickett, one of the creators of the Gauntlt security tool and organizer of DevOpsDays Austin and the Lonestar Application Security conference, observed: </p>
+<p class="blockquote">One interpretation of DevOps is that it came from the need to enable developers productivity, because as the number of developers grew, there weren’t enough Ops people to handle all the resulting deployment work. This shortage is even worse in Infosec—the ratio of engineers in Development, Operations, and Infosec in a typical technology organization is 100:10:1. When Infosec is that outnumbered, without automation and integrating information security into the daily work of Dev and Ops, Infosec can only do compliance checking, which is the opposite of security engineering—and besides, it also makes everyone hate us. </p>
+<p class="body" id="ch22-2">James Wickett and Josh Corman, former CTO of Sonatype and respected information security researcher, have written about incorporating information security objectives into DevOps, a set of practices and principles termed <i class="calibre5">Rugged DevOps</i>. <span id="ch22-3"></span>Similar ideas were created by Dr. Tapabrata Pal, Director and Platform Engineering Technical Fellow at Capital One, and the Capital One team, who describe their processes as <i class="calibre5">DevOpsSec</i>, where Infosec is integrated into all stages of the SDLC. Rugged DevOps traces some of its history to <i class="calibre5">Visible Ops Security</i>, written by Gene Kim, Paul Love, and George Spafford. </p>
+<p class="body"><span epub:type="pagebreak" id="pg314" title="314"></span>Throughout <i class="calibre5">The DevOps Handbook</i>, we have explored how to fully integrate the QA and Operations objectives throughout our entire technology value stream. In this chapter, we describe how to similarly integrate Infosec objectives into our daily work, where we can <a data-ep_ppid="Page-__-356" id="Page-__-356" class="calibre1"></a>increase developer and operational productivity, increase safety, and increase our security. </p>
+<h2 id="sigil_toc_id_144" class="calibre7">INTEGRATE SECURITY INTO DEVELOPMENT ITERATION DEMONSTRATIONS </h2>
+<p class="body">One of our goals is to have feature teams engaged with Infosec as early as possible, as opposed to primarily engaging at the end of the project. One way we can do this is by inviting Infosec to the product demonstrations at the end of each development interval so that they can better understand the team goals in the context of organizational goals, observe their implementations as they are being built, and provide guidance and feedback at the earliest stages of the project, when there is the most amount of time and freedom to make corrections. </p>
+<p class="body" id="ch22-4">Justin Arbuckle, former chief architect at GE Capital, observes, “When it came to information security and compliance, we found that blockages at the end of the project were much more expensive than at the beginning—and Infosec blockages were among the worst. ‘Compliance by demonstration’ became one of the rituals we used to shift all this complexity earlier in the process.” </p>
+<p class="body" id="ch22-5">He continues, “By having Infosec involved throughout the creation of any new capability, we were able to reduce our use of static checklists dramatically and rely more on using their expertise throughout the entire software development process.” </p>
+<p class="body" id="ch22-6">This helped the organization achieve its goals. Snehal Antani, former CIO of Enterprise Architecture at GE Capital Americas, described their top three key business measurements were “development velocity (i.e., speed of delivering features to market), failed customer interactions (i.e., outages, errors), and compliance response time (i.e., lead time from audit request to delivery of all quantitative and qualitative information required to fulfill the request).” </p>
+<p class="body">When Infosec is an assigned part of the team, even if they are only being kept informed and observing the process, they gain the business context they need to make better risk-based decisions. Furthermore, Infosec is able to help feature teams learn what is required to meet security and compliance objectives. </p>
+<h2 data-ep_ppid="Page-__-357" id="Page-__-357" class="calibre7"><span epub:type="pagebreak" id="pg315" title="315" class="calibre9"></span>INTEGRATE SECURITY INTO DEFECT TRACKING AND POST-MORTEMS </h2>
+<p class="body">When possible, we want to track all open security issues in the same work tracking system that Development and Operations are using, ensuring the work is visible and can be prioritized against all other work. This is very different from how Infosec has traditionally worked, where all security vulnerabilities are stored in a GRC (governance, risk, and compliance) tool that only Infosec has access to. Instead, we will put any needed work in the systems that Dev and Ops use. </p>
+<p class="body" id="ch22-7">In a presentation at the 2012 Austin DevOpsDays, Nick Galbreath, who headed up Information Security at Etsy for many years, describes how they treated security issues, “We put all security issues into JIRA, which all engineers use in their daily work, and they were either ‘P1’ or ‘P2,’ meaning that they had to be fixed immediately or by the end of the week, even if the issue is only an internally-facing application.” </p>
+<p class="body" id="ch22-8">Furthermore, he states, “Any time we had a security issue, we would conduct a post-mortem, because it would result in better educating our engineers on how to prevent it from happening again in the future, as well as a fantastic mechanism for transferring security knowledge to our engineering teams.” </p>
+<h2 id="sigil_toc_id_145" class="calibre7">INTEGRATE PREVENTIVE SECURITY CONTROLS INTO SHARED SOURCE CODE REPOSITORIES AND SHARED SERVICES </h2>
+<p class="body">In chapter 20, we created a shared source code repository that makes it easy for anyone to discover and reuse the collective knowledge of our organization—not only for our code, but also for our toolchains, deployment pipeline, standards, etc. By doing this, anyone can benefit from the cumulative experience of everyone in the organization. </p>
+<p class="body">Now we will add to our shared source code repository any mechanisms or tools that help enable us to ensure our applications and environments are secure. We will add libraries that are pre-blessed by security to fulfill specific Infosec objectives, such as authentication and encryption libraries and services. Because everyone in the DevOps value stream uses version control for anything they build or support, putting our information security artifacts there makes it much easier to influence the daily work of Dev and Ops, because <span epub:type="pagebreak" id="pg316" title="316"></span>anything we create is available, searchable, and reusable. Version control also serves as a omni-directional communication mechanism to keep all parties aware of changes being made. </p>
+<p class="body"><a data-ep_ppid="Page-__-358" id="Page-__-358" class="calibre1"></a>If we have a centralized shared services organization, we may also collaborate with them to create and operate shared security-relevant platforms, such as authentication, authorization, logging, and other security and auditing services that Dev and Ops require. When engineers use one of these predefined libraries or services, they won’t need to schedule a separate security design review for that module; they’ll be using the guidance we’ve created concerning configuration hardening, database security settings, key lengths, and so forth. </p>
+<p class="body">To further increase the likelihood that the services and libraries we provide will be used correctly, we can provide security training to Dev and Ops, as well as review what they’ve created to help ensure that security objectives are being implemented correctly, especially for teams using these tools for the first time. </p>
+<p class="body">Ultimately, our goal is to provide the security libraries or services that every modern application or environment requires, such as enabling user authentication, authorization, password management, data encryption, and so forth. Furthermore, we can provide Dev and Ops with effective security-specific configuration settings for the components they use in their application stacks, such as for logging, authentication, and encryption. We may include items such as: </p>
+<ul class="calibre12"> <li class="bullets"><span class="black">Code libraries and their recommended configurations (e.g., 2FA [two-factor authentication library], bcrypt password hashing, logging)</span> </li>
+ <li class="bullets"><span class="black">Secret management (e.g., connection settings, encryption keys) using tools such as Vault, sneaker, Keywhiz, credstash, Trousseau, Red October, etc.</span> </li>
+ <li class="bullets"><span class="black">OS packages and builds (e.g., NTP for time syncing, secure versions of OpenSSL with correct configurations, OSSEC or Tripwire for file integrity monitoring, syslog configuration to ensure logging of critical security into our centralized ELK stack)</span> </li>
+ </ul>
+<p class="body">By putting all these into our shared source code repository, we make it easy for any engineer to correctly create and use logging and encryption standards in their applications and environments, with no further work from us. </p>
+<p class="body"><span epub:type="pagebreak" id="pg317" title="317"></span>We should also collaborate with Ops teams to create a base cookbook or build image of our OS, databases, and other infrastructure (e.g., NGINX, Apache, Tomcat), showing they are in a known, secure, and risk-reduced state. Our shared repository not only becomes the place where we can get the latest versions, but also becomes a place where we can collaborate with other engineers and monitor and alert on changes made to security-sensitive modules. </p>
+<h2 data-ep_ppid="Page-__-359" id="Page-__-359" class="calibre7">INTEGRATE SECURITY INTO OUR DEPLOYMENT PIPELINE </h2>
+<p class="body">In previous eras, in order to harden and secure our application, we would start our security review after development was completed. Often, the output of this review would be hundreds of pages of vulnerabilities in a PDF, which we’d give to Development and Operations, which would be completely un-addressed due to project due date pressure or problems being found too late in the software life cycle to be easily corrected. </p>
+<p class="body">In this step, we will automate as many of our information security tests as possible, so that they run alongside all our other automated tests in our deployment pipeline, being performed (ideally) upon every code commit by Dev or Ops, and even in the earliest stages of a software project. </p>
+<p class="body">Our goal is to provide both Dev and Ops with fast feedback on their work so that they are notified whenever they commit changes that are potentially insecure. By doing this, we enable them to quickly detect and correct security problems as part of their daily work, which enables learning and prevents future errors. </p>
+<p class="body">Ideally, these automated security tests will be run in our deployment pipeline alongside the other static code analysis tools. </p>
+<p class="body">Tools such as Gauntlt have been designed to integrate into the deployment pipelines, which run automated security tests on our applications, our application dependencies, our environment, etc. Remarkably, Gauntlt even puts all its security tests in Gherkin syntax test scripts, which is widely used by developers for unit and functional testing. Doing this puts security testing in a framework they are likely already familiar with. This also allows security tests to easily run in a deployment pipeline on every committed change, such as static code analysis, checking for vulnerable dependencies, or dynamic testing. </p>
+<p class="captions" data-ep_ppid="Page-__-360" id="Page-__-360"> <img alt="" src="../Images/ch_22.png" class="ep_cover_page"/> <span epub:type="pagebreak" id="pg318" title="318"></span><b class="captions1">Figure 43: </b>Jenkins running automated security testing (Source: James Wicket and Gareth Rushgrove, “Battle-tested code without the battle,” Velocity 2014 conference presentation, posted to Speakerdeck.com, June 24, 2014, <a href="http://speakerdeck.com/garethr/battle-tested-code-without-the-battle" class="calibre1">https://speakerdeck.com/garethr/battle-tested-code-without-the-battle</a>.) </p>
+<p class="body">By doing this, we provide everyone in the value stream with the fastest possible feedback about the security of what they are creating, enabling Dev and Ops engineers to find and fix issues quickly. </p>
+<h2 id="sigil_toc_id_146" class="calibre7">ENSURE SECURITY OF THE APPLICATION </h2>
+<p class="body">Often, Development testing focuses on the correctness of functionality, looking at positive logic flows. This type of testing is often referred to as the <i class="calibre5">happy path</i>, which validates user journeys (and sometimes alternative paths) where everything goes as expected, with no exceptions or error conditions. </p>
+<p class="body">On the other hand, effective QA, Infosec, and Fraud practitioners will often focus on the <i class="calibre5">sad paths</i>, which happen when things go wrong, especially in relation to security-related error conditions. (These types of security-specific conditions are often jokingly referred to as the <i class="calibre5">bad paths</i>.) </p>
+<p class="body">For instance, suppose we have an e-commerce site with a customer input form that accepts credit card numbers as part of generating a customer order. We want to define all the sad and bath paths required to ensure that invalid credit cards are properly rejected to prevent fraud and security exploits, such as SQL injections, buffer overruns, and other undesirable outcomes. </p>
+<p class="body">Instead of performing these tests manually, we would ideally generate them as part of our automated unit or functional tests so that they can be run continuously in our deployment pipeline. As part of our testing, we will want to include the following: </p>
+<ul class="calibre12"> <li class="bullets" data-ep_ppid="Page-__-361" id="Page-__-361"><span class="black"><b class="calibre6"><span epub:type="pagebreak" id="pg319" title="319"></span>Static analysis:</b> This is testing that we perform in a non-runtime environment, ideally in the deployment pipeline. Typically, a static analysis tool will inspect program code for all possible run-time behaviors and seek out coding flaws, back doors, and potentially malicious code (this is sometimes known as “testing from the inside-out”). Examples of tools include Brakeman, Code Climate, and searching for banned code functions (e.g., “exec()”).</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Dynamic analysis:</b> As opposed to static testing, dynamic analysis consists of tests executed while a program is in operation. Dynamic tests monitor items such as system memory, functional behavior, response time, and overall performance of the system. This method (sometimes known as “testing from the outside-in”) is similar to the manner in which a malicious third party might interact with an application. Examples include Arachni and OWASP ZAP (Zed Attack Proxy).<sup class="footnotes"><span id="footnote-120-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_22.html#footnote-120">†</a></span></sup> Some types of penetration testing can also be performed in an automated fashion and should be included as part of dynamic analysis using tools such as Nmap and Metasploit. Ideally, we should perform automated dynamic testing during the automated functional testing phase of our deployment pipeline, or even against our services while they are in production. To ensure correct security handling, tools like OWASP ZAP can be configured to attack our services through a web browser proxy and inspect the network traffic within our test harness.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Dependency scanning:</b> Another type of static testing we would normally perform at build time inside of our deployment pipeline involves inventorying all our dependencies for binaries and executables, and ensuring that these dependencies, which we often don’t have control over, are free of vulnerabilities or malicious binaries. Examples include Gemnasium and bundler audit for Ruby, Maven for Java, and the OWASP Dependency-Check.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Source code integrity and code signing:</b> All developers should have their own PGP key, perhaps created and managed in a system such as keybase.io. All commits to version control should be signed­—that is straightforward to configure using the open source tools gpg and git. Furthermore, all packages created by the CI <span epub:type="pagebreak" id="pg320" title="320"></span>process should be signed, and their hash recorded in the centralized logging service for audit purposes.</span> </li>
+ </ul>
+<p class="body" id="ch22-9">Furthermore, we should define design patterns to help developers write code to prevent abuse, such as putting in rate limits for our services and graying out submit buttons after they have being pressed. OWASP publishes a great deal of useful guidance such as the Cheat Sheet series, which includes: </p>
+<ul class="calibre12"> <li class="bullets"><span class="black">How to store passwords</span> </li>
+ <li class="bullets"><span class="black"><a data-ep_ppid="Page-__-362" id="Page-__-362" class="calibre1"></a>How to handle forgotten passwords</span> </li>
+ <li class="bullets"><span class="black">How to handle logging</span> </li>
+ <li class="bullets"><span class="black">How to prevent cross-site scripting (XSS) vulnerabilities</span> </li>
+ </ul>
+<p class="case-study-header">Case Study <br class="calibre16"/>Static Security Testing at Twitter (2009) </p>
+<p class="case-study">The “10 Deploys per Day: Dev and Ops Cooperation at Flickr” presentation by John Allspaw and Paul Hammond is famous for catalyzing the Dev and Ops community in 2009. The equivalent for the information security community is likely the presentation that Justin Collins, Alex Smolen, and Neil Matatall gave on their information security transformation work at Twitter at the AppSecUSA conference in 2012. </p>
+<p class="case-study">Twitter had many challenges due to hyper-growth. For years, the famous Fail Whale error page would be displayed when Twitter did not have sufficient capacity to keep up with user demand, showing a graphic of a whale being lifted by eight birds. <span id="ch22-10"></span>The scale of user growth was breathtaking—between January and March 2009, the number of active Twitter users went from 2.5 million to 10 million. </p>
+<p class="case-study">Twitter also had security problems during this period. <span id="ch22-11"></span>In early 2009, two serious security breaches occurred. First, in January the @BarackObama Twitter account was hacked. Then in April, the Twitter administrative accounts were compromised through a brute-force dictionary attack. These events led the Federal Trade Commission to judge that Twitter was misleading its users into believing that their accounts were secure and issued an FTC consent order. </p>
+<p class="case-study"><span epub:type="pagebreak" id="pg321" title="321"></span>The consent order required that Twitter comply within sixty days by instituting a set of processes that were to be enforced for the following twenty years and would do the following: </p>
+<ul class="case-study1"> <li class="bullets"><span class="black">Designate an employee or employees to be responsible for Twitter’s information security plan</span> </li>
+ <li class="bullets"><span class="black">Identify reasonably foreseeable risks, both internal and external, that could lead to an intrusion incident and create and implement a plan to address these risks<sup class="footnotes"><span id="footnote-119-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_22.html#footnote-119">‡</a></span></sup></span> </li>
+ <li class="bullets"><span class="black">Maintain the privacy of user information, not just from outside sources but also internally, with an outline of possible sources of verification and testing of the security and correctness of these implementations</span> </li>
+ </ul>
+<p class="case-study"><a data-ep_ppid="Page-__-363" id="Page-__-363" class="calibre1"></a>The group of engineers assigned to solve this problem had to integrate security into the daily work of Dev and Ops and close the security holes that allowed the breaches to happen in the first place. </p>
+<p class="case-study" id="ch22-12">In their previously mentioned presentation, Collins, Smolen, and Matatall identified several problems they needed to address: </p>
+<ul class="case-study1"> <li class="bullets"><span class="black"><b class="calibre6">Prevent security mistakes from being repeated:</b> They found that they were fixing the same defects and vulnerabilities over and over again. They needed to modify the system of work and automation tools to prevent the issues from happening again.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Integrate security objectives into existing developer tools:</b> They identified early on that the major source of vulnerabilities were code issues. They couldn’t run a tool that generated a huge PDF report and then email it to someone in Development or Operations. Instead, they needed to provide the developer who had created the vulnerability with the exact information needed to fix it.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Preserve trust of Development:</b> They needed to earn and maintain the trust of Development. That meant they needed to know when they sent Development false positives, so they could fix the error <span epub:type="pagebreak" id="pg322" title="322"></span>that prompted the false positive and avoid wasting Development’s time.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Maintain fast flow through Infosec through automation:</b> Even when code vulnerability scanning was automated, Infosec still had to do lots of manual work and waiting. They had to wait for the scan to complete, get back the big stack of reports, interpret the reports, and then find the person responsible for fixing it. And when the code changed, it had to be done all over again. By automating the manual work, they did fewer dumb “button-pushing” tasks, enabling them to use more creativity and judgment.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Make everything security related self-service, if possible:</b> They trusted that most people wanted to do the right thing, so it was necessary to provide them with all the context and information they needed to fix any issues.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Take a holistic approach to achieving Infosec objectives:</b> Their goal was to do analysis from all the angles: source code, the production environment, and even what their customers were seeing.</span> </li>
+ </ul>
+<p class="case-study" id="ch22-13">The first big breakthrough for the Infosec team occured during a company-wide hack week when they integrated static code analysis into the Twitter build process. The team used Brakeman, which scans Ruby on Rails applications for vulnerabilities. The goal was to integrate security scanning into the earliest stages of the Development process, not just when the code was committed into the source code repo. </p>
+<p class="captions" data-ep_ppid="Page-__-364" id="Page-__-364"><img alt="" src="../Images/ch_221.png" class="ep_cover_page"/> <b class="captions1">Figure 44:</b> Number of Brakeman security vulnerabilities detected </p>
+<p class="case-study"><span epub:type="pagebreak" id="pg323" title="323"></span>The results of integrating security testing into the development process were breathtaking. Over the years, by creating fast feedback for developers when they write insecure code and showing them how to fix the vulnerabilities, Brakeman has reduced the rate of vulnerabilities found by 60%, as shown in figure 44. (The spikes are usually associated with new releases of Brakeman.) </p>
+<p class="case-study">This cases study illustrates just how necessary it is to integrate security into the daily work and tools of DevOps and how effectively it can work. Doing so mitigates security risk, reduces the probability of vulnerabilities in the system, and helps teach developers to write more secure code. </p>
+<h2 id="sigil_toc_id_147" class="calibre7">ENSURE SECURITY OF OUR SOFTWARE SUPPLY CHAIN </h2>
+<p class="body" id="ch22-14">Josh Corman observed that as developers “we are no longer writing customized software—instead, we assemble what we need from open source parts, which has become the software supply chain that we are very much reliant upon.” In other words, when we use components or libraries­—either commercial or open source—in our software, we not only inherit their functionality, but also any security vulnerabilities they contain. </p>
+<p class="body">When selecting software, we detect when our software projects are relying on components <a data-ep_ppid="Page-__-365" id="Page-__-365" class="calibre1"></a>or libraries that have known vulnerabilities, and help developers choose the components they use deliberately and with due care, selecting those components (e.g., open source projects) that have a demonstrated history of quickly fixing software vulnerabilities. We also look for multiple versions of the same library being used across our production landscape, particularly the presence of older versions of libraries which contain known vulnerabilities. </p>
+<p class="body">Examining cardholder data breaches shows how important the security of open source components we choose can be. Since 2008, the annual Verizon PCI Data Breach Investigation Report (DBIR) has been the most authoritative voice on data breaches where cardholder data was lost or stolen. <span id="ch22-15"></span>In the 2014 report, they studied over eighty-five thousand breaches to better understand where attacks were coming from, how cardholder data was stolen, and factors leading to the breach. </p>
+<p class="body">The DBIR found that ten vulnerabilities (i.e., CVEs) accounted for almost 97% of the exploits used in studied cardholder data breaches in 2014. Of these ten vulnerabilities, eight of them were over ten years old. </p>
+<p class="body"><span epub:type="pagebreak" id="pg324" title="324"></span>The <i class="calibre5">2015 Sonatype State of the Software Supply Chain Report</i> further analyzed the vulnerability data from the Nexus Central Repository. <span id="ch22-16"></span>In 2015, this repository provided the build artifacts for over 605,000 open source projects, servicing over seventeen billion download requests of artifacts and dependencies primarily for the Java platform, originating from 106,000 organizations. </p>
+<p class="body">The report included these startling findings: </p>
+<ul class="calibre12"> <li class="bullets"><span class="black">The typical organization relied upon 7,601 build artifacts (i.e., software suppliers or components) and used 18,614 different versions (i.e., software parts).</span> </li>
+ <li class="bullets"><span class="black">Of those components being used, 7.5% had known vulnerabilities, with over 66% of those vulnerabilities being over two years old without having been resolved.</span> </li>
+ </ul>
+<p class="body" id="ch22-17">The last statistic confirms another information security study by Dr. Dan Geer and Josh Corman, which showed that of the open source projects with known vulnerabilities registered in the National Vulnerability Database, only 41% were ever fixed and required, on average, 390 days to publish a fix. For those vulnerabilities that were labeled at the highest severity (i.e., those scored as CVSS level 10), fixes required 224 days.<sup class="footnotes"><span id="footnote-118-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_22.html#footnote-118">§</a></span></sup> </p>
+<h2 data-ep_ppid="Page-__-366" id="Page-__-366" class="calibre7">ENSURE SECURITY OF THE ENVIRONMENT </h2>
+<p class="body">In this step, we should do whatever is required to help ensure that the environments are in a hardened, risk-reduced state. Although we may have created known, good configurations already, we must put in monitoring controls to ensure that all production instances match these known good states. </p>
+<p class="body">We do this by generating automated tests to ensure that all appropriate settings have been correctly applied for configuration hardening, database security settings, key lengths, and so forth. Furthermore, we will use tests to scan our environments for known vulnerabilities.<sup class="footnotes"><span id="footnote-117-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_22.html#footnote-117">¶</a></span></sup> </p>
+<p class="body"><span epub:type="pagebreak" id="pg325" title="325"></span>Another category of security verification is understanding actual environments (i.e., “as they actually are”). Examples of tools for this include Nmap to ensure that only expected ports are open and Metasploit to ensure that we’ve adequately hardened our environments against known vulnerabilities, such as scanning with SQL injection attacks. The output of these tools should be put into our artifact repository and compared with the previous version as part of our functional testing process. Doing this will help us detect any undesirable changes as soon as they occur. </p>
+<p class="case-study-header">Case Study <br class="calibre16"/>18F Automating Compliance for the Federal Government with Compliance Masonry </p>
+<p class="case-study" id="ch22-18">US Federal Government agencies were projected to spend nearly $80 billion on IT in 2016, supporting the mission of all the executive branch agencies. Regardless of agency, to take any system from “dev complete” to “live in production” requires obtaining an Authority to Operate (ATO) from a Designated Approving Authority (DAA). The laws and policies that govern complience in government are comprised of tens of documents that together number over four thousand pages, littered with acronyms such as FISMA, FedRAMP, and FITARA. Even for systems that only require low levels of confidentiality, integrity, and availability, over one hundred controls must be implemented, documented, and tested. It typically takes between eight and fourteen months for an ATO to be granted following “dev complete.” </p>
+<p class="case-study">The 18F team in the federal government’s General Services Administration has taken a multi-pronged approach to solving this problem. <span id="ch22-19"></span>Mike Bland explains, “18F was created within the General Services Administration to capitalize on the momentum generated by the <a data-ep_ppid="Page-__-367" id="Page-__-367" class="calibre1"></a>Healthcare.gov recovery to reform how the government builds and buys software.” </p>
+<p class="case-study">One 18F effort is a platform as a service called Cloud.gov, created from open source components. Cloud.gov runs on AWS GovCloud at present. Not only does the platform handle many of the operational concerns delivery teams might otherwise have to take care of, such as logging, monitoring, alerting, and service lifecycle management, it also handles the bulk of compliance concerns. By running on this platform, a large majority of the controls that government systems must implement can be taken care of at the infrastructure and platform level. Then, only the remaining controls that are in scope at the application layer have to be documented and tested, significantly reducing the compliance burden and the time it takes to receive an ATO. </p>
+<p class="case-study"><span epub:type="pagebreak" id="pg326" title="326"></span>AWS GovCloud has already been approved for use for federal government systems of all types, including those which require high levels of confidentiality, integrity, and availability. By the time you read this book, it is expected that Cloud.gov will be approved for all systems that require moderate levels of confidentiality, integrity, and availability.<sup class="footnotes"><span id="footnote-116-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_22.html#footnote-116">**</a></span></sup> </p>
+<p class="case-study" id="ch22-20">Furthermore, the Cloud.gov team is building a framework to automate the creation of system security plans (SSPs), which are “comprehensive descriptions of the system’s architecture, implemented controls, and general security posture…[which are] often incredibly complex, running several hundred pages in length.” They developed a prototype tool called compliance masonry so that SSP data is stored in machine-readable YAML and then turned into GitBooks and PDFs automatically. </p>
+<p class="case-study">18F is dedicated to working in the open and publishes its work open source in the public domain. You can find compliance masonry and the components that make up Cloud.gov in 18F’s GitHub repositories—you can even stand up your own instance of Cloud.gov. The work on open documentation for SSPs is being done in close partnership with the OpenControl community. </p>
+<h2 id="sigil_toc_id_148" class="calibre7">INTEGRATE INFORMATION SECURITY INTO PRODUCTION TELEMETRY </h2>
+<p class="body" id="ch22-21">Marcus Sachs, one of the Verizon Data Breach researchers, observed in 2010, “Year after year, in the vast majority of cardholder data breaches, the organization detected the security breach months or quarters after the breach occurred. Worse, the way the breach was detected was not an internal monitoring control, but was far more likely someone outside of the organization, usually a business partner or the customer who notices fraudulent transactions. One of the primary reasons for this is that no one in the organization was regularly reviewing the log files.” </p>
+<p class="body"><a data-ep_ppid="Page-__-368" id="Page-__-368" class="calibre1"></a>In other words, internal security controls are often ineffective in successfully detecting breaches in a timely manner, either because of blind spots in our monitoring or because no one in our organization is examining the relevant telemetry in their daily work. </p>
+<p class="body">In chapter 14, we discussed creating a culture in Dev and Ops where everyone in the value stream is creating production telemetry and metrics, making <span epub:type="pagebreak" id="pg327" title="327"></span>them visible in prominent public places so that everyone can see how our services are performing in production. Furthermore, we explored the necessity of relentlessly seeking ever-weaker failure signals so that we can find and fix problems before they result in a catastrophic failure. </p>
+<p class="body">Here, we deploy the monitoring, logging, and alerting required to fulfill our information security objectives throughout our applications and environments, as well as ensure that it is adequately centralized to facilitate easy and meaningful analysis and response. </p>
+<p class="body">We do this by integrating our security telemetry into the same tools that Development, QA, and Operations are using, giving everyone in the value stream visibility into how their application and environments are performing in a hostile threat environment where attackers are constantly attempting to exploit vulnerabilities, gain unauthorized access, plant backdoors, commit fraud, perform denials-of-service, and so forth. </p>
+<p class="body">By radiating how our services are being attacked in the production environment, we reinforce that everyone needs to be thinking about security risks and designing countermeasures in their daily work. </p>
+<h2 id="sigil_toc_id_149" class="calibre7"><span epub:type="pagebreak" id="pg328" title="328" class="calibre9"></span>CREATING SECURITY TELEMETRY IN OUR APPLICATIONS </h2>
+<p class="body">In order to detect problematic user behavior that could be an indicator or enabler of fraud and unauthorized access, we must create the relevant telemetry in our applications. </p>
+<p class="body">Examples may include: </p>
+<ul class="calibre12"> <li class="bullets"><span class="black">Successful and unsuccessful user logins</span> </li>
+ <li class="bullets"><span class="black">User password resets</span> </li>
+ <li class="bullets"><span class="black">User email address resets</span> </li>
+ <li class="bullets"><span class="black">User credit card changes</span> </li>
+ </ul>
+<p class="body">For instance, as an early indicator of brute-force login attempts to gain unauthorized access, we might display the ratio of unsuccessful login attempts to successful logins. And, <a data-ep_ppid="Page-__-369" id="Page-__-369" class="calibre1"></a>of course, we should create alerting around important events to ensure we can detect and correct issues quickly. </p>
+<h2 id="sigil_toc_id_150" class="calibre7">CREATING SECURITY TELEMETRY IN OUR ENVIRONMENT </h2>
+<p class="body">In addition to instrumenting our application, we also need to create sufficient telemetry in our environments so that we can detect early indicators of unauthorized access, especially in the components that are running on infrastructure that we do not control (e.g., hosting environments, in the cloud). </p>
+<p class="body" id="ch22-22">We need to monitor and potentially alert on items, including the following: </p>
+<ul class="calibre12"> <li class="bullets"><span class="black">OS changes (e.g., in production, in our build infrastructure)</span> </li>
+ <li class="bullets"><span class="black">Security group changes</span> </li>
+ <li class="bullets"><span class="black">Changes to configurations (e.g., OSSEC, Puppet, Chef, Tripwire)</span> </li>
+ <li class="bullets"><span class="black">Cloud infrastructure changes (e.g., VPC, security groups, users and privileges)</span> </li>
+ <li class="bullets"><span class="black">XSS attempts (i.e., “cross-site scripting attacks”)</span> </li>
+ <li class="bullets"><span class="black">SQLi attempts (i.e., “SQL injection attacks”)</span> </li>
+ <li class="bullets"><span class="black">Web server errors (e.g., 4XX and 5XX errors)</span> </li>
+ </ul>
+<p class="body">We also want to confirm that we’ve correctly configured our logging so that all telemetry is being sent to the right place. When we detect attacks, in addition to logging that it happened, we may also choose to block access and store information about the source to aid us in choosing the best mitigation actions. </p>
+<p class="case-study-header">Case Study <br class="calibre16"/>Instrumenting the Environment at Etsy (2010) </p>
+<p class="case-study" id="ch22-23">In 2010, Nick Galbreath was director of engineering at Etsy and responsible for information security, fraud control, and privacy. Galbreath defined <i class="calibre5">fraud</i> as when “the system works incorrectly, allowing invalid or un-inspected input into the system, causing financial loss, data loss/theft, system downtime, vandalism, or an attack on another system.” </p>
+<p class="case-study">To achieve these goals, Galbreath did not create a separate fraud control or information security department; instead, he embedded those responsibilities throughout the DevOps <a data-ep_ppid="Page-__-370" id="Page-__-370" class="calibre1"></a>value stream. </p>
+<p class="case-study"><span epub:type="pagebreak" id="pg329" title="329"></span>Galbreath created security-related telemetry that were displayed alongside all the other more Dev and Ops oriented metrics, which every Etsy engineer routinely saw: </p>
+<ul class="case-study1"> <li class="bullets"><span class="black"><b class="calibre6">Abnormal production program terminations (e.g., segmentation faults, core dumps, etc.):</b> <span id="ch22-24"></span>“Of particular concern was why certain processes kept dumping core across our entire production environment, triggered from traffic coming from the one IP address, over and over again. Of equal concern were those HTTP ‘500 Internal Server Errors.’ These are indicators that a vulnerability was being exploited to gain unauthorized access to our systems, and that a patch needs to be urgently applied.”</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Database syntax error:</b> <span id="ch22-25"></span>“We were always looking for database syntax errors inside our code—these either enabled SQL Injection attacks or were actual attacks in progress. For this reason, we had zero-tolerance for database syntax errors in our code, because it remains one of the leading attack vectors used to compromise systems.”</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Indications of SQL injection attacks:</b> <span id="ch22-26"></span>“This was a ridiculously simple test—we’d merely alert whenever ‘UNION ALL’ showed up in user-input fields, since it almost always indicates a SQL injection attack. We also added unit tests to make sure that this type of uncontrolled user input could never be allowed into our database queries.”</span> </li>
+ </ul>
+<p class="captions"><img alt="" src="../Images/ch_222.png" class="ep_cover_page"/> <b class="captions1">Figure 45: </b>Developers would see SQL injection attempts in Graphite at Etsy (Source: “DevOpsSec: Appling DevOps Priciples to Security, DevOpsDays Austin 2012,” SlideShare.net, posted by Nick Galbreath, April 12, 2012, <a href="http://www.slideshare.net/nickgsuperstar/devopssec-apply-devops-principles-to-security" class="calibre1">http://www.slideshare.net/nickgsuperstar/devopssec-apply-devops-principles-to-security</a>.) </p>
+<p class="case-study">Figure 45 is an example of a graph that every developer would see, which shows the number of potential SQL injection attacks that were attempted <span epub:type="pagebreak" id="pg330" title="330"></span>in the production environment. <span id="ch22-27"></span>As Galbreath observed, “Nothing helps developers understand how hostile the operating environment is than seeing their code being attacked in real-time.” </p>
+<p class="case-study" id="ch22-28"><a data-ep_ppid="Page-__-371" id="Page-__-371" class="calibre1"></a>Galbreath observed, “One of the results of showing this graph was that developers realized that they were being attacked all the time! And that was awesome, because it changed how developers thought about the security of their code as they were writing the code.” </p>
+<h2 id="sigil_toc_id_151" class="calibre7">PROTECT OUR DEPLOYMENT PIPELINE </h2>
+<p class="body">The infrastructure that supports our continuous integration and continuous deployment processes also presents a new surface area vulnerable to attack. For instance, if someone compromises the servers running deployment pipeline that has the credentials for our version control system, it could enable someone to steal source code. Worse, if the deployment pipeline has write access, an attacker could also inject malicious changes into our version control repository, and, therefore, inject malicious changes into our application and services. </p>
+<p class="body" id="ch22-29">As Jonathan Claudius, former Senior Security Tester at TrustWave SpiderLabs, observed, “Continuous build and test servers are awesome, and I use them myself. But I started thinking about ways to use CI/CD as a way to inject malicious code. Which led to the question of where would be a good place to hide malicious code? The answer was obvious: in the unit tests. No one actually looks at the unit tests, and they’re run every time someone commits code to the repo.” </p>
+<p class="body">This demonstrates that in order to adequately protect the integrity of our applications and environments, we must also mitigate the attack vectors on our deployment pipeline. Risks include developers introducing code that enables unauthorized access (which we’ve mitigated through controls such as code testing, code reviews, and penetration testing) and unauthorized users gaining access to our code or environment (which we’ve mitigated through controls such as ensuring configurations match known, good states, and effective patching). </p>
+<p class="body">However, in order to protect our continuous build, integration, or deployment pipeline, our mitigation strategies may include: </p>
+<ul class="calibre12"> <li class="bullets"><span class="black"><span epub:type="pagebreak" id="pg331" title="331"></span>Hardening continuous build and integration servers and ensuring we can reproduce them in an automated manner, just as we would for infrastructure that supports customer-facing production services, to prevent our continuous build and integration servers from being compromised </span></li>
+ <li class="bullets"><span class="black">Reviewing all changes introduced into version control, either through pair programming at commit time or by a code review process between commit and merge <a data-ep_ppid="Page-__-372" id="Page-__-372" class="calibre1"></a>into trunk, to prevent continuous integration servers from running uncontrolled code (e.g., unit tests may contain malicious code that allows or enables unauthorized access) </span></li>
+ <li class="bullets"><span class="black">Instrumenting our repository to detect when test code contains suspicious API calls (e.g., unit tests accessing the filesystem or network) is checked in to the repository, perhaps quarantining it and triggering an immediate code review</span> </li>
+ <li class="bullets"><span class="black">Ensuring every CI process runs on its own isolated container or VM</span> </li>
+ <li class="bullets"><span class="black">Ensuring the version control credentials used by the CI system are read-only</span> </li>
+ </ul>
+<h2 id="sigil_toc_id_152" class="calibre7">CONCLUSION </h2>
+<p class="body">Throughout this chapter we have described ways to integrate information security objectives into all stages of our daily work. We do this by integrating security controls into the mechanisms we’ve already created, ensuring that all on-demand environments are also in a hardened, risk-reduced state—by integrating security testing into the deployment pipeline and ensuring the creation of security telemetry in pre-production and production environments. By doing so, we enable developer and operational productivity to increase while simultaneously increasing our overall safety. Our next step is to protect the deployment pipeline. </p>
+<hr class="calibre13"/>
+<div class="_idfootnotes"> <aside class="_idfootnote" epub:type="footnote" id="footnote-120"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_22.html#footnote-120-backlink">†</a></span><span> </span>The Open Web Application Security Project (OWASP) is a non-profit organization focused on improving the security of software. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-119"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_22.html#footnote-119-backlink">‡</a></span><span> </span>Strategies for managing these risks include providing employee training and management; rethinking the design of information systems, including network and software; and instituting processes designed to prevent, detect, and respond to attacks. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-118"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_22.html#footnote-118-backlink">§</a></span><span> </span>Tools that can help ensure the integrity of our software dependencies include OWASP Dependency Check and Sonatype Nexus Lifecycle. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-117"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_22.html#footnote-117-backlink">¶</a></span><span> </span>Examples of tools that can help with security correctness testing (i.e., “as it should be”) include automated configuration management systems (e.g., Puppet, Chef, Ansible, Salt), as well as tools such as ServerSpec and the Netflix Simian Army (e.g., Conformity Monkey, Security Monkey, etc.). </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-116"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_22.html#footnote-116-backlink">**</a></span><span> </span>These approvals are known as FedRAMP JAB P-ATOs. </p>
+ </aside>
+ </div>
+<img id="floatBarImgId" src="chrome-extension://dbkmjjclgbiooljcegcddagnddjedmed/pics/save2-32.png" class="calibre3"/>
+
+
+
+  </div>
+
+  
+  <div class="calibreToc">
+    <h2><a href="../../../p4zbp-8mxvm.html"> Table of contents</a></h2>
+     <div>
+  <ul>
+    <li>
+      <a href="DOHB-0-FM-preface.html">Preface</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_1">Aha!</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_2">Gene Kim</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_3">Jez Humble</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#Page-__-13">Patrick Debois</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_4">John Willis</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_5">SPREADING THE AHA! MOMENT</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-foreword.html">Foreword</a>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-introduction.html">Imagine a World Where Dev and Ops Become DevOps</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_6">An Introduction to The DevOps Handbook</a>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_7">THE PROBLEM: SOMETHING IN YOUR ORGANIZATION MUST NEED IMPROVEMENT (OR YOU WOULDN’T BE READING THIS BOOK)</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_8">THE CORE, CHRONIC CONFLICT</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_9">DOWNWARD SPIRAL IN THREE ACTS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-25">WHY DOES THIS DOWNWARD SPIRAL HAPPEN EVERYWHERE?</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_10">THE COSTS: HUMAN AND ECONOMIC</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_11">THE ETHICS OF DEVOPS: THERE IS A BETTER WAY</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-27">BREAKING THE DOWNWARD SPIRAL WITH DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_12">THE BUSINESS VALUE OF DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_13">DEVOPS HELPS SCALE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_14">THE UNIVERSALITY OF THE SOLUTION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_15">THE DEVOPS HANDBOOK: AN ESSENTIAL GUIDE</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_01_text.html">Part I The Three Ways</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_01_text.html#sigil_toc_id_16">A BRIEF HISTORY</a>
+          <ul>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_17">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_18">THE AGILE MANIFESTO</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_19">AGILE INFRASTRUCTURE AND VELOCITY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_20">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_21">TOYOTA KATA</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_01.html">1 Agile, Continuous Delivery, and the Three Ways</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_22">THE MANUFACTURING VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#Page-__-43">THE TECHNOLOGY VALUE STREAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_23">FOCUS ON DEPLOYMENT LEAD TIME</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_24">Defining Lead Time vs. Processing Time</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#Page-__-45">The Common Scenario: Deployment Lead Times Requiring Months</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_25">Our DevOps Ideal: Deployment Lead Times of Minutes</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_26">OBSERVING “%C/A” AS A MEASURE OF REWORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_27">THE THREE WAYS: THE PRINCIPLES UNDERPINNING DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_28">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_02.html">2 The First Way: The Principles of Flow</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_29">MAKE OUR WORK VISIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#Page-__-52">LIMIT WORK IN PROCESS (WIP)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_30">REDUCE BATCH SIZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_31">REDUCE THE NUMBER OF HANDOFFS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_32">CONTINUALLY IDENTIFY AND ELEVATE OUR CONSTRAINTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_33">ELIMINATE HARDSHIPS AND WASTE IN THE VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_34">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_03.html">3 The Second Way: The Principles of Feedback</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_35">WORKING SAFELY WITHIN COMPLEX SYSTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-64">SEE PROBLEMS AS THEY OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_36">SWARM AND SOLVE PROBLEMS TO BUILD NEW KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_37">KEEP PUSHING QUALITY CLOSER TO THE SOURCE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-69">ENABLE OPTIMIZING FOR DOWNSTREAM WORK CENTERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_38">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_04.html">4 The Third Way: The Principles of Continual Learning and Experimentation</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_39">ENABLING ORGANIZATIONAL LEARNING AND A SAFETY CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_40">INSTITUTIONALIZE THE IMPROVEMENT OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_41">TRANSFORM LOCAL DISCOVERIES INTO GLOBAL IMPROVEMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#Page-__-78">INJECT RESILIENCE PATTERNS INTO OUR DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_42">LEADERS REINFORCE A LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_43">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_44">PART I CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_02_text.html">Part II Where to Start</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_02_text.html#sigil_toc_id_45">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_05.html">5 Selecting Which Value Stream to Start With</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_46">GREENFIELD VS. BROWNFIELD SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_47">CONSIDER BOTH SYSTEMS OF RECORD AND SYSTEMS OF ENGAGEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_48">START WITH THE MOST SYMPATHETIC AND INNOVATIVE GROUPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_49">EXPANDING DEVOPS ACROSS OUR ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#Page-__-96">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_06.html">6 Understanding the Work in Our Value Stream, Making it Visible, and Expanding it Across the Organization</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-100">IDENTIFYING THE TEAMS SUPPORTING OUR VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-101">CREATE A VALUE STREAM MAP TO SEE THE WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_50">CREATING A DEDICATED TRANSFORMATION TEAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_51">AGREE ON A SHARED GOAL</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_52">KEEP OUR IMPROVEMENT PLANNING HORIZONS SHORT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_53">RESERVE 20% OF CYCLES FOR NON-FUNCTIONAL REQUIREMENTS AND REDUCING TECHNICAL DEBT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_54">INCREASE THE VISIBILITY OF WORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_55">USE TOOLS TO REINFORCE DESIRED BEHAVIOR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_56">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_07.html">7 How to Design Our Organization and Architecture with Conway’s Law in Mind</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_57">ORGANIZATIONAL ARCHETYPES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-118">PROBLEMS OFTEN CAUSED BY OVERLY FUNCTIONAL ORIENTATION (“OPTIMIZING FOR COST”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-119">ENABLE MARKET-ORIENTED TEAMS (“OPTIMIZING FOR SPEED”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_58">MAKING FUNCTIONAL ORIENTATION WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_59">TESTING, OPERATIONS, AND SECURITY AS EVERYONE’S JOB, EVERY DAY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_60">ENABLE EVERY TEAM MEMBER TO BE A GENERALIST</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_61">FUND NOT PROJECTS, BUT SERVICES AND PRODUCTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-125">DESIGN TEAM BOUNDARIES IN ACCORDANCE WITH CONWAY’S LAW</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_62">CREATE LOOSELY-COUPLED ARCHITECTURES TO ENABLE DEVELOPER PRODUCTIVITY AND SAFETY</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_07.html#sigil_toc_id_63">KEEP TEAM SIZES SMALL (THE “TWO-PIZZA TEAM” RULE)</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_64">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_08.html">8 How to Get Great Outcomes by Integrating Operations into the Daily Work of Development</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_65">CREATE SHARED SERVICES TO INCREASE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_66">EMBED OPS ENGINEERS INTO OUR SERVICE TEAMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_67">ASSIGN AN OPS LIAISON TO EACH SERVICE TEAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_68">INTEGRATE OPS INTO DEV RITUALS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_69">INVITE OPS TO OUR DEV STANDUPS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_70">INVITE OPS TO OUR DEV RETROSPECTIVES</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_71">MAKE RELEVANT OPS WORK VISIBLE ON SHARED KANBAN BOARDS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_72">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_73">PART II CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_03.html">PART III—THE FIRST WAY: THE TECHNICAL PRACTICES OF FLOW</a>
+      <ul>
+        <li>
+          <a href="DOHB-ch_09.html">9 Create the Foundations of Our Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-149">ENABLE ON DEMAND CREATION OF DEV, TEST, AND PRODUCTION ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_74">CREATE OUR SINGLE REPOSITORY OF TRUTH FOR THE ENTIRE SYSTEM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-153">MAKE INFRASTRUCTURE EASIER TO REBUILD THAN TO REPAIR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_75">MODIFY OUR DEFINITION OF DEVELOPMENT “DONE” TO INCLUDE RUNNING IN PRODUCTION-LIKE ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_76">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_10.html">10 Enable Fast and Reliable Automated Testing</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_10.html#Page-__-161">CONTINUOUSLY BUILD, TEST, AND INTEGRATE OUR CODE AND ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_77">BUILD A FAST AND RELIABLE AUTOMATED VALIDATION TEST SUITE</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_78">CATCH ERRORS AS EARLY IN OUR AUTOMATED TESTING AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_79">ENSURE TESTS RUN QUICKLY (IN PARALLEL, IF NECESSARY)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_80">WRITE OUR AUTOMATED TESTS BEFORE WE WRITE THE CODE (“TEST-DRIVEN DEVELOPMENT”)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_81">AUTOMATE AS MANY OF OUR MANUAL TESTS AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_82">INTEGRATE PERFORMANCE TESTING INTO OUR TEST SUITE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_83">INTEGRATE NON-FUNCTIONAL REQUIREMENTS TESTING INTO OUR TEST SUITE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_84">PULL OUR ANDON CORD WHEN THE DEPLOYMENT PIPELINE BREAKS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_85">WHY WE NEED TO PULL THE ANDON CORD</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_86">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_11.html">11 Enable and Practice Continuous Integration</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_11.html#sigil_toc_id_87">SMALL BATCH DEVELOPMENT AND WHAT HAPPENS WHEN WE COMMIT CODE TO TRUNK INFREQUENTLY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-182">ADOPT TRUNK-BASED DEVELOPMENT PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-185">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_12.html">12 Automate and Enable Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_88">AUTOMATE OUR DEPLOYMENT PROCESS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_89">ENABLE AUTOMATED SELF-SERVICE DEPLOYMENTS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_90">INTEGRATE CODE DEPLOYMENT INTO THE DEPLOYMENT PIPELINE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-199">DECOUPLE DEPLOYMENTS FROM RELEASES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_91">ENVIRONMENT-BASED RELEASE PATTERNS</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_92">The Blue-Green Deployment Pattern</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_93">Dealing with Database Changes</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_94">The Canary and Cluster Immune System Release Patterns</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_95">APPLICATION-BASED PATTERNS TO ENABLE SAFER RELEASES</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_96">Implement Feature Toggles</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_97">Perform Dark Launches</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-209">SURVEY OF CONTINUOUS DELIVERY AND CONTINUOUS DEPLOYMENT IN PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_98">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_13.html">13 Architect for Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-214">AN ARCHITECTURE THAT ENABLES PRODUCTIVITY, TESTABILITY, AND SAFETY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_99">ARCHITECTURAL ARCHETYPES: MONOLITHS VS. MICROSERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_100">USE THE STRANGLER APPLICATION PATTERN TO SAFELY EVOLVE OUR ENTERPRISE ARCHITECTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-222">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_101">PART III CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_04_text.html">PART IV—THE SECOND WAY: THE TECHNICAL PRACTICES OF FEEDBACK</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_04_text.html#sigil_toc_id_102">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_14.html">14 Create Telemetry to Enable Seeing and Solving Problems</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_14.html#Page-__-233">CREATE OUR CENTRALIZED TELEMETRY INFRASTRUCTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_103">CREATE APPLICATION LOGGING TELEMETRY THAT HELPS PRODUCTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_104">USE TELEMETRY TO GUIDE PROBLEM SOLVING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_105">ENABLE CREATION OF PRODUCTION METRICS AS PART OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_106">CREATE SELF-SERVICE ACCESS TO TELEMETRY AND INFORMATION RADIATORS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_107">FIND AND FILL ANY TELEMETRY GAPS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_108">APPLICATION AND BUSINESS METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#Page-__-247">INFRASTRUCTURE METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_109">OVERLAYING OTHER RELEVANT INFORMATION ONTO OUR METRICS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_110">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_15.html">15 Analyze Telemetry to Better Anticipate Problems and Achieve Goals</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_111">USE MEANS AND STANDARD DEVIATIONS TO DETECT POTENTIAL PROBLEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_112">INSTRUMENT AND ALERT ON UNDESIRED OUTCOMES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_113">PROBLEMS THAT ARISE WHEN OUR TELEMETRY DATA HAS NON-GAUSSIAN DISTRIBUTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_114">USING ANOMALY DETECTION TECHNIQUES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_115">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_16.html">16 Enable Feedback So Development and Operations Can Safely Deploy Code</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_116">USE TELEMETRY TO MAKE DEPLOYMENTS SAFER</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_117">DEV SHARES PAGER ROTATION DUTIES WITH OPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#Page-__-271">HAVE DEVELOPERS FOLLOW WORK DOWNSTREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_118">HAVE DEVELOPERS INITIALLY SELF-MANAGE THEIR PRODUCTION SERVICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_119">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_17.html">17 Integrate Hypothesis-Driven Development and A/B Testing into Our Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-283">A BRIEF HISTORY OF A/B TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-284">INTEGRATING A/B TESTING INTO OUR FEATURE TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#sigil_toc_id_120">INTEGRATE A/B TESTING INTO OUR RELEASE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-286">INTEGRATING A/B TESTING INTO OUR FEATURE PLANNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-288">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_18.html">18 Create Review and Coordination Processes to Increase Quality of Our Current Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_121">THE DANGERS OF CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_122">POTENTIAL DANGERS OF “OVERLY CONTROLLING CHANGES”</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-296">ENABLE COORDINATION AND SCHEDULING OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_123">ENABLE PEER REVIEW OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-300">POTENTIAL DANGERS OF DOING MORE MANUAL TESTING AND CHANGE FREEZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#section-below">ENABLE PAIR PROGRAMMING TO IMPROVE ALL OUR CHANGES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_18.html#Page-__-303">EVALUATING THE EFFECTIVENESS OF PULL REQUEST PROCESSES</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_124">FEARLESSLY CUT BUREAUCRATIC PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_125">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_126">PART IV CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_05_text.html">PART V—THE THIRD WAY: THE TECHNICAL PRACTICES OF CONTINUAL LEARNING AND EXPERIMENTATION</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_05_text.html#sigil_toc_id_127">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_19.html">19 Enable and Inject Learning into Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-315">ESTABLISH A JUST, LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_128">SCHEDULE BLAMELESS POST-MORTEM MEETINGS AFTER ACCIDENTS OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_129">PUBLISH OUR POST-MORTEMS AS WIDELY AS POSSIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_130">DECREASE INCIDENT TOLERANCES TO FIND EVER-WEAKER FAILURE SIGNALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-322">REDEFINE FAILURE AND ENCOURAGE CALCULATED RISK-TAKING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_131">INJECT PRODUCTION FAILURES TO ENABLE RESILIENCE AND LEARNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-324">INSTITUTE GAME DAYS TO REHEARSE FAILURES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_132">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_20.html">20 Convert Local Discoveries into Global Improvements</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_133">USE CHAT ROOMS AND CHAT BOTS TO AUTOMATE AND CAPTURE ORGANIZATIONAL KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_134">AUTOMATE STANDARDIZED PROCESSES IN SOFTWARE FOR RE-USE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_135">CREATE A SINGLE, SHARED SOURCE CODE REPOSITORY FOR OUR ENTIRE ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_136">SPREAD KNOWLEDGE BY USING AUTOMATED TESTS AS DOCUMENTATION AND COMMUNITIES OF PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_137">DESIGN FOR OPERATIONS THROUGH CODIFIED NON-FUNCTIONAL REQUIREMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_138">BUILD REUSABLE OPERATIONS USER STORIES INTO DEVELOPMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#Page-__-336">ENSURE TECHNOLOGY CHOICES HELP ACHIEVE ORGANIZATIONAL GOALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_139">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_21.html">21 Reserve Time to Create Organizational Learning and Improvement</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-342">INSTITUTIONALIZE RITUALS TO PAY DOWN TECHNICAL DEBT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_140">ENABLE EVERYONE TO TEACH AND LEARN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_141">SHARE YOUR EXPERIENCES FROM DEVOPS CONFERENCES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-347">CREATE INTERNAL CONSULTING AND COACHES TO SPREAD PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_142">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_143">CONCLUSION TO PART V</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_22.html">22 Information Security as Everyone’s Job, Every Day</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_144">INTEGRATE SECURITY INTO DEVELOPMENT ITERATION DEMONSTRATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-357">INTEGRATE SECURITY INTO DEFECT TRACKING AND POST-MORTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_145">INTEGRATE PREVENTIVE SECURITY CONTROLS INTO SHARED SOURCE CODE REPOSITORIES AND SHARED SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-359">INTEGRATE SECURITY INTO OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_146">ENSURE SECURITY OF THE APPLICATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_147">ENSURE SECURITY OF OUR SOFTWARE SUPPLY CHAIN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-366">ENSURE SECURITY OF THE ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_148">INTEGRATE INFORMATION SECURITY INTO PRODUCTION TELEMETRY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_149">CREATING SECURITY TELEMETRY IN OUR APPLICATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_150">CREATING SECURITY TELEMETRY IN OUR ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_151">PROTECT OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_152">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23.html">23 Protecting the Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_153">INTEGRATE SECURITY AND COMPLIANCE INTO CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_154">RE-CATEGORIZE THE MAJORITY OF OUR LOWER RISK CHANGES AS STANDARD CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_155">WHAT TO DO WHEN CHANGES ARE CATEGORIZED AS NORMAL CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_156">REDUCE RELIANCE ON SEPARATION OF DUTY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_157">ENSURE DOCUMENTATION AND PROOF FOR AUDITORS AND COMPLIANCE OFFICERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#Page-__-384">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_158">PART VI CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23-CTA.html">A Call to Action</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23-CTA.html#sigil_toc_id_159">Conclusion to the DevOps Handbook</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM.html">Appendices</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-1">APPENDIX 1 THE CONVERGENCE OF DEVOPS</a>
+          <ul>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_160">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_161">THE AGILE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_162">THE VELOCITY CONFERENCE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_163">THE AGILE INFRASTRUCTURE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_164">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_165">THE TOYOTA KATA MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_166">THE LEAN STARTUP MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_167">THE LEAN UX MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_168">THE RUGGED COMPUTING MOVEMENT</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-2">APPENDIX 2 THEORY OF CONSTRAINTS AND CORE, CHRONIC CONFLICTS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-3">APPENDIX 3 TABULAR FORM OF DOWNWARD SPIRAL</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-4">APPENDIX 4 THE DANGERS OF HANDOFFS AND QUEUES</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-5">APPENDIX 5 MYTHS OF INDUSTRIAL SAFETY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-6">APPENDIX 6 THE TOYOTA ANDON CORD</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-7">APPENDIX 7 COTS SOFTWARE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-8">APPENDIX 8 POST-MORTEM MEETINGS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-9">APPENDIX 9 THE SIMIAN ARMY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-10">APPENDIX 10 TRANSPARENT UPTIME</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html">Additional Resources</a>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html#_idParaDest-46">Endnotes</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_169">INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-409">PART I INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_170">CHAPTER 1</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_171">CHAPTER 2</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_172">CHAPTER 3</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_173">CHAPTER 4</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_174">CHAPTER 5</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_175">CHAPTER 6</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_176">CHAPTER 7</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_177">CHAPTER 8</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_178">CHAPTER 9</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_179">CHAPTER 10</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_180">CHAPTER 11</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_181">CHAPTER 12</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_182">CHAPTER 13</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_183">CHAPTER 14</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-430">CHAPTER 15</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_184">CHAPTER 16</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_185">CHAPTER 17</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_186">CHAPTER 18</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_187">CHAPTER 19</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_188">CHAPTER 20</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_189">CHAPTER 21</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_190">CHAPTER 22</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-445">CHAPTER 23</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_191">CONCLUSION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_192">APPENDIX</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-index.html">Index</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-index.html#index_list">Symbols Numbers A B C D E F G H I J K L M N O P Q R S T U V W Y Z</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-ack.html">Acknowledgments</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_193">Jez Humble</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_194">John Willis</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_195">Patrick Debois</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#Page-__-494">Gene Kim</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-aut.html">Author Biographies</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_196">GENE KIM</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_197">JEZ HUMBLE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_198">PATRICK DEBOIS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_199">JOHN WILLIS</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+  </div>
+  
+
+  <div class="calibreEbNav">
+    
+      <a href="DOHB-pt_06.html" class="calibreAPrev">previous page</a>
+    
+
+    <a href="../../../p4zbp-8mxvm.html" class="calibreAHome"> start</a>
+
+    
+      <a href="DOHB-ch_23.html" class="calibreANext"> next page</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

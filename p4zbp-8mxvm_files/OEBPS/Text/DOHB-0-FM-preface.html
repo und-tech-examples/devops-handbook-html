@@ -1,0 +1,1126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>DOHB-ch_01</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../../page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="../../calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../../../p4zbp-8mxvm.html">The DevOps Handbook How to Create World-Class Agility, Reliability & Security in Technology Organizations
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Gene Kim, Patrick Debois, John Willis, Jez Humble, John Allspaw
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="DOHB-0-FM-halftitle.html" class="calibreAPrev">previous page</a>
+        
+
+        
+          <a href="DOHB-0-FM-foreword.html" class="calibreANext"> next page</a>
+        
+      </div>
+    
+
+    
+<a id="ep-file-5" class="calibre1"></a><a data-ep_ppid="Page-__-11" id="Page-__-11" class="calibre1"></a><h1 class="chapter-title" id="_idParaDest-4"><span epub:type="pagebreak" id="pgxi" title="xi"></span>Preface </h1>
+<h2 class="chapter-title1" id="sigil_toc_id_1">Aha! </h2>
+<p class="body">The journey to complete <i class="calibre5">The DevOps Handbook</i> has been a long one—it started with weekly working Skype calls between the co-authors in February of 2011, with the vision of creating a prescriptive guide that would serve as a companion to the as-yet unfinished book <i class="calibre5">The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win</i>. </p>
+<p class="body">More than five years later, with over two thousand hours of work, <i class="calibre5">The DevOps Handbook</i> is finally here. Completing this book has been an extremely long process, although one that has been highly rewarding and full of incredible learning, with a scope that is much broader than we originally envisioned. Throughout the project, all the co-authors shared a belief that DevOps is genuinely important, formed in a personal “aha” moment much earlier in each of our professional careers, which I suspect many of our readers will resonate with. </p>
+<h3 class="preface" id="sigil_toc_id_2">Gene Kim </h3>
+<p class="blockquote">I’ve had the privilege of studying high-performing technology organizations since 1999, and one of the earliest findings was that boundary-spanning between the different functional groups of IT Operations, Information Security, and Development was critical to success. But I still remember the first time I saw the magnitude of the downward spiral that would result when these functions worked toward opposing goals. </p>
+<p class="blockquote">It was 2006, and I had the opportunity to spend a week with the group who managed the outsourced IT Operations of a large airline reservation service. They described the downstream consequences of their large, annual software releases: each release would cause immense chaos and disruption for the outsourcer, as well as customers; there would be SLA (service level agreement) penalties, because of the customer-impacting outages; there would be layoffs of the most <span epub:type="pagebreak" id="pgxii" title="xii"></span>talented and experienced staff, because of the resulting profit shortfalls; there would be much unplanned work and firefighting so that the remaining staff couldn’t work on the ever-growing service request backlogs <a data-ep_ppid="Page-__-12" id="Page-__-12" class="calibre1"></a>coming from customers; the contract would be held together by the heroics of middle management; and everyone felt that the contract would be doomed to be put out for re-bid in three years. </p>
+<p class="blockquote">The sense of hopelessness and futility that resulted created for me the beginnings of a moral crusade. Development seemed to always be viewed as strategic, but IT Operations was viewed as tactical, often delegated away or outsourced entirely, only to return in five years in worse shape than it was first handed over. </p>
+<p class="blockquote">For many years, many of us knew that there must be a better way. I remember seeing the talks coming out of the 2009 Velocity Conference, describing amazing outcomes enabled by architecture, technical practices, and cultural norms that we now know as DevOps. I was so excited, because it clearly pointed to the better way that we had all been searching for. And helping spread that word was one of my personal motivations to co-author <i class="calibre5">The Phoenix Project</i>. You can imagine how incredibly rewarding it was to see the broader community react to that book, describing how it helped them achieve their own “aha” moments. </p>
+<h3 class="preface" id="sigil_toc_id_3">Jez Humble </h3>
+<p class="blockquote">My DevOps “aha” moment was at a start-up in 2000—my first job after graduating. For some time, I was one of two technical staff. I did everything: networking, programming, support, systems administration. We deployed software to production by FTP directly from our workstations. </p>
+<p class="blockquote">Then in 2004 I got a job at ThoughtWorks, a consultancy where my first gig was working on a project involving about seventy people. I was on a team of eight engineers whose full-time job was to deploy our software into a production-like environment. In the beginning, it was really stressful. But over a few months we went from manual deployments that took two weeks to an automated deployment that took one hour, where we could roll forward and back in milliseconds using the blue-green deployment pattern during normal business hours. </p>
+<p class="blockquote">That project inspired a lot of the ideas in both the <i class="calibre5">Continuous Delivery</i> (Addison-Wesley, 2000) book and this one. A lot of what drives me<span epub:type="pagebreak" id="pgxiii" title="xiii"></span> and others working in this space is the knowledge that, whatever your constraints, we can always do better, and the desire to help people on their journey. </p>
+<h3 class="preface" data-ep_ppid="Page-__-13" id="Page-__-13">Patrick Debois </h3>
+<p class="blockquote">For me, it was a collection of moments. In 2007 I was working on a data center migration project with some Agile teams. I was jealous that they had such high productivity—able to get so much done in so little time. </p>
+<p class="blockquote">For my next assignment, I started experimenting with Kanban in Operations and saw how the dynamic of the team changed. Later, at the Agile Toronto 2008 conference I presented my IEEE paper on this, but I felt it didn’t resonate widely in the Agile community. We started an Agile system administration group, but I overlooked the human side of things. </p>
+<p class="blockquote">After seeing the 2009 Velocity Conference presentation “10 Deploys per Day” by John Allspaw and Paul Hammond, I was convinced others were thinking in a similar way. So I decided to organize the first DevOpsDays, accidently coining the term DevOps. </p>
+<p class="blockquote">The energy at the event was unique and contagious. When people started to thank me because it changed their life for the better, I understood the impact. I haven’t stopped promoting DevOps since. </p>
+<h3 class="preface" id="sigil_toc_id_4">John Willis </h3>
+<p class="blockquote">In 2008, I had just sold a consulting business that focused on large-scale, legacy IT operations practices around configuration management and monitoring (Tivoli) when I first met Luke Kanies (the founder of Puppet Labs). Luke was giving a presentation on Puppet at an O’Reilly open source conference on configuration management (CM). </p>
+<p class="blockquote">At first I was just hanging out at the back of the room killing time and thinking, “What could this twenty-year-old tell me about configuration management?” After all, I had literally been working my entire life at some of the largest enterprises in the world, helping them architect CM and other operations management solutions. However, about five minutes into his session, I moved up to the first row and realized everything I had been doing for the last twenty years was wrong. Luke was describing what I now call second generation CM.<span epub:type="pagebreak" id="pgxiv" title="xiv"></span> </p>
+<p class="blockquote">After his session I had an opportunity to sit down and have coffee with him. I was totally sold on what we now call infrastructure as code. However, while we met for coffee, Luke started going even further, explaining his ideas. He started telling me he believed that operations was going to have to start behaving like software developers. They were going to have to keep their configurations in source control and adopt CI/CD delivery patterns for their workflow. Being the old IT Operations person at the <a data-ep_ppid="Page-__-14" id="Page-__-14" class="calibre1"></a>time, I think I replied to him with something like, “That idea is going to sink like Led Zeppelin with Ops folk.” (I was clearly wrong.) </p>
+<p class="blockquote">Then about a year later in 2009 at another O’Reilly conference, Velocity, I saw Andrew Clay Shafer give a presentation on Agile Infrastructure. In his presentation, Andrew showed this iconic picture of a wall between developers and operations with a metaphorical depiction of work being thrown over the wall. He coined this “the wall of confusion.” The ideas he expressed in that presentation codified what Luke was trying to tell me a year earlier. That was the light bulb for me. Later that year, I was the only American invited to the original DevOpsDays in Ghent. By the time that event was over, this thing we call DevOps was clearly in my blood. </p>
+<p class="body">Clearly, the co-authors of this book all came to a similar epiphany, even if they came there from very different directions. But there is now an overwhelming weight of evidence that the problems described above happen almost everywhere, and that the solutions associated with DevOps are nearly universally applicable. </p>
+<p class="body">The goal of writing this book is to describe how to replicate the DevOps transformations we’ve been a part of or have observed, as well as dispel many of the myths of why DevOps won’t work in certain situations. Below are some of the most common myths we hear about DevOps. </p>
+<p class="body"><b class="calibre6">Myth</b>—<i class="calibre5">DevOps is Only for Startups:</i> While DevOps practices have been pioneered by the web-scale, Internet “unicorn” companies such as Google, Amazon, Netflix, and Etsy, each of these organizations has, at some point in their history, risked going out of business because of the problems associated with more traditional “horse” organizations: highly dangerous code releases that were prone to catastrophic failure, inability to release features fast enough to beat the competition, compliance concerns, an inability to scale, high levels of distrust between Development and Operations, and so forth.<span epub:type="pagebreak" id="pgxv" title="xv"></span> </p>
+<p class="body">However, each of these organizations was able to transform their architecture, technical practices, and culture to create the amazing outcomes that we associate with DevOps. As Dr. Branden Williams, an information security executive, quipped, “Let there be no more talk of DevOps unicorns or horses but only thoroughbreds and horses heading to the glue factory.” </p>
+<p class="body"><b class="calibre6">Myth</b>—<i class="calibre5">DevOps Replaces Agile:</i> DevOps principles and practices are compatible with Agile, with many observing that DevOps is a logical continuation of the Agile journey that started in 2001. Agile often serves as an effective enabler of DevOps, because of its focus on small teams continually delivering high quality code to customers. </p>
+<p class="body"><a data-ep_ppid="Page-__-15" id="Page-__-15" class="calibre1"></a>Many DevOps practices emerge if we continue to manage our work beyond the goal of “potentially shippable code” at the end of each iteration, extending it to having our code always in a deployable state, with developers checking into trunk daily, and that we demonstrate our features in production-like environments. </p>
+<p class="body"><b class="calibre6">Myth</b>—<i class="calibre5">DevOps is incompatible with ITIL:</i> Many view DevOps as a backlash to ITIL or ITSM (IT Service Management), which was originally published in 1989. ITIL has broadly influenced multiple generations of Ops practitioners, including one of the co-authors, and is an ever-evolving library of practices intended to codify the processes and practices that underpin world-class IT Operations, spanning service strategy, design, and support. </p>
+<p class="body">DevOps practices can be made compatible with ITIL process. However, to support the shorter lead times and higher deployment frequencies associated with DevOps, many areas of the ITIL processes become fully automated, solving many problems associated with the configuration and release management processes (e.g., keeping the configuration management database and definitive software libraries up to date). And because DevOps requires fast detection and recovery when service incidents occur, the ITIL disciplines of service design, incident, and problem management remain as relevant as ever. </p>
+<p class="body"><b class="calibre6">Myth</b>—<i class="calibre5">DevOps is Incompatible with Information Security and Compliance:</i> The absence of traditional controls (e.g., segregation of duty, change approval processes, manual security reviews at the end of the project) may dismay information security and compliance professionals. </p>
+<p class="body">However, that doesn’t mean that DevOps organizations don’t have effective controls. Instead of security and compliance activities only being performed <span epub:type="pagebreak" id="pgxvi" title="xvi"></span>at the end of the project, controls are integrated into every stage of daily work in the software development life cycle, resulting in better quality, security, and compliance outcomes. </p>
+<p class="body"><b class="calibre6">Myth</b>—<i class="calibre5">DevOps Means Eliminating IT Operations, or “NoOps”:</i> Many misinterpret DevOps as the complete elimination of the IT Operations function. However, this is rarely the case. While the nature of IT Operations work may change, it remains as important as ever. IT Operations collaborates far earlier in the software life cycle with Development, who continues to work with IT Operations long after the code has been deployed into production. </p>
+<p class="body">Instead of IT Operations doing manual work that comes from work tickets, it enables developer productivity through APIs and self-serviced platforms that create environments, test and deploy code, monitor and display production telemetry, and so <a data-ep_ppid="Page-__-16" id="Page-__-16" class="calibre1"></a>forth. By doing this, IT Operations become more like Development (as do QA and Infosec), engaged in product development, where the product is the platform that developers use to safely, quickly, and securely test, deploy, and run their IT services in production. </p>
+<p class="body"><b class="calibre6">Myth</b>—<i class="calibre5">DevOps is Just “Infrastructure as Code” or Automation:</i> While many of the DevOps patterns shown in this book require automation, DevOps also requires cultural norms and an architecture that allows for the shared goals to be achieved throughout the IT value stream. This goes far beyond just automation. As Christopher Little, a technology executive and one of the earliest chroniclers of DevOps, wrote, “DevOps isn’t about automation, just as astronomy isn’t about telescopes.” </p>
+<p class="body"><b class="calibre6">Myth</b>—<i class="calibre5">DevOps is Only for Open Source Software:</i> Although many DevOps success stories take place in organizations using software such as the LAMP stack (Linux, Apache, MySQL, PHP), achieving DevOps outcomes is independent of the technology being used. Successes have been achieved with applications written in Microsoft.NET, COBOL, and mainframe assembly code, as well as with SAP and even embedded systems (e.g., HP LaserJet firmware). </p>
+<h2 id="sigil_toc_id_5" class="calibre7">SPREADING THE AHA! MOMENT </h2>
+<p class="body">Each of the authors has been inspired by the amazing innovations happening in the DevOps community and the outcomes they are creating: they are creating safe systems of work, and enabling small teams to quickly and independently develop and validate code that can be safely deployed to customers. Given our belief that DevOps is a manifestation of creating dynamic, learning <span epub:type="pagebreak" id="pgxvii" title="xvii"></span>organizations that continually reinforce high-trust cultural norms, it is inevitable that these organizations will continue to innovate and win in the marketplace. </p>
+<p class="body">It is our sincere hope that <i class="calibre5">The DevOps Handbook</i> will serve as a valuable resource for many people in different ways: a guide for planning and executing DevOps transformations, a set of case studies to research and learn from, a chronicle of the history of DevOps, a means to create a coalition that spans Product Owners, Architecture, Development, QA, IT Operations, and Information Security to achieve common goals, a way to get the highest levels of leadership support for DevOps initiatives, as well as a moral imperative to change the way we manage technology organizations to enable better effectiveness and efficiency, as well as enabling a happier and more humane work environment, helping everyone become lifelong learners—this not only helps everyone achieve their highest goals as human beings, but also helps their organizations win. </p>
+<span epub:type="pagebreak" id="pgxviii" title="xviii"></span>
+<img id="floatBarImgId" src="chrome-extension://dbkmjjclgbiooljcegcddagnddjedmed/pics/save2-32.png" class="calibre3"/>
+
+
+
+  </div>
+
+  
+  <div class="calibreToc">
+    <h2><a href="../../../p4zbp-8mxvm.html"> Table of contents</a></h2>
+     <div>
+  <ul>
+    <li>
+      <a href="DOHB-0-FM-preface.html">Preface</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_1">Aha!</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_2">Gene Kim</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_3">Jez Humble</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#Page-__-13">Patrick Debois</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_4">John Willis</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_5">SPREADING THE AHA! MOMENT</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-foreword.html">Foreword</a>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-introduction.html">Imagine a World Where Dev and Ops Become DevOps</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_6">An Introduction to The DevOps Handbook</a>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_7">THE PROBLEM: SOMETHING IN YOUR ORGANIZATION MUST NEED IMPROVEMENT (OR YOU WOULDN’T BE READING THIS BOOK)</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_8">THE CORE, CHRONIC CONFLICT</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_9">DOWNWARD SPIRAL IN THREE ACTS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-25">WHY DOES THIS DOWNWARD SPIRAL HAPPEN EVERYWHERE?</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_10">THE COSTS: HUMAN AND ECONOMIC</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_11">THE ETHICS OF DEVOPS: THERE IS A BETTER WAY</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-27">BREAKING THE DOWNWARD SPIRAL WITH DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_12">THE BUSINESS VALUE OF DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_13">DEVOPS HELPS SCALE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_14">THE UNIVERSALITY OF THE SOLUTION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_15">THE DEVOPS HANDBOOK: AN ESSENTIAL GUIDE</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_01_text.html">Part I The Three Ways</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_01_text.html#sigil_toc_id_16">A BRIEF HISTORY</a>
+          <ul>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_17">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_18">THE AGILE MANIFESTO</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_19">AGILE INFRASTRUCTURE AND VELOCITY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_20">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_21">TOYOTA KATA</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_01.html">1 Agile, Continuous Delivery, and the Three Ways</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_22">THE MANUFACTURING VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#Page-__-43">THE TECHNOLOGY VALUE STREAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_23">FOCUS ON DEPLOYMENT LEAD TIME</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_24">Defining Lead Time vs. Processing Time</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#Page-__-45">The Common Scenario: Deployment Lead Times Requiring Months</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_25">Our DevOps Ideal: Deployment Lead Times of Minutes</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_26">OBSERVING “%C/A” AS A MEASURE OF REWORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_27">THE THREE WAYS: THE PRINCIPLES UNDERPINNING DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_28">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_02.html">2 The First Way: The Principles of Flow</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_29">MAKE OUR WORK VISIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#Page-__-52">LIMIT WORK IN PROCESS (WIP)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_30">REDUCE BATCH SIZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_31">REDUCE THE NUMBER OF HANDOFFS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_32">CONTINUALLY IDENTIFY AND ELEVATE OUR CONSTRAINTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_33">ELIMINATE HARDSHIPS AND WASTE IN THE VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_34">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_03.html">3 The Second Way: The Principles of Feedback</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_35">WORKING SAFELY WITHIN COMPLEX SYSTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-64">SEE PROBLEMS AS THEY OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_36">SWARM AND SOLVE PROBLEMS TO BUILD NEW KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_37">KEEP PUSHING QUALITY CLOSER TO THE SOURCE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-69">ENABLE OPTIMIZING FOR DOWNSTREAM WORK CENTERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_38">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_04.html">4 The Third Way: The Principles of Continual Learning and Experimentation</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_39">ENABLING ORGANIZATIONAL LEARNING AND A SAFETY CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_40">INSTITUTIONALIZE THE IMPROVEMENT OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_41">TRANSFORM LOCAL DISCOVERIES INTO GLOBAL IMPROVEMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#Page-__-78">INJECT RESILIENCE PATTERNS INTO OUR DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_42">LEADERS REINFORCE A LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_43">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_44">PART I CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_02_text.html">Part II Where to Start</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_02_text.html#sigil_toc_id_45">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_05.html">5 Selecting Which Value Stream to Start With</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_46">GREENFIELD VS. BROWNFIELD SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_47">CONSIDER BOTH SYSTEMS OF RECORD AND SYSTEMS OF ENGAGEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_48">START WITH THE MOST SYMPATHETIC AND INNOVATIVE GROUPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_49">EXPANDING DEVOPS ACROSS OUR ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#Page-__-96">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_06.html">6 Understanding the Work in Our Value Stream, Making it Visible, and Expanding it Across the Organization</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-100">IDENTIFYING THE TEAMS SUPPORTING OUR VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-101">CREATE A VALUE STREAM MAP TO SEE THE WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_50">CREATING A DEDICATED TRANSFORMATION TEAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_51">AGREE ON A SHARED GOAL</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_52">KEEP OUR IMPROVEMENT PLANNING HORIZONS SHORT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_53">RESERVE 20% OF CYCLES FOR NON-FUNCTIONAL REQUIREMENTS AND REDUCING TECHNICAL DEBT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_54">INCREASE THE VISIBILITY OF WORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_55">USE TOOLS TO REINFORCE DESIRED BEHAVIOR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_56">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_07.html">7 How to Design Our Organization and Architecture with Conway’s Law in Mind</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_57">ORGANIZATIONAL ARCHETYPES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-118">PROBLEMS OFTEN CAUSED BY OVERLY FUNCTIONAL ORIENTATION (“OPTIMIZING FOR COST”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-119">ENABLE MARKET-ORIENTED TEAMS (“OPTIMIZING FOR SPEED”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_58">MAKING FUNCTIONAL ORIENTATION WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_59">TESTING, OPERATIONS, AND SECURITY AS EVERYONE’S JOB, EVERY DAY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_60">ENABLE EVERY TEAM MEMBER TO BE A GENERALIST</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_61">FUND NOT PROJECTS, BUT SERVICES AND PRODUCTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-125">DESIGN TEAM BOUNDARIES IN ACCORDANCE WITH CONWAY’S LAW</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_62">CREATE LOOSELY-COUPLED ARCHITECTURES TO ENABLE DEVELOPER PRODUCTIVITY AND SAFETY</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_07.html#sigil_toc_id_63">KEEP TEAM SIZES SMALL (THE “TWO-PIZZA TEAM” RULE)</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_64">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_08.html">8 How to Get Great Outcomes by Integrating Operations into the Daily Work of Development</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_65">CREATE SHARED SERVICES TO INCREASE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_66">EMBED OPS ENGINEERS INTO OUR SERVICE TEAMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_67">ASSIGN AN OPS LIAISON TO EACH SERVICE TEAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_68">INTEGRATE OPS INTO DEV RITUALS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_69">INVITE OPS TO OUR DEV STANDUPS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_70">INVITE OPS TO OUR DEV RETROSPECTIVES</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_71">MAKE RELEVANT OPS WORK VISIBLE ON SHARED KANBAN BOARDS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_72">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_73">PART II CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_03.html">PART III—THE FIRST WAY: THE TECHNICAL PRACTICES OF FLOW</a>
+      <ul>
+        <li>
+          <a href="DOHB-ch_09.html">9 Create the Foundations of Our Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-149">ENABLE ON DEMAND CREATION OF DEV, TEST, AND PRODUCTION ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_74">CREATE OUR SINGLE REPOSITORY OF TRUTH FOR THE ENTIRE SYSTEM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-153">MAKE INFRASTRUCTURE EASIER TO REBUILD THAN TO REPAIR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_75">MODIFY OUR DEFINITION OF DEVELOPMENT “DONE” TO INCLUDE RUNNING IN PRODUCTION-LIKE ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_76">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_10.html">10 Enable Fast and Reliable Automated Testing</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_10.html#Page-__-161">CONTINUOUSLY BUILD, TEST, AND INTEGRATE OUR CODE AND ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_77">BUILD A FAST AND RELIABLE AUTOMATED VALIDATION TEST SUITE</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_78">CATCH ERRORS AS EARLY IN OUR AUTOMATED TESTING AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_79">ENSURE TESTS RUN QUICKLY (IN PARALLEL, IF NECESSARY)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_80">WRITE OUR AUTOMATED TESTS BEFORE WE WRITE THE CODE (“TEST-DRIVEN DEVELOPMENT”)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_81">AUTOMATE AS MANY OF OUR MANUAL TESTS AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_82">INTEGRATE PERFORMANCE TESTING INTO OUR TEST SUITE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_83">INTEGRATE NON-FUNCTIONAL REQUIREMENTS TESTING INTO OUR TEST SUITE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_84">PULL OUR ANDON CORD WHEN THE DEPLOYMENT PIPELINE BREAKS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_85">WHY WE NEED TO PULL THE ANDON CORD</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_86">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_11.html">11 Enable and Practice Continuous Integration</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_11.html#sigil_toc_id_87">SMALL BATCH DEVELOPMENT AND WHAT HAPPENS WHEN WE COMMIT CODE TO TRUNK INFREQUENTLY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-182">ADOPT TRUNK-BASED DEVELOPMENT PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-185">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_12.html">12 Automate and Enable Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_88">AUTOMATE OUR DEPLOYMENT PROCESS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_89">ENABLE AUTOMATED SELF-SERVICE DEPLOYMENTS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_90">INTEGRATE CODE DEPLOYMENT INTO THE DEPLOYMENT PIPELINE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-199">DECOUPLE DEPLOYMENTS FROM RELEASES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_91">ENVIRONMENT-BASED RELEASE PATTERNS</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_92">The Blue-Green Deployment Pattern</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_93">Dealing with Database Changes</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_94">The Canary and Cluster Immune System Release Patterns</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_95">APPLICATION-BASED PATTERNS TO ENABLE SAFER RELEASES</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_96">Implement Feature Toggles</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_97">Perform Dark Launches</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-209">SURVEY OF CONTINUOUS DELIVERY AND CONTINUOUS DEPLOYMENT IN PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_98">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_13.html">13 Architect for Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-214">AN ARCHITECTURE THAT ENABLES PRODUCTIVITY, TESTABILITY, AND SAFETY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_99">ARCHITECTURAL ARCHETYPES: MONOLITHS VS. MICROSERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_100">USE THE STRANGLER APPLICATION PATTERN TO SAFELY EVOLVE OUR ENTERPRISE ARCHITECTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-222">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_101">PART III CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_04_text.html">PART IV—THE SECOND WAY: THE TECHNICAL PRACTICES OF FEEDBACK</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_04_text.html#sigil_toc_id_102">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_14.html">14 Create Telemetry to Enable Seeing and Solving Problems</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_14.html#Page-__-233">CREATE OUR CENTRALIZED TELEMETRY INFRASTRUCTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_103">CREATE APPLICATION LOGGING TELEMETRY THAT HELPS PRODUCTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_104">USE TELEMETRY TO GUIDE PROBLEM SOLVING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_105">ENABLE CREATION OF PRODUCTION METRICS AS PART OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_106">CREATE SELF-SERVICE ACCESS TO TELEMETRY AND INFORMATION RADIATORS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_107">FIND AND FILL ANY TELEMETRY GAPS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_108">APPLICATION AND BUSINESS METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#Page-__-247">INFRASTRUCTURE METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_109">OVERLAYING OTHER RELEVANT INFORMATION ONTO OUR METRICS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_110">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_15.html">15 Analyze Telemetry to Better Anticipate Problems and Achieve Goals</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_111">USE MEANS AND STANDARD DEVIATIONS TO DETECT POTENTIAL PROBLEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_112">INSTRUMENT AND ALERT ON UNDESIRED OUTCOMES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_113">PROBLEMS THAT ARISE WHEN OUR TELEMETRY DATA HAS NON-GAUSSIAN DISTRIBUTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_114">USING ANOMALY DETECTION TECHNIQUES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_115">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_16.html">16 Enable Feedback So Development and Operations Can Safely Deploy Code</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_116">USE TELEMETRY TO MAKE DEPLOYMENTS SAFER</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_117">DEV SHARES PAGER ROTATION DUTIES WITH OPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#Page-__-271">HAVE DEVELOPERS FOLLOW WORK DOWNSTREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_118">HAVE DEVELOPERS INITIALLY SELF-MANAGE THEIR PRODUCTION SERVICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_119">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_17.html">17 Integrate Hypothesis-Driven Development and A/B Testing into Our Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-283">A BRIEF HISTORY OF A/B TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-284">INTEGRATING A/B TESTING INTO OUR FEATURE TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#sigil_toc_id_120">INTEGRATE A/B TESTING INTO OUR RELEASE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-286">INTEGRATING A/B TESTING INTO OUR FEATURE PLANNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-288">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_18.html">18 Create Review and Coordination Processes to Increase Quality of Our Current Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_121">THE DANGERS OF CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_122">POTENTIAL DANGERS OF “OVERLY CONTROLLING CHANGES”</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-296">ENABLE COORDINATION AND SCHEDULING OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_123">ENABLE PEER REVIEW OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-300">POTENTIAL DANGERS OF DOING MORE MANUAL TESTING AND CHANGE FREEZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#section-below">ENABLE PAIR PROGRAMMING TO IMPROVE ALL OUR CHANGES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_18.html#Page-__-303">EVALUATING THE EFFECTIVENESS OF PULL REQUEST PROCESSES</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_124">FEARLESSLY CUT BUREAUCRATIC PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_125">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_126">PART IV CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_05_text.html">PART V—THE THIRD WAY: THE TECHNICAL PRACTICES OF CONTINUAL LEARNING AND EXPERIMENTATION</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_05_text.html#sigil_toc_id_127">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_19.html">19 Enable and Inject Learning into Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-315">ESTABLISH A JUST, LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_128">SCHEDULE BLAMELESS POST-MORTEM MEETINGS AFTER ACCIDENTS OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_129">PUBLISH OUR POST-MORTEMS AS WIDELY AS POSSIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_130">DECREASE INCIDENT TOLERANCES TO FIND EVER-WEAKER FAILURE SIGNALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-322">REDEFINE FAILURE AND ENCOURAGE CALCULATED RISK-TAKING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_131">INJECT PRODUCTION FAILURES TO ENABLE RESILIENCE AND LEARNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-324">INSTITUTE GAME DAYS TO REHEARSE FAILURES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_132">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_20.html">20 Convert Local Discoveries into Global Improvements</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_133">USE CHAT ROOMS AND CHAT BOTS TO AUTOMATE AND CAPTURE ORGANIZATIONAL KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_134">AUTOMATE STANDARDIZED PROCESSES IN SOFTWARE FOR RE-USE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_135">CREATE A SINGLE, SHARED SOURCE CODE REPOSITORY FOR OUR ENTIRE ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_136">SPREAD KNOWLEDGE BY USING AUTOMATED TESTS AS DOCUMENTATION AND COMMUNITIES OF PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_137">DESIGN FOR OPERATIONS THROUGH CODIFIED NON-FUNCTIONAL REQUIREMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_138">BUILD REUSABLE OPERATIONS USER STORIES INTO DEVELOPMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#Page-__-336">ENSURE TECHNOLOGY CHOICES HELP ACHIEVE ORGANIZATIONAL GOALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_139">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_21.html">21 Reserve Time to Create Organizational Learning and Improvement</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-342">INSTITUTIONALIZE RITUALS TO PAY DOWN TECHNICAL DEBT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_140">ENABLE EVERYONE TO TEACH AND LEARN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_141">SHARE YOUR EXPERIENCES FROM DEVOPS CONFERENCES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-347">CREATE INTERNAL CONSULTING AND COACHES TO SPREAD PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_142">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_143">CONCLUSION TO PART V</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_22.html">22 Information Security as Everyone’s Job, Every Day</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_144">INTEGRATE SECURITY INTO DEVELOPMENT ITERATION DEMONSTRATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-357">INTEGRATE SECURITY INTO DEFECT TRACKING AND POST-MORTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_145">INTEGRATE PREVENTIVE SECURITY CONTROLS INTO SHARED SOURCE CODE REPOSITORIES AND SHARED SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-359">INTEGRATE SECURITY INTO OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_146">ENSURE SECURITY OF THE APPLICATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_147">ENSURE SECURITY OF OUR SOFTWARE SUPPLY CHAIN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-366">ENSURE SECURITY OF THE ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_148">INTEGRATE INFORMATION SECURITY INTO PRODUCTION TELEMETRY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_149">CREATING SECURITY TELEMETRY IN OUR APPLICATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_150">CREATING SECURITY TELEMETRY IN OUR ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_151">PROTECT OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_152">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23.html">23 Protecting the Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_153">INTEGRATE SECURITY AND COMPLIANCE INTO CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_154">RE-CATEGORIZE THE MAJORITY OF OUR LOWER RISK CHANGES AS STANDARD CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_155">WHAT TO DO WHEN CHANGES ARE CATEGORIZED AS NORMAL CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_156">REDUCE RELIANCE ON SEPARATION OF DUTY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_157">ENSURE DOCUMENTATION AND PROOF FOR AUDITORS AND COMPLIANCE OFFICERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#Page-__-384">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_158">PART VI CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23-CTA.html">A Call to Action</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23-CTA.html#sigil_toc_id_159">Conclusion to the DevOps Handbook</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM.html">Appendices</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-1">APPENDIX 1 THE CONVERGENCE OF DEVOPS</a>
+          <ul>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_160">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_161">THE AGILE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_162">THE VELOCITY CONFERENCE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_163">THE AGILE INFRASTRUCTURE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_164">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_165">THE TOYOTA KATA MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_166">THE LEAN STARTUP MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_167">THE LEAN UX MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_168">THE RUGGED COMPUTING MOVEMENT</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-2">APPENDIX 2 THEORY OF CONSTRAINTS AND CORE, CHRONIC CONFLICTS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-3">APPENDIX 3 TABULAR FORM OF DOWNWARD SPIRAL</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-4">APPENDIX 4 THE DANGERS OF HANDOFFS AND QUEUES</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-5">APPENDIX 5 MYTHS OF INDUSTRIAL SAFETY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-6">APPENDIX 6 THE TOYOTA ANDON CORD</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-7">APPENDIX 7 COTS SOFTWARE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-8">APPENDIX 8 POST-MORTEM MEETINGS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-9">APPENDIX 9 THE SIMIAN ARMY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-10">APPENDIX 10 TRANSPARENT UPTIME</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html">Additional Resources</a>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html#_idParaDest-46">Endnotes</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_169">INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-409">PART I INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_170">CHAPTER 1</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_171">CHAPTER 2</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_172">CHAPTER 3</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_173">CHAPTER 4</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_174">CHAPTER 5</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_175">CHAPTER 6</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_176">CHAPTER 7</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_177">CHAPTER 8</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_178">CHAPTER 9</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_179">CHAPTER 10</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_180">CHAPTER 11</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_181">CHAPTER 12</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_182">CHAPTER 13</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_183">CHAPTER 14</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-430">CHAPTER 15</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_184">CHAPTER 16</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_185">CHAPTER 17</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_186">CHAPTER 18</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_187">CHAPTER 19</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_188">CHAPTER 20</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_189">CHAPTER 21</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_190">CHAPTER 22</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-445">CHAPTER 23</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_191">CONCLUSION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_192">APPENDIX</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-index.html">Index</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-index.html#index_list">Symbols Numbers A B C D E F G H I J K L M N O P Q R S T U V W Y Z</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-ack.html">Acknowledgments</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_193">Jez Humble</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_194">John Willis</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_195">Patrick Debois</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#Page-__-494">Gene Kim</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-aut.html">Author Biographies</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_196">GENE KIM</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_197">JEZ HUMBLE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_198">PATRICK DEBOIS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_199">JOHN WILLIS</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+  </div>
+  
+
+  <div class="calibreEbNav">
+    
+      <a href="DOHB-0-FM-halftitle.html" class="calibreAPrev">previous page</a>
+    
+
+    <a href="../../../p4zbp-8mxvm.html" class="calibreAHome"> start</a>
+
+    
+      <a href="DOHB-0-FM-foreword.html" class="calibreANext"> next page</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

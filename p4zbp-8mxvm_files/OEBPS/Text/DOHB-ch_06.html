@@ -1,0 +1,1201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>DOHB-ch_06</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../../page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="../../calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../../../p4zbp-8mxvm.html">The DevOps Handbook How to Create World-Class Agility, Reliability & Security in Technology Organizations
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Gene Kim, Patrick Debois, John Willis, Jez Humble, John Allspaw
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="DOHB-ch_05.html" class="calibreAPrev">previous page</a>
+        
+
+        
+          <a href="DOHB-ch_07.html" class="calibreANext"> next page</a>
+        
+      </div>
+    
+
+    
+<a id="ep-file-17" class="calibre1"></a><a data-ep_ppid="Page-__-97" id="Page-__-97" class="calibre1"></a><a data-ep_ppid="Page-__-98" id="Page-__-98" class="calibre1"></a><div id="_idContainer041" class="calibre10"> <h1 class="chapter-title-b" data-ep_lpid="ch6" id="_idParaDest-16" title="6 Understanding the Work in Our Value Stream, Making it Visible, and Expanding it Across the Organization"><span epub:type="pagebreak" id="pg61" title="61"></span><span class="chapter-number-c">6</span>Understanding the Work in Our Value Stream, Making it Visible, and Expanding it Across the Organization </h1>
+ <p class="body">Once we have identified a value stream to which we want to apply DevOps principles and patterns, our next step is to gain a sufficient understanding of how value is delivered to the customer: what work is performed and by whom, and what steps can we take to improve flow. </p>
+ <p class="body">In the previous chapter, we learned about the DevOps transformation led by Courtney Kissler and the team at Nordstrom. <span id="ch6-1"></span>Over the years, they have learned that one of the most efficient ways to start improving any value stream is to conduct a workshop with all the major stakeholders and perform a value stream mapping exercise—a process (described later in this chapter) designed to help capture all the steps required to create value. </p>
+ <p class="body">Kissler’s favorite example of the valuable and unexpected insights that can come from value stream mapping is when they tried to improve the long lead times associated with requests going through the Cosmetics Business Office application, a COBOL mainframe application that supported all the floor and department managers of their in-store beauty and cosmetic departments. </p>
+ <p class="body">This application allowed department managers to register new salespeople for various product lines carried in their stores, so that they could track sales commissions, enable vendor rebates, and so forth. </p>
+ <p class="body" id="ch6-2">Kissler explained: </p>
+ <p class="blockquote">I knew this particular mainframe application well—earlier in my career, I supported this technology team, so I know firsthand that for nearly a decade, during each annual planning cycle, we would debate about how we needed to get this application off the mainframe. Of <span epub:type="pagebreak" id="pg62" title="62"></span>course, like in most organizations, even when there was full management support, we never seemed to get around to migrating it. </p>
+ <p class="blockquote" data-ep_ppid="Page-__-99" id="Page-__-99">My team wanted to conduct a value stream mapping exercise to determine whether the COBOL application really was the problem, or maybe there was a larger problem that we needed to address. They conducted a workshop that assembled everyone with any accountability for delivering value to our internal customers, including our business partners, the mainframe team, the shared service teams, and so forth. </p>
+ <p class="blockquote">What they discovered was that when department managers were submitting the ‘product line assignment’ request form, we were asking them for an employee number, which they didn’t have—so they would either leave it blank or put in something like ‘I don’t know.’ Worse, in order to fill out the form, department managers would have to inconveniently leave the store floor in order to use a PC in the back office. The end result was all this wasted time, with work bouncing back and forth in the process. </p>
+ <p class="body">During the workshop, the participants conducted several experiments, including deleting the employee number field in the form and letting another department get that information in a downstream step. These experiments, conducted with the help of department managers, showed a four-day reduction in processing time. The team later replaced the PC application with an iPad application, which allowed managers to submit the necessary information without leaving the store floor, and the processing time was further reduced to seconds. </p>
+ <p class="body" id="ch6-3">She said proudly, “With those amazing improvements, all the demands to get this application off the mainframe disappeared. Furthermore, other business leaders took notice and started coming to us with a whole list of further experiments they wanted to conduct with us in their own organizations. Everyone in the business and technology teams were excited by the outcome because they solved a real business problem, and, most importantly, they learned something in the process.” </p>
+ <p class="body">In the remainder of this chapter, we will go through the following steps: identifying all the teams required to create customer value, creating a value stream map to make visible all the required work, and using it to guide the teams in how to better and more quickly create value. By doing this, we can replicate the amazing outcomes described in this Nordstrom example. </p>
+ <h2 data-ep_ppid="Page-__-100" id="Page-__-100" class="calibre7"><span epub:type="pagebreak" id="pg63" title="63" class="calibre9"></span>IDENTIFYING THE TEAMS SUPPORTING OUR VALUE STREAM </h2>
+ <p class="body">As this Nordstrom example demonstrates, in value streams of any complexity, no one person knows all the work that must be performed in order to create value for the customer—especially since the required work must be performed by many different teams, often far removed from each other on the organization charts, geographically, or by incentives. </p>
+ <p class="body">As a result, after we select a candidate application or service for our DevOps initiative, we must identify all the members of the value stream who are responsible for working together to create value for the customers being served. In general, this includes: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black"><b class="calibre6">Product owner:</b> the internal voice of the business that defines the next set of functionality in the service</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Development:</b> the team responsible for developing application functionality in the service</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">QA:</b> the team responsible for ensuring that feedback loops exist to ensure the service functions as desired</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Operations:</b> the team often responsible for maintaining the production environment and helping ensure that required service levels are met</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Infosec:</b> the team responsible for securing systems and data</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Release managers:</b> the people responsible for managing and coordinating the production deployment and release processes</span> </li>
+ <li class="bullets" id="ch6-4"><span class="black"><b class="calibre6">Technology executives or value stream manager:</b> in Lean literature, someone who is responsible for “ensuring that the value stream meets or exceeds the customer [and organizational] requirements for the overall value stream, from start to finish”</span> </li>
+ </ul>
+ <h2 data-ep_ppid="Page-__-101" id="Page-__-101" class="calibre7">CREATE A VALUE STREAM MAP TO SEE THE WORK </h2>
+ <p class="body">After we identify our value stream members, our next step is to gain a concrete understanding of how work is performed, documented in the form <span epub:type="pagebreak" id="pg64" title="64"></span>of a value stream map. In our value stream, work likely begins with the product owner, in the form of a customer request or the formulation of a business hypothesis. Some time later, this work is accepted by Development, where features are implemented in code and checked in to our version control repository. Builds are then integrated, tested in a production-like environment, and finally deployed into production, where they (ideally) create value for our customer. </p>
+ <p class="body">In many traditional organizations, this value stream will consist of hundreds, if not thousands, of steps, requiring work from hundreds of people. Because documenting any value stream map this complex likely requires multiple days, we may conduct a multi-day workshop, where we assemble all the key constituents and remove them from the distractions of their daily work. </p>
+ <p class="body">Our goal is not to document every step and associated minutiae, but to sufficiently understand the areas in our value stream that are jeopardizing our goals of fast flow, short lead times, and reliable customer outcomes. Ideally, we have assembled those people with the authority to change their portion of the value stream.<sup class="footnotes"><span id="footnote-027-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_06.html#footnote-027">†</a></span></sup> </p>
+ <p class="body" id="ch6-5">Damon Edwards, co-host of <i class="calibre5">DevOps Café</i> podcast, observed, “In my experience, these types of value stream mapping exercises are always an eye-opener. Often, it is the first time when people see how much work and heroics are required to deliver value to the customer. For Operations, it may be the first time that they see the consequences that result when developers don’t have access to correctly configured environments, which contributes to even more crazy work during code deployments. For Development, it may be the first time they see all the heroics that are required by Test and Operations in order to deploy their code into production, long after they flag a feature as ‘completed.’” </p>
+ <p class="body">Using the full breadth of knowledge brought by the teams engaged in the value stream, we should focus our investigation and scrutiny on the following areas: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black">Places where work must wait weeks or even months, such as getting production-like environments, change approval processes, or security review processes</span> </li>
+ <li class="bullets"><span class="black">Places where significant rework is generated or received</span> </li>
+ </ul>
+ <p class="body" data-ep_ppid="Page-__-102" id="Page-__-102"><span epub:type="pagebreak" id="pg65" title="65"></span>Our first pass of documenting our value stream should only consist of high-level process blocks. Typically, even for complex value streams, groups can create a diagram with five to fifteen process blocks within a few hours. Each process block should include the lead time and process time for a work item to be processed, as well as the %C/A as measured by the downstream consumers of the output.<sup class="footnotes"><span id="footnote-026-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_06.html#footnote-026">‡</a></span></sup> </p>
+ <p class="captions"><img alt="" src="../Images/ch_06.png" class="ep_cover_page"/> <b class="captions1">Figure 10:</b> An example of a value stream map <br class="calibre8"/>(Source: Humble, Molesky, and O’Reilly, <i class="captions2">Lean Enterprise</i>, 139.) </p>
+ <p class="body">We use the metrics from our value stream map to guide our improvement efforts. In the Nordstrom example, they focused on the low %C/A rates on the request form submitted by department managers due to the absence of employee numbers. In other cases, it may be long lead times or low %C/A rates when delivering correctly configured test environments to Development teams, or it might be the long lead times required to execute and pass regression testing before each software release. </p>
+ <p class="body">Once we identify the metric we want to improve, we should perform the next level of observations and measurements to better understand the problem <span epub:type="pagebreak" id="pg66" title="66"></span>and then construct an idealized, future value stream map, which serves as a target condition to achieve by some date (e.g., usually three to twelve months). </p>
+ <p class="body" data-ep_ppid="Page-__-103" id="Page-__-103">Leadership helps define this future state and then guides and enables the team to brainstorm hypotheses and countermeasures to achieve the desired improvement to that state, perform experiments to test those hypotheses, and interpret the results to determine whether the hypotheses were correct. The teams keep repeating and iterating, using any new learnings to inform the next experiments. </p>
+ <h2 id="sigil_toc_id_50" class="calibre7">CREATING A DEDICATED TRANSFORMATION TEAM </h2>
+ <p class="body">One of the inherent challenges with initiatives such as DevOps transformations is that they are inevitably in conflict with ongoing business operations. Part of this is a natural outcome of how successful businesses evolve. An organization that has been successful for any extended period of time (years, decades, or even centuries) has created mechanisms to perpetuate the practices that made them successful, such as product development, order administration, and supply chain operations. </p>
+ <p class="body">Many techniques are used to perpetuate and protect how current processes operate, such as specialization, focus on efficiency and repeatability, bureaucracies that enforce approval processes, and controls to protect against variance. In particular, bureaucracies are incredibly resilient and are designed to survive adverse conditions—one can remove half the bureaucrats, and the process will still survive. </p>
+ <p class="body">While this is good for preserving status quo, we often need to change how we work to adapt to changing conditions in the marketplace. Doing this requires disruption and innovation, which puts us at odds with groups who are currently responsible for daily operations and the internal bureaucracies, and who will almost always win. </p>
+ <p class="body" id="ch6-6">In their book <i class="calibre5">The Other Side of Innovation: Solving the Execution Challenge,</i> Dr. Vijay Govindarajan and Dr. Chris Trimble, both faculty members of Dartmouth College’s Tuck School of Business, described their studies of how disruptive innovation is achieved despite these powerful forces of daily operations. They documented how customer-driven auto insurance products were successfully developed and marketed at Allstate, how the profitable digital publishing business was created at the <i class="calibre5">Wall Street Journal</i>, the development of the break<span epub:type="pagebreak" id="pg67" title="67"></span>through trail-running shoe at Timberland, and the development of the first electric car at BMW. </p>
+ <p class="body" id="ch6-7">Based on their research, Dr. Govindarajan and Dr. Trimble assert that organizations need to create a dedicated transformation team that is able to operate outside of the rest of the organization that is responsible for daily operations (which they call the “dedicated team” and “performance engine” respectively). </p>
+ <p class="body" data-ep_ppid="Page-__-104" id="Page-__-104">First and foremost, we will hold this dedicated team accountable for achieving a clearly defined, measurable, system-level result (e.g., reduce the deployment lead time from “code committed into version control to successfully running in production” by 50%). In order to execute such an initiative, we do the following: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black">Assign members of the dedicated team to be solely allocated to the DevOps transformation efforts (as opposed to “maintain all your current responsibilities, but spend 20% of your time on this new DevOps thing.”).</span> </li>
+ <li class="bullets"><span class="black">Select team members who are generalists, who have skills across a wide variety of domains.</span> </li>
+ <li class="bullets"><span class="black">Select team members who have longstanding and mutually respectful relationships with the rest of the organization.</span> </li>
+ <li class="bullets"><span class="black">Create a separate physical space for the dedicated team, if possible, to maximize communication flow within the team, and creating some isolation from the rest of the organization.</span> </li>
+ </ul>
+ <p class="body">If possible, we will free the transformation team from many of the rules and policies that restrict the rest of the organization, as National Instruments did, described in the previous chapter. After all, established processes are a form of institutional memory—we need the dedicated team to create the new processes and learnings required to generate our desired outcomes, creating new institutional memory. </p>
+ <p class="body">Creating a dedicated team is not only good for the team, but also good for the performance engine. By creating a separate team, we create the space for them to experiment with new practices, protecting the rest of the organization from the potential disruptions and distractions associated with it. </p>
+ <h3 id="sigil_toc_id_51" class="calibre11"><span epub:type="pagebreak" id="pg68" title="68" class="calibre9"></span>AGREE ON A SHARED GOAL </h3>
+ <p class="body">One of the most important parts of any improvement initiative is to define a measurable goal with a clearly defined deadline, between six months and two years in the future. It should require considerable effort but still be achievable. And achievement of the goal should create obvious value for the organization as a whole and to our customers. </p>
+ <p class="body" data-ep_ppid="Page-__-105" id="Page-__-105">These goals and the time frame should be agreed upon by the executives and known to everyone in the organization. We also want to limit the number of these types of initiatives going on simultaneously to prevent us from overly taxing the organizational change management capacity of leaders and the organization. Examples of improvement goals might include: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black">Reduce the percentage of the budget spent on product support and unplanned work by 50%.</span> </li>
+ <li class="bullets"><span class="black">Ensure lead time from code check-in to production release is one week or less for 95% of changes.</span> </li>
+ <li class="bullets"><span class="black">Ensure releases can always be performed during normal business hours with zero downtime.</span> </li>
+ <li class="bullets"><span class="black">Integrate all the required information security controls into the deployment pipeline to pass all required compliance requirements. </span></li>
+ </ul>
+ <p class="body">Once the high-level goal is made clear, teams should decide on a regular cadence to drive the improvement work. Like product development work, we want transformation work to be done in an iterative, incremental manner. A typical iteration will be in the range of two to four weeks. For each iteration, the teams should agree on a small set of goals that generate value and makes some progress toward the long-term goal. At the end of each iteration, teams should review their progress and set new goals for the next iteration. </p>
+ <h3 id="sigil_toc_id_52" class="calibre11">KEEP OUR IMPROVEMENT PLANNING HORIZONS SHORT </h3>
+ <p class="body">In any DevOps transformation project, we need to keep our planning horizons short, just as if we were in a startup doing product or customer development. Our initiative should strive to generate measurable improvements or actionable data within weeks (or, in the worst case, months). </p>
+ <p class="body"><span epub:type="pagebreak" id="pg69" title="69"></span>By keeping our planning horizons and iteration intervals short, we achieve the following: </p>
+ <ul data-ep_ppid="Page-__-106" id="Page-__-106" class="calibre12"> <li class="bullets"><span class="black">Flexibility and the ability to reprioritize and replan quickly</span> </li>
+ <li class="bullets"><span class="black">Decrease the delay between work expended and improvement realized, which strengthens our feedback loop, making it more likely to reinforce desired behaviors—when improvement initiatives are successful, it encourages more investment</span> </li>
+ <li class="bullets"><span class="black">Faster learning generated from the first iteration, meaning faster integration of our learnings into the next iteration</span> </li>
+ <li class="bullets"><span class="black">Reduction in activation energy to get improvements</span> </li>
+ <li class="bullets"><span class="black">Quicker realization of improvements that make meaningful differences in our daily work</span> </li>
+ <li class="bullets"><span class="black">Less risk that our project is killed before we can generate any demonstrable outcomes </span></li>
+ </ul>
+ <h3 id="sigil_toc_id_53" class="calibre11">RESERVE 20% OF CYCLES FOR NON-FUNCTIONAL REQUIREMENTS AND REDUCING TECHNICAL DEBT </h3>
+ <p class="body">A problem common to any process improvement effort is how to properly prioritize it—after all, organizations that need it most are those that have the least amount of time to spend on improvement. This is especially true in technology organizations because of technical debt. </p>
+ <p class="body">Organizations that struggle with financial debt only make interest payments and never reduce the loan principal, and may eventually find themselves in situations where they can no longer service the interest payments. Similarly, organizations that don’t pay down technical debt can find themselves so burdened with daily workarounds for problems left unfixed that they can no longer complete any new work. In other words, they are now only making the interest payment on their technical debt. </p>
+ <p class="body">We will actively manage this technical debt by ensuring that we invest at least 20% of all Development and Operations cycles on refactoring, investing in automation work and architecture and non-functional requirements (NFRs, <span epub:type="pagebreak" id="pg70" title="70"></span>sometimes referred to as the “ilities”), such as maintainability, manageability, scalability, reliability, testability, deployability, and security. </p>
+ <p class="captions" data-ep_ppid="Page-__-107" id="Page-__-107"><img alt="" src="../Images/ch_061.png" class="ep_cover_page"/> <b class="captions1">Figure 11:</b> Invest 20% of cycles on those that create positive, user-invisible value <br class="calibre8"/>(Source: “Machine Learning and Technical Debt with D. Sculley,” <i class="captions2">Software Engineering Daily</i> podcast, November 17, 2015, <a href="http://softwareengineeringdaily.com/2015/11/17/machine-learning-and-technical-debt-with-d-sculley/" class="calibre1">http://softwareengineeringdaily.com/2015/11/17/machine-learning-and-technical-debt-with-d-sculley/</a>.) </p>
+ <p class="body" id="ch6-8">After the near-death experience of eBay in the late 1990s, Marty Cagan, author of <i class="calibre5">Inspired: How To Create Products Customers Love,</i> the seminal book on product design and management, codified the following lesson: </p>
+ <p class="blockquote">The deal [between product owners and] engineering goes like this: Product management takes 20% of the team’s capacity right off the top and gives this to engineering to spend as they see fit. They might use it to rewrite, re-architect, or re-factor problematic parts of the code base...whatever they believe is necessary to avoid ever having to come to the team and say, ‘we need to stop and rewrite [all our code].’ If you’re in really bad shape today, you might need to make this 30% or even more of the resources. However, I get nervous when I find teams that think they can get away with much less than 20%. </p>
+ <p class="body" id="ch6-9">Cagan notes that when organizations do not pay their “20% tax,” technical debt will increase to the point where an organization inevitably spends all of its cycles paying down technical debt. At some point, the services become so fragile that feature delivery grinds to a halt because all the engineers are working on reliability issues or working around problems. </p>
+ <p class="body">By dedicating 20% of our cycles so that Dev and Ops can create lasting countermeasures to the problems we encounter in our daily work, we ensure that <span epub:type="pagebreak" id="pg71" title="71"></span>technical debt doesn’t impede our ability to quickly and safely develop and operate our services in production. Elevating added pressure of technical debt from workers can also reduce levels of burnout. </p>
+ <p class="case-study-header" data-ep_ppid="Page-__-108" id="Page-__-108">Case Study <br class="calibre16"/>Operation InVersion at LinkedIn (2011) </p>
+ <p class="case-study">LinkedIn’s Operation InVersion presents an interesting case study that illustrates the need to pay down technical debt as a part of daily work. <span id="ch6-10"></span>Six months after their successful IPO in 2011, LinkedIn continued to struggle with problematic deployments that became so painful that they launched Operation InVersion, where they stopped all feature development for two months in order to overhaul their computing environments, deployments, and architecture. </p>
+ <p class="case-study" id="ch6-11">LinkedIn was created in 2003 to help users “connect to your network for better job opportunities.” By the end of their first week of operation, they had 2,700 members. <span id="ch6-12"></span>One year later, they had over one million members, and have grown exponentially since then. <span id="ch6-13"></span>By November 2015, LinkedIn had over 350 million members, who generate tens of thousands of requests per second, resulting in millions of queries per second on the LinkedIn back-end systems. </p>
+ <p class="case-study">From the beginning, LinkedIn primarily ran on their homegrown Leo application, a monolithic Java application that served every page through servlets and managed JDBC connections to various back-end Oracle databases. However, to keep up with growing traffic in their early years, two critical services were decoupled from Leo: the first handled queries around the member connection graph entirely in-memory, and the second was member search, which layered over the first. </p>
+ <p class="case-study">By 2010, most new development was occurring in new services, with nearly one hundred services running outside of Leo. <span id="ch6-14"></span>The problem was that Leo was only being deployed once every two weeks. </p>
+ <p class="case-study" id="ch6-15">Josh Clemm, a senior engineering manager at LinkedIn, explained that by 2010, the company was having significant problems with Leo. Despite vertically scaling Leo by adding memory and CPUs, “Leo was often going down in production, it was difficult to troubleshoot and recover, and difficult to release new code….It was clear we needed to ‘Kill Leo’ and break it up into many small functional and stateless services.” </p>
+ <a data-ep_ppid="Page-__-109" id="Page-__-109" class="calibre1"></a><p class="case-study" id="ch6-16"><span epub:type="pagebreak" id="pg72" title="72"></span>In 2013, journalist Ashlee Vance of Bloomberg described how “when LinkedIn would try to add a bunch of new things at once, the site would crumble into a broken mess, requiring engineers to work long into the night and fix the problems.” By Fall 2011, late nights were no longer a rite of passage or a bonding activity, because the problems had become intolerable. Some of LinkedIn’s top engineers, including Kevin Scott, who had joined as the LinkedIn VP of Engineering three months before their initial public offering, decided to completely stop engineering work on new features and dedicate the whole department to fixing the site’s core infrastructure. They called the effort Operation InVersion. </p>
+ <p class="case-study" id="ch6-17">Scott launched Operation InVersion as a way to “inject the beginnings of a cultural manifesto into his team’s engineering culture. There would be no new feature development until LinkedIn’s computing architecture was revamped—it’s what the business <i class="calibre5">and</i> his team needed.” </p>
+ <p class="case-study" id="ch6-18">Scott described one downside: “You go public, have all the world looking at you, and then we tell management that we’re not going to deliver anything new while all of engineering works on this [InVersion] project for the next two months. It was a scary thing.” </p>
+ <p class="case-study" id="ch6-19">However, Vance described the massively positive results of Operation InVersion. “LinkedIn created a whole suite of software and tools to help it develop code for the site. Instead of waiting weeks for their new features to make their way onto LinkedIn’s main site, engineers could develop a new service, have a series of automated systems examine the code for any bugs and issues the service might have interacting with existing features, and launch it right to the live LinkedIn site...LinkedIn’s engineering corps [now] performs major upgrades to the site three times a day.” By creating a safer system of work, the value they created included fewer late night cram sessions, with more time to develop new, innovative features. </p>
+ <p class="case-study" id="ch6-20">As Josh Clemm described in his article on scaling at LinkedIn, “Scaling can be measured across many dimensions, including organizational…. [Operation InVersion] allowed the entire engineering organization to focus on improving tooling and deployment, infrastructure, and developer productivity. It was successful in enabling the engineering agility we need to build the scalable new products we have today….[In] 2010, we already had over 150 separate services. Today, we have over 750 services.” </p>
+ <p class="case-study" id="ch6-21">Kevin Scott stated, “Your job as an engineer and your purpose as a technology team is to help your company win. If you lead a team of engineers, it’s better <span epub:type="pagebreak" id="pg73" title="73"></span>to take a CEO’s perspective. Your job is to figure out what it is that your company, your business, your marketplace, your competitive environment needs. Apply that to your engineering team in order for your company to win.” </p>
+ <p class="case-study" data-ep_ppid="Page-__-110" id="Page-__-110">By allowing LinkedIn to pay down nearly a decade of technical debt, Project InVersion enabled stability and safety, while setting the next stage of growth for the company. However, it required two months of total focus on non-functional requirements, at the expense of all the promised features made to the public markets during an IPO. By finding and fixing problems as part of our daily work, we manage our technical debt so that we avoid these “near death” experiences. </p>
+ <h3 id="sigil_toc_id_54" class="calibre11">INCREASE THE VISIBILITY OF WORK </h3>
+ <p class="body">In order to be able to know if we are making progress toward our goal, it’s essential that everyone in the organization knows the current state of work. There are many ways to make the current state visible, but what’s most important is that the information we display is up to date, and that we constantly revise what we measure to make sure it’s helping us understand progress toward our current target conditions. </p>
+ <p class="body">The following section discusses patterns that can help create visibility and alignment across teams and functions. </p>
+ <h2 id="sigil_toc_id_55" class="calibre7">USE TOOLS TO REINFORCE DESIRED BEHAVIOR </h2>
+ <p class="body" id="ch6-22">As Christopher Little, a software executive and one of the earliest chroniclers of DevOps, observed, “Anthropologists describe tools as a cultural artifact. Any discussion of culture after the invention of fire must also be about tools.” Similarly, in the DevOps value stream, we use tools to reinforce our culture and accelerate desired behavior changes. </p>
+ <p class="body">One goal is that our tooling reinforces that Development and Operations not only have shared goals, but have a common backlog of work, ideally stored in a common work system and using a shared vocabulary, so that work can be prioritized globally. </p>
+ <p class="body">By doing this, Development and Operations may end up creating a shared work queue, instead of each silo using a different one (e.g., Development uses JIRA while Operations uses ServiceNow). A significant benefit of this is that when production incidents are shown in the same work systems as <span epub:type="pagebreak" id="pg74" title="74"></span>development work, it will be obvious when ongoing incidents should halt other work, especially when we have a kanban board. </p>
+ <p class="body" data-ep_ppid="Page-__-111" id="Page-__-111">Another benefit of having Development and Operations using a shared tool is a unified backlog, where everyone prioritizes improvement projects from a global perspective, selecting work that has the highest value to the organization or most reduces technical debt. As we identify technical debt, we add it to our prioritized backlog if we can’t address it immediately. For issues that remain unaddressed, we can use our “20% time for non-functional requirements” to fix the top items from our backlog. </p>
+ <p class="body">Other technologies that reinforce shared goals are chat rooms, such as IRC channels, HipChat, Campfire, Slack, Flowdock, and OpenFire. Chat rooms allow the fast sharing of information (as opposed to filling out forms that are processed through predefined workflows), the ability to invite other people as needed, and history logs that are automatically recorded for posterity and can be analyzed during post-mortem sessions. </p>
+ <p class="body">An amazing dynamic is created when we have a mechanism that allows any team member to quickly help other team members, or even people outside their team—the time required to get information or needed work can go from days to minutes. In addition, because everything is being recorded, we may not need to ask someone else for help in the future—we simply search for it. </p>
+ <p class="body">However, the rapid communication environment facilitated by chat rooms can also be a drawback. <span id="ch6-23"></span>As Ryan Martens, the founder and CTO of Rally Software, observes, “In a chat room, if someone doesn’t get an answer in a couple of minutes, it’s totally accepted and expected that you can bug them again until they get what they need.” </p>
+ <p class="body">The expectations of immediate response can, of course, lead to undesired outcomes. A constant barrage of interruptions and questions can prevent people from getting necessary work done. As a result, teams may decide that certain types of requests should go through more structured and asynchronous tools. </p>
+ <h2 id="sigil_toc_id_56" class="calibre7">CONCLUSION </h2>
+ <p class="body">In this chapter, we identified all the teams supporting our value stream and captured in a value stream map what work is required in order to deliver value to the customer. The value stream map provides the basis for understanding <span epub:type="pagebreak" id="pg75" title="75"></span>our current state, including our lead time and %C/A metrics for problematic areas, and informs how we set a future state. </p>
+ <p class="body" data-ep_ppid="Page-__-112" id="Page-__-112">This enables dedicated transformation teams to rapidly iterate and experiment to improve performance. We also make sure that we allocate a sufficient amount of time for improvement, fixing known problems and architectural issues, including our non-functional requirements. The case studies from Nordstrom and LinkedIn demonstrate how dramatic improvements can be made in lead times and quality when we find problems in our value stream and pay down technical debt. </p>
+ <hr class="calibre13"/>
+ <div class="_idfootnotes"> <aside class="_idfootnote" epub:type="footnote" id="footnote-027"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_06.html#footnote-027-backlink">†</a></span><span> </span>Which makes it all the more important that we limit the level of detail being collected—everyone’s time is valuable and scarce. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-026"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_06.html#footnote-026-backlink">‡</a></span><span> </span>Conversely, there are many examples of using tools in a way that guarantees no behavior changes occur. For instance, an organization commits to an agile planning tool but then configures it for a waterfall process, which merely maintains status quo. </p>
+ </aside>
+ </div>
+ </div>
+<div class="calibre10"> <div id="_idContainer042" class="calibre10"> </div>
+ </div>
+<img id="floatBarImgId" src="chrome-extension://dbkmjjclgbiooljcegcddagnddjedmed/pics/save2-32.png" class="calibre3"/>
+
+
+
+  </div>
+
+  
+  <div class="calibreToc">
+    <h2><a href="../../../p4zbp-8mxvm.html"> Table of contents</a></h2>
+     <div>
+  <ul>
+    <li>
+      <a href="DOHB-0-FM-preface.html">Preface</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_1">Aha!</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_2">Gene Kim</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_3">Jez Humble</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#Page-__-13">Patrick Debois</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_4">John Willis</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_5">SPREADING THE AHA! MOMENT</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-foreword.html">Foreword</a>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-introduction.html">Imagine a World Where Dev and Ops Become DevOps</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_6">An Introduction to The DevOps Handbook</a>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_7">THE PROBLEM: SOMETHING IN YOUR ORGANIZATION MUST NEED IMPROVEMENT (OR YOU WOULDN’T BE READING THIS BOOK)</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_8">THE CORE, CHRONIC CONFLICT</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_9">DOWNWARD SPIRAL IN THREE ACTS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-25">WHY DOES THIS DOWNWARD SPIRAL HAPPEN EVERYWHERE?</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_10">THE COSTS: HUMAN AND ECONOMIC</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_11">THE ETHICS OF DEVOPS: THERE IS A BETTER WAY</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-27">BREAKING THE DOWNWARD SPIRAL WITH DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_12">THE BUSINESS VALUE OF DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_13">DEVOPS HELPS SCALE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_14">THE UNIVERSALITY OF THE SOLUTION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_15">THE DEVOPS HANDBOOK: AN ESSENTIAL GUIDE</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_01_text.html">Part I The Three Ways</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_01_text.html#sigil_toc_id_16">A BRIEF HISTORY</a>
+          <ul>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_17">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_18">THE AGILE MANIFESTO</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_19">AGILE INFRASTRUCTURE AND VELOCITY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_20">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_21">TOYOTA KATA</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_01.html">1 Agile, Continuous Delivery, and the Three Ways</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_22">THE MANUFACTURING VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#Page-__-43">THE TECHNOLOGY VALUE STREAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_23">FOCUS ON DEPLOYMENT LEAD TIME</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_24">Defining Lead Time vs. Processing Time</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#Page-__-45">The Common Scenario: Deployment Lead Times Requiring Months</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_25">Our DevOps Ideal: Deployment Lead Times of Minutes</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_26">OBSERVING “%C/A” AS A MEASURE OF REWORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_27">THE THREE WAYS: THE PRINCIPLES UNDERPINNING DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_28">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_02.html">2 The First Way: The Principles of Flow</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_29">MAKE OUR WORK VISIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#Page-__-52">LIMIT WORK IN PROCESS (WIP)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_30">REDUCE BATCH SIZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_31">REDUCE THE NUMBER OF HANDOFFS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_32">CONTINUALLY IDENTIFY AND ELEVATE OUR CONSTRAINTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_33">ELIMINATE HARDSHIPS AND WASTE IN THE VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_34">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_03.html">3 The Second Way: The Principles of Feedback</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_35">WORKING SAFELY WITHIN COMPLEX SYSTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-64">SEE PROBLEMS AS THEY OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_36">SWARM AND SOLVE PROBLEMS TO BUILD NEW KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_37">KEEP PUSHING QUALITY CLOSER TO THE SOURCE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-69">ENABLE OPTIMIZING FOR DOWNSTREAM WORK CENTERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_38">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_04.html">4 The Third Way: The Principles of Continual Learning and Experimentation</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_39">ENABLING ORGANIZATIONAL LEARNING AND A SAFETY CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_40">INSTITUTIONALIZE THE IMPROVEMENT OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_41">TRANSFORM LOCAL DISCOVERIES INTO GLOBAL IMPROVEMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#Page-__-78">INJECT RESILIENCE PATTERNS INTO OUR DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_42">LEADERS REINFORCE A LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_43">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_44">PART I CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_02_text.html">Part II Where to Start</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_02_text.html#sigil_toc_id_45">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_05.html">5 Selecting Which Value Stream to Start With</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_46">GREENFIELD VS. BROWNFIELD SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_47">CONSIDER BOTH SYSTEMS OF RECORD AND SYSTEMS OF ENGAGEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_48">START WITH THE MOST SYMPATHETIC AND INNOVATIVE GROUPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_49">EXPANDING DEVOPS ACROSS OUR ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#Page-__-96">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_06.html">6 Understanding the Work in Our Value Stream, Making it Visible, and Expanding it Across the Organization</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-100">IDENTIFYING THE TEAMS SUPPORTING OUR VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-101">CREATE A VALUE STREAM MAP TO SEE THE WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_50">CREATING A DEDICATED TRANSFORMATION TEAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_51">AGREE ON A SHARED GOAL</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_52">KEEP OUR IMPROVEMENT PLANNING HORIZONS SHORT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_53">RESERVE 20% OF CYCLES FOR NON-FUNCTIONAL REQUIREMENTS AND REDUCING TECHNICAL DEBT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_54">INCREASE THE VISIBILITY OF WORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_55">USE TOOLS TO REINFORCE DESIRED BEHAVIOR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_56">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_07.html">7 How to Design Our Organization and Architecture with Conway’s Law in Mind</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_57">ORGANIZATIONAL ARCHETYPES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-118">PROBLEMS OFTEN CAUSED BY OVERLY FUNCTIONAL ORIENTATION (“OPTIMIZING FOR COST”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-119">ENABLE MARKET-ORIENTED TEAMS (“OPTIMIZING FOR SPEED”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_58">MAKING FUNCTIONAL ORIENTATION WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_59">TESTING, OPERATIONS, AND SECURITY AS EVERYONE’S JOB, EVERY DAY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_60">ENABLE EVERY TEAM MEMBER TO BE A GENERALIST</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_61">FUND NOT PROJECTS, BUT SERVICES AND PRODUCTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-125">DESIGN TEAM BOUNDARIES IN ACCORDANCE WITH CONWAY’S LAW</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_62">CREATE LOOSELY-COUPLED ARCHITECTURES TO ENABLE DEVELOPER PRODUCTIVITY AND SAFETY</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_07.html#sigil_toc_id_63">KEEP TEAM SIZES SMALL (THE “TWO-PIZZA TEAM” RULE)</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_64">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_08.html">8 How to Get Great Outcomes by Integrating Operations into the Daily Work of Development</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_65">CREATE SHARED SERVICES TO INCREASE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_66">EMBED OPS ENGINEERS INTO OUR SERVICE TEAMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_67">ASSIGN AN OPS LIAISON TO EACH SERVICE TEAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_68">INTEGRATE OPS INTO DEV RITUALS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_69">INVITE OPS TO OUR DEV STANDUPS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_70">INVITE OPS TO OUR DEV RETROSPECTIVES</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_71">MAKE RELEVANT OPS WORK VISIBLE ON SHARED KANBAN BOARDS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_72">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_73">PART II CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_03.html">PART III—THE FIRST WAY: THE TECHNICAL PRACTICES OF FLOW</a>
+      <ul>
+        <li>
+          <a href="DOHB-ch_09.html">9 Create the Foundations of Our Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-149">ENABLE ON DEMAND CREATION OF DEV, TEST, AND PRODUCTION ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_74">CREATE OUR SINGLE REPOSITORY OF TRUTH FOR THE ENTIRE SYSTEM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-153">MAKE INFRASTRUCTURE EASIER TO REBUILD THAN TO REPAIR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_75">MODIFY OUR DEFINITION OF DEVELOPMENT “DONE” TO INCLUDE RUNNING IN PRODUCTION-LIKE ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_76">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_10.html">10 Enable Fast and Reliable Automated Testing</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_10.html#Page-__-161">CONTINUOUSLY BUILD, TEST, AND INTEGRATE OUR CODE AND ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_77">BUILD A FAST AND RELIABLE AUTOMATED VALIDATION TEST SUITE</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_78">CATCH ERRORS AS EARLY IN OUR AUTOMATED TESTING AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_79">ENSURE TESTS RUN QUICKLY (IN PARALLEL, IF NECESSARY)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_80">WRITE OUR AUTOMATED TESTS BEFORE WE WRITE THE CODE (“TEST-DRIVEN DEVELOPMENT”)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_81">AUTOMATE AS MANY OF OUR MANUAL TESTS AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_82">INTEGRATE PERFORMANCE TESTING INTO OUR TEST SUITE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_83">INTEGRATE NON-FUNCTIONAL REQUIREMENTS TESTING INTO OUR TEST SUITE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_84">PULL OUR ANDON CORD WHEN THE DEPLOYMENT PIPELINE BREAKS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_85">WHY WE NEED TO PULL THE ANDON CORD</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_86">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_11.html">11 Enable and Practice Continuous Integration</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_11.html#sigil_toc_id_87">SMALL BATCH DEVELOPMENT AND WHAT HAPPENS WHEN WE COMMIT CODE TO TRUNK INFREQUENTLY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-182">ADOPT TRUNK-BASED DEVELOPMENT PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-185">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_12.html">12 Automate and Enable Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_88">AUTOMATE OUR DEPLOYMENT PROCESS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_89">ENABLE AUTOMATED SELF-SERVICE DEPLOYMENTS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_90">INTEGRATE CODE DEPLOYMENT INTO THE DEPLOYMENT PIPELINE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-199">DECOUPLE DEPLOYMENTS FROM RELEASES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_91">ENVIRONMENT-BASED RELEASE PATTERNS</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_92">The Blue-Green Deployment Pattern</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_93">Dealing with Database Changes</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_94">The Canary and Cluster Immune System Release Patterns</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_95">APPLICATION-BASED PATTERNS TO ENABLE SAFER RELEASES</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_96">Implement Feature Toggles</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_97">Perform Dark Launches</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-209">SURVEY OF CONTINUOUS DELIVERY AND CONTINUOUS DEPLOYMENT IN PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_98">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_13.html">13 Architect for Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-214">AN ARCHITECTURE THAT ENABLES PRODUCTIVITY, TESTABILITY, AND SAFETY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_99">ARCHITECTURAL ARCHETYPES: MONOLITHS VS. MICROSERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_100">USE THE STRANGLER APPLICATION PATTERN TO SAFELY EVOLVE OUR ENTERPRISE ARCHITECTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-222">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_101">PART III CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_04_text.html">PART IV—THE SECOND WAY: THE TECHNICAL PRACTICES OF FEEDBACK</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_04_text.html#sigil_toc_id_102">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_14.html">14 Create Telemetry to Enable Seeing and Solving Problems</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_14.html#Page-__-233">CREATE OUR CENTRALIZED TELEMETRY INFRASTRUCTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_103">CREATE APPLICATION LOGGING TELEMETRY THAT HELPS PRODUCTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_104">USE TELEMETRY TO GUIDE PROBLEM SOLVING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_105">ENABLE CREATION OF PRODUCTION METRICS AS PART OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_106">CREATE SELF-SERVICE ACCESS TO TELEMETRY AND INFORMATION RADIATORS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_107">FIND AND FILL ANY TELEMETRY GAPS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_108">APPLICATION AND BUSINESS METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#Page-__-247">INFRASTRUCTURE METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_109">OVERLAYING OTHER RELEVANT INFORMATION ONTO OUR METRICS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_110">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_15.html">15 Analyze Telemetry to Better Anticipate Problems and Achieve Goals</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_111">USE MEANS AND STANDARD DEVIATIONS TO DETECT POTENTIAL PROBLEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_112">INSTRUMENT AND ALERT ON UNDESIRED OUTCOMES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_113">PROBLEMS THAT ARISE WHEN OUR TELEMETRY DATA HAS NON-GAUSSIAN DISTRIBUTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_114">USING ANOMALY DETECTION TECHNIQUES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_115">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_16.html">16 Enable Feedback So Development and Operations Can Safely Deploy Code</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_116">USE TELEMETRY TO MAKE DEPLOYMENTS SAFER</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_117">DEV SHARES PAGER ROTATION DUTIES WITH OPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#Page-__-271">HAVE DEVELOPERS FOLLOW WORK DOWNSTREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_118">HAVE DEVELOPERS INITIALLY SELF-MANAGE THEIR PRODUCTION SERVICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_119">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_17.html">17 Integrate Hypothesis-Driven Development and A/B Testing into Our Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-283">A BRIEF HISTORY OF A/B TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-284">INTEGRATING A/B TESTING INTO OUR FEATURE TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#sigil_toc_id_120">INTEGRATE A/B TESTING INTO OUR RELEASE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-286">INTEGRATING A/B TESTING INTO OUR FEATURE PLANNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-288">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_18.html">18 Create Review and Coordination Processes to Increase Quality of Our Current Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_121">THE DANGERS OF CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_122">POTENTIAL DANGERS OF “OVERLY CONTROLLING CHANGES”</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-296">ENABLE COORDINATION AND SCHEDULING OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_123">ENABLE PEER REVIEW OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-300">POTENTIAL DANGERS OF DOING MORE MANUAL TESTING AND CHANGE FREEZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#section-below">ENABLE PAIR PROGRAMMING TO IMPROVE ALL OUR CHANGES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_18.html#Page-__-303">EVALUATING THE EFFECTIVENESS OF PULL REQUEST PROCESSES</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_124">FEARLESSLY CUT BUREAUCRATIC PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_125">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_126">PART IV CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_05_text.html">PART V—THE THIRD WAY: THE TECHNICAL PRACTICES OF CONTINUAL LEARNING AND EXPERIMENTATION</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_05_text.html#sigil_toc_id_127">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_19.html">19 Enable and Inject Learning into Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-315">ESTABLISH A JUST, LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_128">SCHEDULE BLAMELESS POST-MORTEM MEETINGS AFTER ACCIDENTS OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_129">PUBLISH OUR POST-MORTEMS AS WIDELY AS POSSIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_130">DECREASE INCIDENT TOLERANCES TO FIND EVER-WEAKER FAILURE SIGNALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-322">REDEFINE FAILURE AND ENCOURAGE CALCULATED RISK-TAKING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_131">INJECT PRODUCTION FAILURES TO ENABLE RESILIENCE AND LEARNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-324">INSTITUTE GAME DAYS TO REHEARSE FAILURES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_132">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_20.html">20 Convert Local Discoveries into Global Improvements</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_133">USE CHAT ROOMS AND CHAT BOTS TO AUTOMATE AND CAPTURE ORGANIZATIONAL KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_134">AUTOMATE STANDARDIZED PROCESSES IN SOFTWARE FOR RE-USE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_135">CREATE A SINGLE, SHARED SOURCE CODE REPOSITORY FOR OUR ENTIRE ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_136">SPREAD KNOWLEDGE BY USING AUTOMATED TESTS AS DOCUMENTATION AND COMMUNITIES OF PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_137">DESIGN FOR OPERATIONS THROUGH CODIFIED NON-FUNCTIONAL REQUIREMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_138">BUILD REUSABLE OPERATIONS USER STORIES INTO DEVELOPMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#Page-__-336">ENSURE TECHNOLOGY CHOICES HELP ACHIEVE ORGANIZATIONAL GOALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_139">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_21.html">21 Reserve Time to Create Organizational Learning and Improvement</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-342">INSTITUTIONALIZE RITUALS TO PAY DOWN TECHNICAL DEBT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_140">ENABLE EVERYONE TO TEACH AND LEARN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_141">SHARE YOUR EXPERIENCES FROM DEVOPS CONFERENCES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-347">CREATE INTERNAL CONSULTING AND COACHES TO SPREAD PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_142">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_143">CONCLUSION TO PART V</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_22.html">22 Information Security as Everyone’s Job, Every Day</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_144">INTEGRATE SECURITY INTO DEVELOPMENT ITERATION DEMONSTRATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-357">INTEGRATE SECURITY INTO DEFECT TRACKING AND POST-MORTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_145">INTEGRATE PREVENTIVE SECURITY CONTROLS INTO SHARED SOURCE CODE REPOSITORIES AND SHARED SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-359">INTEGRATE SECURITY INTO OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_146">ENSURE SECURITY OF THE APPLICATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_147">ENSURE SECURITY OF OUR SOFTWARE SUPPLY CHAIN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-366">ENSURE SECURITY OF THE ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_148">INTEGRATE INFORMATION SECURITY INTO PRODUCTION TELEMETRY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_149">CREATING SECURITY TELEMETRY IN OUR APPLICATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_150">CREATING SECURITY TELEMETRY IN OUR ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_151">PROTECT OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_152">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23.html">23 Protecting the Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_153">INTEGRATE SECURITY AND COMPLIANCE INTO CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_154">RE-CATEGORIZE THE MAJORITY OF OUR LOWER RISK CHANGES AS STANDARD CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_155">WHAT TO DO WHEN CHANGES ARE CATEGORIZED AS NORMAL CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_156">REDUCE RELIANCE ON SEPARATION OF DUTY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_157">ENSURE DOCUMENTATION AND PROOF FOR AUDITORS AND COMPLIANCE OFFICERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#Page-__-384">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_158">PART VI CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23-CTA.html">A Call to Action</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23-CTA.html#sigil_toc_id_159">Conclusion to the DevOps Handbook</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM.html">Appendices</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-1">APPENDIX 1 THE CONVERGENCE OF DEVOPS</a>
+          <ul>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_160">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_161">THE AGILE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_162">THE VELOCITY CONFERENCE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_163">THE AGILE INFRASTRUCTURE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_164">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_165">THE TOYOTA KATA MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_166">THE LEAN STARTUP MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_167">THE LEAN UX MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_168">THE RUGGED COMPUTING MOVEMENT</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-2">APPENDIX 2 THEORY OF CONSTRAINTS AND CORE, CHRONIC CONFLICTS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-3">APPENDIX 3 TABULAR FORM OF DOWNWARD SPIRAL</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-4">APPENDIX 4 THE DANGERS OF HANDOFFS AND QUEUES</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-5">APPENDIX 5 MYTHS OF INDUSTRIAL SAFETY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-6">APPENDIX 6 THE TOYOTA ANDON CORD</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-7">APPENDIX 7 COTS SOFTWARE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-8">APPENDIX 8 POST-MORTEM MEETINGS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-9">APPENDIX 9 THE SIMIAN ARMY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-10">APPENDIX 10 TRANSPARENT UPTIME</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html">Additional Resources</a>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html#_idParaDest-46">Endnotes</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_169">INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-409">PART I INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_170">CHAPTER 1</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_171">CHAPTER 2</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_172">CHAPTER 3</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_173">CHAPTER 4</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_174">CHAPTER 5</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_175">CHAPTER 6</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_176">CHAPTER 7</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_177">CHAPTER 8</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_178">CHAPTER 9</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_179">CHAPTER 10</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_180">CHAPTER 11</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_181">CHAPTER 12</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_182">CHAPTER 13</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_183">CHAPTER 14</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-430">CHAPTER 15</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_184">CHAPTER 16</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_185">CHAPTER 17</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_186">CHAPTER 18</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_187">CHAPTER 19</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_188">CHAPTER 20</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_189">CHAPTER 21</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_190">CHAPTER 22</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-445">CHAPTER 23</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_191">CONCLUSION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_192">APPENDIX</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-index.html">Index</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-index.html#index_list">Symbols Numbers A B C D E F G H I J K L M N O P Q R S T U V W Y Z</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-ack.html">Acknowledgments</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_193">Jez Humble</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_194">John Willis</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_195">Patrick Debois</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#Page-__-494">Gene Kim</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-aut.html">Author Biographies</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_196">GENE KIM</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_197">JEZ HUMBLE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_198">PATRICK DEBOIS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_199">JOHN WILLIS</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+  </div>
+  
+
+  <div class="calibreEbNav">
+    
+      <a href="DOHB-ch_05.html" class="calibreAPrev">previous page</a>
+    
+
+    <a href="../../../p4zbp-8mxvm.html" class="calibreAHome"> start</a>
+
+    
+      <a href="DOHB-ch_07.html" class="calibreANext"> next page</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

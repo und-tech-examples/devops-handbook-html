@@ -1,0 +1,1247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>DOHB-ch_14</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../../page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="../../calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../../../p4zbp-8mxvm.html">The DevOps Handbook How to Create World-Class Agility, Reliability & Security in Technology Organizations
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Gene Kim, Patrick Debois, John Willis, Jez Humble, John Allspaw
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="DOHB-pt_04_text.html" class="calibreAPrev">previous page</a>
+        
+
+        
+          <a href="DOHB-ch_15.html" class="calibreANext"> next page</a>
+        
+      </div>
+    
+
+    
+<a id="ep-file-29" class="calibre1"></a><a data-ep_ppid="Page-__-228" id="Page-__-228" class="calibre1"></a><a data-ep_ppid="Page-__-229" id="Page-__-229" class="calibre1"></a><div id="_idContainer078" class="calibre10"> <h1 class="chapter-title-b" data-ep_lpid="ch14" id="_idParaDest-28"><span epub:type="pagebreak" id="pg195" title="195"></span><span class="chapter-number-b1">14</span>Create Telemetry to Enable Seeing and Solving Problems </h1>
+ <p class="body">A fact of life in Operations is that things go wrong—small changes may result in many unexpected outcomes, including outages and global failures that impact all our customers. This is the reality of operating complex systems; no single person can see the whole system and understand how all the pieces fit together. </p>
+ <p class="body">When production outages and other problems occur in our daily work, we don’t often have the information we need to solve the problem. For example, during an outage we may not be able to determine whether the issue is due to a failure in our application (e.g., defect in the code), in our environment (e.g., a networking problem, server configuration problem), or something entirely external to us (e.g., a massive denial of service attack). </p>
+ <p class="body" id="ch14-1">In Operations, we may deal with this problem with the following rule of thumb: When something goes wrong in production, we just reboot the server. If that doesn’t work, reboot the server next to it. If that doesn’t work, reboot all the servers. If that doesn’t work, blame the developers, they’re always causing outages. </p>
+ <p class="body" id="ch14-2">In contrast, the Microsoft Operations Framework (MOF) study in 2001 found that organizations with the highest service levels rebooted their servers twenty times less frequently than average and had five times fewer “blue screens of death.” <span id="ch14-3"></span>In other words, they found that the best-performing organizations were much better at diagnosing and fixing service incidents, in what Kevin Behr, Gene Kim, and George Spafford called a “culture of causality” in <i class="calibre5">The Visible Ops Handbook</i>. High performers used a disciplined approach to solving problems, using production telemetry to understand possible contributing factors to focus their problem solving, as opposed to lower performers who would blindly reboot servers. </p>
+ <a data-ep_ppid="Page-__-230" id="Page-__-230" class="calibre1"></a><p class="body" id="ch14-4"><span epub:type="pagebreak" id="pg196" title="196"></span>To enable this disciplined problem-solving behavior, we need to design our systems so that they are continually creating <i class="calibre5">telemetry</i>, widely defined as “an automated communications process by which measurements and other data are collected at remote points and are subsequently transmitted to receiving equipment for monitoring.” Our goal is to create telemetry within our applications and environments, both in our production and pre-production environments as well as in our deployment pipeline. </p>
+ <p class="body">Michael Rembetsy and Patrick McDonnell described how production monitoring was a critical part of Etsy’s DevOps transformation that started in 2009. This was because they were standardizing and transitioning their entire technology stack to the LAMP stack (Linux, Apache, MySQL, and PHP), abandoning a myriad of different technologies being used in production that were increasingly difficult to support. </p>
+ <p class="body" id="ch14-5">At the 2012 Velocity Conference, McDonnell described how much risk this created, “We were changing some of our most critical infrastructure, which, ideally, customers would never notice. However, they’d definitely notice if we screwed something up. We needed more metrics to give us confidence that we weren’t actually breaking things while we were doing these big changes, both for our engineering teams and for team members in the non-technical areas, such as marketing.” </p>
+ <p class="body" id="ch14-6">McDonnell explained further, “We started collecting all our server information in a tool called Ganglia, displaying all the information into Graphite, an open source tool we invested heavily into. We started aggregating metrics together, everything from business metrics to deployments. This is when we modified Graphite with what we called ‘our unparalleled and unmatched vertical line technology’ that overlaid onto every metric graph when deployments happened. By doing this, we could more quickly see any unintended deployment side effects. We even started putting TV screens all around the office so that everyone could see how our services were performing.” </p>
+ <p class="body">By enabling developers to add telemetry to their features as part of their daily work, they created enough telemetry to help make deployments safe. <span id="ch14-7"></span>By 2011, Etsy was tracking over two hundred thousand production metrics at every layer of the application stack (e.g., application features, application health, database, operating system, storage, networking, security, etc.) with the top thirty most important business metrics prominently displayed on their “deploy dashboard.” By 2014, they were tracking over eight hundred thousand metrics, showing their relentless goal of instrumenting everything and making it easy for engineers to do so. </p>
+ <a data-ep_ppid="Page-__-231" id="Page-__-231" class="calibre1"></a><p class="body" id="ch14-8"><span epub:type="pagebreak" id="pg197" title="197"></span>As Ian Malpass, an engineer at Etsy, quipped, “If Engineering at Etsy has a religion, it’s the Church of Graphs. If it moves, we track it. Sometimes we’ll draw a graph of something that isn’t moving yet, just in case it decides to make a run for it….Tracking everything is key to moving fast, but the only way to do it is to make tracking anything easy....We enable engineers to track what they need to track, at the drop of a hat, without requiring time-sucking configuration changes or complicated processes.” </p>
+ <p class="body" id="ch14-9">One of the findings of the <i class="calibre5">2015 State of DevOps Report</i> was that high performers could resolve production incidents 168 times faster than their peers, with the median high performer having a MTTR measured in minutes, while the median low performer had an MTTR measured in days. <span id="ch14-10"></span>The top two technical practices that enabled fast MTTR were the use of version control by Operations and having telemetry and proactive monitoring in the production environment. </p>
+ <p class="captions" data-ep_ppid="Page-__-232" id="Page-__-232"><img alt="" src="../Images/ch_14.png" class="ep_cover_page"/></p>
+ <p class="captions"><b class="captions1">Figure 25:</b> Incident resolution time for high, medium, and low performers <br class="calibre8"/>(Source: Puppet Labs, <i class="captions2">2014 State of DevOps Report</i>.) </p>
+ <p class="body">As was created at Etsy, our goal in this chapter is to ensure that we always have enough telemetry so that we can confirm that our services are correctly operating in production. And when problems do occur, make it possible to quickly determine what is going wrong and make informed decisions on how <span epub:type="pagebreak" id="pg198" title="198"></span>best to fix it, ideally long before customers are impacted. Furthermore, telemetry is what enables us to assemble our best understanding of reality and detect when our understanding of reality is incorrect. </p>
+ <h2 data-ep_ppid="Page-__-233" id="Page-__-233" class="calibre7">CREATE OUR CENTRALIZED TELEMETRY INFRASTRUCTURE </h2>
+ <p class="body">Operational monitoring and logging is by no means new—multiple generations of Operations engineers have used and customized monitoring frameworks (e.g., HP OpenView, IBM Tivoli, and BMC Patrol/BladeLogic) to ensure the health of production systems. Data was typically collected through agents that ran on servers or through agent-less monitoring (e.g., SNMP traps or polling based monitors). There was often a graphical user interface (GUI) front end, and back-end reporting was often augmented through tools such as Crystal Reports. </p>
+ <p class="body">Similarly, the practices of developing applications with effective logging and managing the resulting telemetry are not new—a variety of mature logging libraries exist for almost all programming languages. </p>
+ <p class="body">However, for decades we have ended up with silos of information, where Development only creates logging events that are interesting to developers, and Operations only monitors whether the environments are up or down. As a result, when inopportune events occur, no one can determine why the entire system is not operating as designed or which specific component is failing, impeding our ability to bring our system back to a working state. </p>
+ <p class="body">In order for us to see all problems as they occur, we must design and develop our applications and environments so that they generate sufficient telemetry, allowing us to understand how our system is behaving as a whole. When all levels of our application stack have monitoring and logging, we enable other important capabilities, such as graphing and visualizing our metrics, anomaly detection, proactive alerting and escalation, etc. </p>
+ <p class="body" id="ch14-11">In <i class="calibre5">The Art of Monitoring</i>, James Turnbull describes a modern monitoring architecture, which has been developed and used by Operations engineers at web-scale companies (e.g., Google, Amazon, Facebook). The architecture often consisted of open source tools, such as Nagios and Zenoss, that were customized and deployed at a scale that was difficult to accomplish with licensed commercial software at the time. This architecture has the following components: </p>
+ <ul data-ep_ppid="Page-__-234" id="Page-__-234" class="calibre12"> <li class="bullets"><span class="black"><b class="calibre6"><span epub:type="pagebreak" id="pg199" title="199"></span>Data collection at the business logic, application, and environments layer:</b> In each of these layers, we are creating telemetry in the form of events, logs, and metrics. Logs may be stored in application-specific files on each server (e.g., /var/log/httpd-error.log), but preferably we want all our logs sent to a common service that enables easy centralization, rotation, and deletion. This is provided by most operating systems, such as syslog for Linux, the Event Log for Windows, etc. Furthermore, we gather metrics at all layers of the application stack to better understand how our system is behaving. At the operating system level, we can collect metrics such as CPU, memory, disk, or network usage over time using tools like collectd, Ganglia, etc. Other tools that collect performance information include AppDynamics, New Relic, and Pingdom.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">An event router responsible for storing our events and metrics:</b> This capability potentially enables visualization, trending, alerting, anomaly detection, and so forth. By collecting, storing, and aggregating all our telemetry, we better enable further analysis and health checks. This is also where we store configurations related to our services (and their supporting applications and environments) and is likely where we do threshold-based alerting and health checks.<sup class="footnotes"><span id="footnote-088-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-088">†</a></span></sup> </span></li>
+ </ul>
+ <p class="body">Once we have centralized our logs, we can transform them into metrics by counting them in the event router—for example, a log event such as “child pid 14024 exit signal Segmentation fault” can be counted and summarized as a single segfault metric across our entire production infrastructure. </p>
+ <p class="body">By transforming logs into metrics, we can now perform statistical operations on them, such as using anomaly detection to find outliers and variances even earlier in the problem cycle. For instance, we might configure our alerting to notify us if we went from “ten segfaults last week” to “thousands of segfaults in the last hour,” prompting us to investigate further. </p>
+ <p class="body">In addition to collecting telemetry from our production services and environments, we must also collect telemetry from our deployment pipeline when important events occur, such as when our automated tests pass or fail and when we perform deployments to any environment. We should also collect <span epub:type="pagebreak" id="pg200" title="200"></span>telemetry on how long it takes us to execute our builds and tests. By doing this, we can detect conditions that could indicate problems, such as if the performance test or our build takes twice as long as normal, allowing us to find and fix errors before they go into production. </p>
+ <p class="captions" data-ep_ppid="Page-__-235" id="Page-__-235"><img alt="" src="../Images/ch_141.png" class="ep_cover_page"/></p>
+ <p class="captions"><b class="captions1">Figure 26:</b> Monitoring framework (Source: Turnbull, <i class="captions2">The Art of Monitoring</i>, Kindle edition, chap. 2.) </p>
+ <p class="body">Furthermore, we should ensure that it is easy to enter and retrieve information from our telemetry infrastructure. Preferably, everything should be done through self-service APIs, as opposed to requiring people to open up tickets and wait to get reports. </p>
+ <p class="body" data-ep_ppid="Page-__-236" id="Page-__-236">Ideally, we will create telemetry that tells us exactly when anything of interest happens, as well as where and how. Our telemetry should also be suitable for manual and automated analysis and should be able to be analyzed without having the application that produced the logs on hand. As Adrian Cockcroft pointed out, “Monitoring is so important that our monitoring systems need to be more available and scalable than the systems being monitored.” </p>
+ <p class="body">From here on, the term <i class="calibre5">telemetry</i> will be used interchangeably with <i class="calibre5">metrics</i>, which includes all event logging and metrics created by our services at all levels of our application stack and generated from all our production and pre-production environments, as well as from our deployment pipeline. </p>
+ <h2 id="sigil_toc_id_103" class="calibre7"><span epub:type="pagebreak" id="pg201" title="201" class="calibre9"></span>CREATE APPLICATION LOGGING TELEMETRY THAT HELPS PRODUCTION </h2>
+ <p class="body">Now that we have a centralized telemetry infrastructure, we must ensure that the applications we build and operate are creating sufficient telemetry. We do this by having Dev and Ops engineers create production telemetry as part of their daily work, both for new and existing services. </p>
+ <p class="body" id="ch14-13">Scott Prugh, Chief Architect and Vice President of Development at CSG, said, “Every time NASA launches a rocket, it has millions of automated sensors reporting the status of every component of this valuable asset. And yet, we often don’t take the same care with software—we found that creating application and infrastructure telemetry to be one of the highest return investments we’ve made. In 2014, we created over one billion telemetry events per day, with over one hundred thousand code locations instrumented.” </p>
+ <p class="body">In the applications we create and operate, every feature should be instrumented—if it was important enough for an engineer to implement, it is certainly important enough to generate enough production telemetry so that we can confirm that it is operating as designed and that the desired outcomes are being achieved.<sup class="footnotes"><span id="footnote-087-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-087">‡</a></span></sup> </p>
+ <p class="body">Every member of our value stream will use telemetry in a variety of ways. For example, developers may temporarily create more telemetry in their application to better diagnose problems on their workstation, while Ops engineers may use telemetry to diagnose a production problem. In addition, Infosec and auditors may review the telemetry to confirm the effectiveness of a required control, and a product manager may use them to track business outcomes, feature usage, or conversion rates. </p>
+ <a data-ep_ppid="Page-__-237" id="Page-__-237" class="calibre1"></a><p class="body" id="ch14-14">To support these various usage models, we have different logging levels, some of which may also trigger alerts, such as the following: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black"><b class="calibre6">DEBUG level:</b> Information at this level is about anything that happens in the program, most often used during debugging. Often, debug logs are disabled in production but temporarily enabled during troubleshooting.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6"><span epub:type="pagebreak" id="pg202" title="202"></span>INFO level:</b> Information at this level consists of actions that are user-driven or system specific (e.g., “beginning credit card transaction”).</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">WARN level:</b> Information at this level tells us of conditions that could potentially become an error (e.g., a database call taking longer than some predefined time). These will likely initiate an alert and troubleshooting, while other logging messages may help us better understand what led to this condition.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">ERROR level:</b> Information at this level focuses on error conditions (e.g., API call failures, internal error conditions).</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">FATAL level:</b> Information at this level tells us when we must terminate (e.g., a network daemon can’t bind a network socket).</span> </li>
+ </ul>
+ <p class="body" id="ch14-15">Choosing the right logging level is important. Dan North, a former ThoughtWorks consultant who was involved in several projects in which the core continuous delivery concepts took shape, observes, “When deciding whether a message should be ERROR or WARN, imagine being woken up at 4 a.m. Low printer toner is not an ERROR.” </p>
+ <p class="body" id="ch14-16">To help ensure that we have information relevant to the reliable and secure operations of our service, we should ensure that all potentially significant application events generate logging entries, including those provided on this list assembled by Anton A. Chuvakin, a research VP at Gartner’s GTP Security and Risk Management group: </p>
+ <ul data-ep_ppid="Page-__-238" id="Page-__-238" class="calibre12"> <li class="bullets"><span class="black">Authentication/authorization decisions (including logoff)</span> </li>
+ <li class="bullets"><span class="black">System and data access</span> </li>
+ <li class="bullets"><span class="black">System and application changes (especially privileged changes)</span> </li>
+ <li class="bullets"><span class="black">Data changes, such as adding, editing, or deleting data</span> </li>
+ <li class="bullets"><span class="black">Invalid input (possible malicious injection, threats, etc.)</span> </li>
+ <li class="bullets"><span class="black">Resources (RAM, disk, CPU, bandwidth, or any other resource that has hard or soft limits)</span> </li>
+ <li class="bullets"><span class="black">Health and availability</span> </li>
+ <li class="bullets"><span class="black"><span epub:type="pagebreak" id="pg203" title="203"></span>Startups and shutdowns</span> </li>
+ <li class="bullets"><span class="black">Faults and errors</span> </li>
+ <li class="bullets"><span class="black">Circuit breaker trips</span> </li>
+ <li class="bullets"><span class="black">Delays</span> </li>
+ <li class="bullets"><span class="black">Backup success/failure</span> </li>
+ </ul>
+ <p class="body">To make it easier to interpret and give meaning to all these log entries, we should (ideally) create logging hierarchical categories, such as for non-functional attributes (e.g., performance, security) and for attributes related to features (e.g., search, ranking). </p>
+ <h2 id="sigil_toc_id_104" class="calibre7">USE TELEMETRY TO GUIDE PROBLEM SOLVING </h2>
+ <p class="body">As described in the beginning of this chapter, high performers use a disciplined approach to solving problems. This is in contrast to the more common practice of using rumor and hearsay, which can lead to the unfortunate metric of <i class="calibre5">mean time until declared innocent</i>—how quickly can we convince everyone else that we didn’t cause the outage. </p>
+ <p class="body">When there is a culture of blame around outages and problems, groups may avoid documenting changes and displaying telemetry where everyone can see them to avoid being blamed for outages. </p>
+ <p class="body" data-ep_ppid="Page-__-239" id="Page-__-239">Other negative outcomes due to lack of public telemetry include a highly charged political atmosphere, the need to deflect accusations, and, worse, the inability to create institutional knowledge around how the incidents occurred and the learnings needed to prevent these errors from happening again in the future.<sup class="footnotes"><span id="footnote-086-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-086">§</a></span></sup> </p>
+ <p class="body">In contrast, telemetry enables us to use the scientific method to formulate hypotheses about what is causing a particular problem and what is required to solve it. Examples of questions we can answer during problem resolution include: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black"><span epub:type="pagebreak" id="pg204" title="204"></span>What evidence do we have from our monitoring that a problem is actually occurring?</span> </li>
+ <li class="bullets"><span class="black">What are the relevant events and changes in our applications and environments that could have contributed to the problem?</span> </li>
+ <li class="bullets"><span class="black">What hypotheses can we formulate to confirm the link between the proposed causes and effects?</span> </li>
+ <li class="bullets"><span class="black">How can we prove which of these hypotheses are correct and successfully effect a fix?</span> </li>
+ </ul>
+ <p class="body">The value of fact-based problem solving lies not only in significantly faster MTTR (and better customer outcomes), but also in its reinforcement of the perception of a win/win relationship between Development <span>and Operations</span>. </p>
+ <div class="pagebreak"></div><h2 id="sigil_toc_id_105" class="calibre7">ENABLE CREATION OF PRODUCTION METRICS AS PART OF DAILY WORK </h2>
+ <p class="body">To enable everyone to be able to find and fix problems in their daily work, we need to enable everyone to create metrics in their daily work that can be easily created, displayed, and analyzed. To do this, we must create the infrastructure and libraries necessary to make it as easy as possible for anyone in Development or Operations to create telemetry for any functionality they build. In the ideal, it should be as easy as writing one line of code to create a new metric that shows up in a common dashboard where everyone in the value stream can see it. </p>
+ <p class="body" id="ch14-18">This was the philosophy that guided the development of one of the most widely used metrics libraries, called StatsD, which was created and open-sourced at Etsy. <span id="ch14-19"></span>As John Allspaw described, “We designed StatsD to prevent any developer from saying, ‘It’s too much of a hassle to instrument my code.’ Now they can do it with one line of code. It was important to us that for a developer, adding production telemetry didn’t feel as difficult as doing a database schema change.” </p>
+ <p class="body" data-ep_ppid="Page-__-240" id="Page-__-240">StatsD can generate timers and counters with one line of code (in Ruby, Perl, Python, Java, and other languages) and is often used in conjunction with Graphite or Grafana, which renders metric events into graphs and dashboards. </p>
+ <p class="captions"><img alt="" src="../Images/ch_142.png" class="ep_cover_page"/> <span epub:type="pagebreak" id="pg205" title="205"></span><b class="captions1">Figure 27:</b> One line of code to generate telemetry using StatsD and Graphite at Etsy (Source: Ian Malpass, “Measure Anything, Measure Everything.”) </p>
+ <p class="body">Figure 27 above shows an example of how a single line of code creates a user login event (in this case, one line of PHP code: “StatsD::increment(“login.successes”)). <span id="ch14-12"></span>The resulting graph shows the number of successful and failed logins per minute, and overlaid on the graph are vertical lines that represent a production deployment. </p>
+ <p class="body">When we generate graphs of our telemetry, we will also overlay onto them when production changes occur, because we know that the significant majority of production issues are caused by production changes, which include code deployments. This is part of what allows us to have a high rate of change, while still preserving a safe system of work. </p>
+ <p class="body">Alternative libraries to StatsD that allow developers to generate production telemetry can be easily aggregated and analyzed include JMX and codahale metrics. Other tools that create metrics invaluable for problem solving include New Relic, AppDynamics, and Dynatrace. Tools such as munin and collectd can be used to create similar functionality.<sup class="footnotes"><span id="footnote-085-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-085">¶</a></span></sup> </p>
+ <p class="body" data-ep_ppid="Page-__-241" id="Page-__-241"><span epub:type="pagebreak" id="pg206" title="206"></span>By generating production telemetry as part of our daily work, we create an ever-improving capability to not only see problems as they occur, but also to design our work so that problems in design and operations can be revealed, allowing an increasing number of metrics to be tracked, as we saw in the Etsy case study. </p>
+ <h2 id="sigil_toc_id_106" class="calibre7">CREATE SELF-SERVICE ACCESS TO TELEMETRY AND INFORMATION RADIATORS </h2>
+ <p class="body">In the previous steps, we enabled Development and Operations to create and improve production telemetry as part of their daily work. In this step, our goal is to radiate this information to the rest of the organization, ensuring that anyone who wants information about any of the services we are running can get it without needing production system access or privileged accounts, or having to open up a ticket and wait for days for someone to configure the graph for them. </p>
+ <p class="body">By making telemetry fast, easy to get, and sufficiently centralized, everyone in the value stream can share a common view of reality. Typically, this means that production metrics will be radiated on web pages generated by a centralized server, such as Graphite or any of the other technologies described in the previous section. </p>
+ <p class="body">We want our production telemetry to be highly visible, which means putting it in central areas where Development and Operations work, thus allowing everyone who is interested to see how our services are performing. At a minimum, this includes everyone in our value stream, such as Development, Operations, Product Management, and Infosec. </p>
+ <p class="body" id="ch14-20">This is often referred to as an <i class="calibre5">information radiator</i>, defined by the Agile Alliance as “the generic term for any of a number of handwritten, drawn, printed, or electronic displays which a team places in a highly visible location, so that all team members as well as passers-by can see the latest information at a glance: count of automated tests, velocity, incident reports, continuous integration status, and so on. This idea originated as part of the Toyota Production System.” </p>
+ <p class="body">By putting information radiators in highly visible places, we promote responsibility among team members, actively demonstrating the following values: </p>
+ <ul class="calibre12"> <li class="bullets"><span class="black"><span epub:type="pagebreak" id="pg207" title="207"></span>The team has nothing to hide from its visitors (customers, stakeholders, etc.)</span> </li>
+ <li class="bullets"><span class="black">The team has nothing to hide from itself: it acknowledges and confronts problems</span> </li>
+ </ul>
+ <p class="body" data-ep_ppid="Page-__-242" id="Page-__-242">Now that we possess the infrastructure to create and radiate production telemetry to the entire organization, we may also choose to broadcast this information to our internal customers and even to our external customers. For example, we might do this by creating publicly-viewable service status pages so that customers can learn how the services they depend upon are performing. </p>
+ <p class="body" id="ch14-21">Although there may be some resistance to providing this amount of transparency, Ernest Mueller describes the value of doing so: </p>
+ <p class="blockquote">One of the first actions I take when starting in an organization is to use information radiators to communicate issues and detail the changes we are making—this is usually extremely well-received by our business units, who were often left in the dark before. And for Development and Operations groups who must work together to deliver a service to others, we need that constant communication, information, and feedback. </p>
+ <p class="body">We may even extend this transparency further—instead of trying to keep customer-impacting problems a secret, we can broadcast this information to our external customers. This demonstrates that we value transparency, thereby helping to build and earn customers’ trust.<sup class="footnotes"><span id="footnote-084-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-084">**</a></span></sup> See <a href="../Text/DOHB-END-BM.html#appendix-10" class="calibre1">Appendix 10</a>. </p>
+ <p class="case-study-header">Case Study <br class="calibre16"/>Creating Self-Service Metrics at LinkedIn (2011) </p>
+ <p class="case-study">As described in Part III, LinkedIn was created in 2003 to help users connect “to your network for better job opportunities.” By November 2015, LinkedIn had over 350 million members generating tens of thousands of requests per second, resulting in millions of queries per second on the LinkedIn back-end systems. </p>
+ <p class="case-study" id="ch14-22">Prachi Gupta, Director of Engineering at LinkedIn, wrote in 2011 about the importance of production telemetry: “At LinkedIn, we emphasize <span epub:type="pagebreak" id="pg208" title="208"></span>making sure the site is up and our members have access to complete site functionality at all times. Fulfilling this commitment requires that we detect and respond to failures and bottlenecks as they start happening. That’s why we use these time-series graphs for site monitoring to detect and react to incidents within minutes...This monitoring technique has proven to be a great tool for engineers. It lets us move fast and buys us time to detect, triage, and fix problems.” </p>
+ <p class="case-study">However, in 2010, even though there was an incredibly large volume of telemetry being generated, it was extremely difficult for engineers to get access to the data, let alone analyze it. <span id="ch14-23"></span>Thus began Eric Wong’s summer intern project at LinkedIn, which turned into the production telemetry initiative that created InGraphs. </p>
+ <a data-ep_ppid="Page-__-243" id="Page-__-243" class="calibre1"></a><p class="case-study" id="ch14-24">Wong wrote, “To get something as simple as CPU usage of all the hosts running a particular service, you would need to file a ticket and someone would spend 30 minutes putting it [a report] together.” </p>
+ <p class="case-study" id="ch14-25">At the time, LinkedIn was using Zenoss to collect metrics, but as Wong explains, “Getting data from Zenoss required digging through a slow web interface, so I wrote some python scripts to help streamline the process. While there was still manual intervention in setting up metric collection, I was able to cut down the time spent navigating Zenoss’ interface.” </p>
+ <p class="case-study">Over the course of the summer, he continued to add functionality to InGraphs so that engineers could see exactly what they wanted to see, adding the ability to make calculations across multiple datasets, view week-over-week trending to compare historical performance, and even define custom dashboards to pick exactly which metrics would be displayed on a single page. </p>
+ <p class="case-study" id="ch14-26">In writing about the outcomes of adding functionality to InGraphs and the value of this capability, Gupta notes, “The effectiveness of our monitoring system was highlighted in an instant where our InGraphs monitoring functionality tied to a major web-mail provider started trending downwards and the provider realized they had a problem in their system only after we reached out to them!” </p>
+ <p class="case-study">What started off as a summer internship project is now one of the most visible parts of LinkedIn operations. InGraphs has been so successful that the real-time graphs are featured prominently in the company’s engineering offices where visitors can’t fail to see them. </p>
+ <h2 id="sigil_toc_id_107" class="calibre7"><span epub:type="pagebreak" id="pg209" title="209" class="calibre9"></span>FIND AND FILL ANY TELEMETRY GAPS </h2>
+ <p class="body">We have now created the infrastructure necessary to quickly create production telemetry throughout our entire application stack and radiate it throughout our organization. </p>
+ <p class="body">In this step, we will identify any gaps in our telemetry that impede our ability to quickly detect and resolve incidents—this is especially relevant if Dev and Ops currently have little (or no) telemetry. We will use this data later to better anticipate problems, as well as to enable everyone to gather the information they need to make better decisions to achieve organizational goals. </p>
+ <p class="body">Achieving this requires that we create enough telemetry at all levels of the application stack for all our environments, as well as for the deployment pipelines that support them. We need metrics from the following levels: </p>
+ <ul data-ep_ppid="Page-__-244" id="Page-__-244" class="calibre12"> <li class="bullets"><span class="black"><b class="calibre6">Business level:</b> Examples include the number of sales transactions, revenue of sales transactions, user signups, churn rate, A/B testing results, etc.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Application level:</b> Examples include transaction times, user response times, application faults, etc.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Infrastructure level (e.g., database, operating system, networking, storage):</b> Examples include web server traffic, CPU load, disk usage, etc.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Client software level (e.g., JavaScript on the client browser, mobile application):</b> Examples include application errors and crashes, user measured transaction times, etc.</span> </li>
+ <li class="bullets"><span class="black"><b class="calibre6">Deployment pipeline level:</b> Examples include build pipeline status (e.g., red or green for our various automated test suites), change deployment lead times, deployment frequencies, test environment promotions, and environment status.</span> </li>
+ </ul>
+ <p class="body">By having telemetry coverage in all of these areas, we will be able to see the health of everything that our service relies upon, using data and facts instead of rumors, finger-pointing, blame, and so forth. </p>
+ <p class="body">Further, we better enable detection of security-relevant events by monitoring any application and infrastructure faults (e.g., abnormal program terminations, <span epub:type="pagebreak" id="pg210" title="210"></span>application errors and exceptions, and server and storage errors). Not only does this telemetry better inform Development and Operations when our services are crashing, but these errors are often indicators that a security vulnerability is being actively exploited. </p>
+ <p class="body">By detecting and correcting problems earlier, we can fix them while they are small and easy to fix, with fewer customers impacted. Furthermore, after every production incident, we should identify any missing telemetry that could have enabled faster detection and recovery; or, better yet, we can identify these gaps during feature development in our peer review process. </p>
+ <h3 id="sigil_toc_id_108" class="calibre11">APPLICATION AND BUSINESS METRICS </h3>
+ <p class="body">At the application level, our goal is to ensure that we are generating telemetry not only around application health (e.g., memory usage, transaction counts, etc.), but also to measure to what extent we are achieving our organizational goals (e.g., number of new users, user login events, user session lengths, percent of users active, how often certain features are being used, and so forth). </p>
+ <p class="body" data-ep_ppid="Page-__-245" id="Page-__-245">For example, if we have a service that is supporting e-commerce, we want to ensure that we have telemetry around all of the user events that lead up to a successful transaction that generates revenue. We can then instrument all the user actions that are required for our desired customer outcomes. </p>
+ <p class="body">These metrics will vary according to different domains and organizational goals. For instance, for e-commerce sites, we may want to maximize the time spent on the site; however, for search engines, we may want to reduce the time spent on the site, since long sessions may indicate that users are having difficulty finding what they’re looking for. </p>
+ <p class="body">In general, business metrics will be part of a <i class="calibre5">customer acquisition funnel</i>, which is the theoretical steps a potential customer will take to make a purchase. For instance, in an e-commerce site, the measurable journey events include total time on site, product link clicks, shopping cart adds, and completed orders. </p>
+ <p class="body" id="ch14-27">Ed Blankenship, Senior Product Manager for Microsoft Visual Studio Team Services, describes, “Often, feature teams will define their goals in an acquisition funnel, with the goal of their feature being used in every customer’s daily work. Sometimes they’re informally described as ‘tire kickers,’ ‘active users,’ ‘engaged users,’ and ‘deeply engaged users,’ with telemetry supporting each stage.” </p>
+ <p class="body"><span epub:type="pagebreak" id="pg211" title="211"></span>Our goal is to have every business metric be <i class="calibre5">actionable</i>—these top metrics should help inform how to change our product and be amenable to experimentation and A/B testing. When metrics aren’t actionable, they are likely vanity metrics that provide little useful information—these we want to store, but likely not display, let alone alert on. </p>
+ <p class="body">Ideally, anyone viewing our information radiators will be able to make sense of the information we are showing in the context of desired organizational outcomes, such as goals around revenue, user attainment, conversion rates, etc. We should define and link each metric to a business outcome metric at the earliest stages of feature definition and development, and measure the outcomes after we deploy them in production. Furthermore, doing this helps product owners describe the business context of each feature for everyone in the value stream. </p>
+ <p class="captions" data-ep_ppid="Page-__-246" id="Page-__-246"><img alt="" src="../Images/ch_143.png" class="ep_cover_page"/> <b class="captions1">Figure 28:</b> Amount of user excitement of new features in user forum posts after deployments (Source: Mike Brittain, “Tracking Every Release,” CodeasCraft.com, December 8, 2010, <a href="https://codeascraft.com/2010/12/08/track-every-release/" class="calibre1">https://codeascraft.com/2010/12/08/track-every-release/</a>.) </p>
+ <p class="body">Further business context can be created by being aware of and visually displaying time periods relevant to high-level business planning and operations, such as high transaction periods associated with peak holiday selling seasons, end-of-quarter financial close periods, or scheduled compliance audits. This information may be used as a reminder to avoid scheduling risky changes when availability is critical or avoid certain activities when audits are in progress. </p>
+ <p class="body"><span epub:type="pagebreak" id="pg212" title="212"></span>By radiating how customers interact with what we build in the context of our goals, we enable fast feedback to feature teams so they can see whether the capabilities we are building are actually being used and to what extent they are achieving business goals. As a result, we reinforce the cultural expectations that instrumenting and analyzing customer usage is also a part of our daily work, so we better understand how our work contributes to our organizational goals. </p>
+ <h3 data-ep_ppid="Page-__-247" id="Page-__-247" class="calibre11">INFRASTRUCTURE METRICS </h3>
+ <p class="body">Just as we did for application metrics, our goal for production and non-production infrastructure is to ensure that we are generating enough telemetry so that if a problem occurs in any environment, we can quickly determine whether infrastructure is a contributing cause of the problem. Furthermore, we must be able to pinpoint exactly what in the infrastructure is contributing to the problem (e.g., database, operating system, storage, networking, etc.). </p>
+ <p class="body">We want to make as much infrastructure telemetry visible as possible, across all the technology stakeholders, ideally organized by service or application. In other words, when something goes wrong with something in our environment, we need to know exactly what applications and services could be or are being affected.<sup class="footnotes"><span id="footnote-083-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-083">††</a></span></sup> </p>
+ <p class="body">In decades past, creating links between a service and the production infrastructure it depended on was often a manual effort (such as ITIL CMDBs or creating configuration definitions inside alerting tools in tools such as Nagios). <span id="ch14-28"></span>However, increasingly these links are now registered automatically within our services, which are then dynamically discovered and used in production through tools such as Zookeeper, Etcd, Consul, etc. </p>
+ <p class="body">These tools enable services to register themselves, storing information that other services need to interact with it (e.g., IP address, port numbers, URIs). This solves the manual nature of the ITIL CMDB and is absolutely necessary when services are made up of hundreds (or thousands or even millions) of nodes, each with dynamically assigned IP addresses.<sup class="footnotes"><span id="footnote-082-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-082">‡‡</a></span></sup> </p>
+ <p class="body">Regardless of how simple or complex our services are, graphing our business metrics alongside our application and infrastructure metrics allow us to detect <span epub:type="pagebreak" id="pg213" title="213"></span>when things go wrong. For instance, we may see that new customer signups drop to 20% of daily norms, and then immediately also see that all our database queries are taking five times longer than normal, enabling us to focus our problem solving. </p>
+ <p class="body">Furthermore, business metrics create context for our infrastructure metrics, enabling Development and Operations to better work together toward common goals. <span id="ch14-30"></span>As Jody Mulkey, CTO of Ticketmaster/LiveNation, observes, “Instead of measuring Operations against the amount of downtime, I find it’s much better to measure both Dev and Ops against the real business consequences of downtime: how much revenue should we have attained, but didn’t.”<sup class="footnotes"><span id="footnote-081-backlink" class="calibre9"><a class="_idfootnotelink" epub:type="noteref" href="../Text/DOHB-ch_14.html#footnote-081">§§</a></span></sup> </p>
+ <p class="body" data-ep_ppid="Page-__-248" id="Page-__-248">Note that in addition to monitoring our production services, we also need telemetry for those services in our pre-production environments (e.g., development, test, staging, etc.). Doing this enables us to find and fix issues before they go into production, such as detecting when we have ever-increasing database insert times due to a missing table index. </p>
+ <h3 id="sigil_toc_id_109" class="calibre11">OVERLAYING OTHER RELEVANT INFORMATION ONTO OUR METRICS </h3>
+ <p class="body">Even after we have created our deployment pipeline that allows us to make small and frequent production changes, changes still inherently create risk. Operational side effects are not just outages, but also significant disruptions and deviations from standard operations. </p>
+ <p class="body">To make changes visible, we make work visible by overlaying all production deployment activities on our graphs. For instance, for a service that handles a large number of inbound transactions, production changes can result in a significant <i class="calibre5">settling period</i>, where performance degrades substantially as all cache lookups miss. </p>
+ <p class="body">To better understand and preserve quality of service, we want to understand how quickly performance returns to normal, and if necessary, take steps to improve performance. </p>
+ <p class="body">Similarly, we want to overlay other useful operational activities, such as when the service is under maintenance or being backed up, in places where we may want to display or suppress alerts. </p>
+ <h2 id="sigil_toc_id_110" class="calibre7"><span epub:type="pagebreak" id="pg214" title="214" class="calibre9"></span>CONCLUSION </h2>
+ <p class="body">The improvements enabled by production telemetry from Etsy and LinkedIn show us how critical it is to see problems as they occur, so we can search out the cause and quickly remedy the situation. By having all elements of our service emitting telemetry that can be analyzed, whether it is in our application, database, or in our environment, and making that telemetry widely available, we can find and fix problems long before they cause something catastrophic, ideally long before a customer even notices that something is wrong. The result is not only happier customers, but, by reducing the amount of firefighting and crises when things go wrong, we have a happier and more productive workplace with less stress and lower levels of burnouts. </p>
+ <hr class="calibre13"/>
+ <div class="_idfootnotes"> <aside class="_idfootnote" epub:type="footnote" id="footnote-088"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_14.html#footnote-088-backlink">†</a></span><span> </span>Example tools include Sensu, Nagios, Zappix, LogsStash, Splunk, Sumo Logic, Datadog, and Riemann. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-087"> <p class="footnotes2"><span><a data-ep_ppid="Page-__-249" id="Page-__-249" class="calibre1"></a>‡</span><span> </span>A variety of application logging libraries exist that make it easy for developers to create useful telemetry, and we should choose one that allows us to send all our application logs to the centralized logging infrastructure that we created in the previous section. Popular examples include rrd4j and log4j for Java, and log4r and ruby-cabin for Ruby. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-086"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_14.html#footnote-086-backlink">§</a></span><span id="ch14-17"> </span>In 2004, Gene Kim, Kevin Behr and George Spafford described this as a symptom of lacking a “culture of causality,” noting that high-performing organizations recognize that 80% of all outages are caused by change and 80% of MTTR is spent trying to determine what changed. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-085"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_14.html#footnote-085-backlink">¶</a></span><span> </span>A whole other set of tools to aid in monitoring, aggregation, and collection include Splunk, Zabbix, Sumo Logic, DataDog, as well as Nagios, Cacti, Sensu, RRDTool, Netflix Atlas, Riemann, and others. Analysts often call this broad category of tools “application performance monitors.” </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-084"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_14.html#footnote-084-backlink">**</a></span><span> </span>Creating a simple dashboard should be part of creating any new product or service—automated tests should confirm that both the service and dashboard are working correctly, helping both our customers and our ability to safely deploy code. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-083"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_14.html#footnote-083-backlink">††</a></span><span> </span>Exactly as an ITIL Configuration Management Database (CMDB) would prescribe. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-082"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_14.html#footnote-082-backlink">‡‡</a></span><span id="ch14-29"> </span>Consul may be of specific interest, as it creates an abstraction layer that easily enables service mapping, monitoring, locks, and key-value configuration stores, as well as host clustering and failure detection. </p>
+ </aside>
+ <aside class="_idfootnote" epub:type="footnote" id="footnote-081"> <p class="footnotes2"><span><a class="calibre1" href="../Text/DOHB-ch_14.html#footnote-081-backlink">§§</a></span><span> </span>This could be the cost of production downtime or the costs associated with a late feature. In product development terms, the second metric is known as cost of delay, and is key to making effective prioritization decisions. </p>
+ </aside>
+ </div>
+ </div>
+<div class="calibre10"> <div id="_idContainer079" class="calibre10"> </div>
+ </div>
+<img id="floatBarImgId" src="chrome-extension://dbkmjjclgbiooljcegcddagnddjedmed/pics/save2-32.png" class="calibre3"/>
+
+
+
+  </div>
+
+  
+  <div class="calibreToc">
+    <h2><a href="../../../p4zbp-8mxvm.html"> Table of contents</a></h2>
+     <div>
+  <ul>
+    <li>
+      <a href="DOHB-0-FM-preface.html">Preface</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_1">Aha!</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_2">Gene Kim</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_3">Jez Humble</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#Page-__-13">Patrick Debois</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-preface.html#sigil_toc_id_4">John Willis</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-preface.html#sigil_toc_id_5">SPREADING THE AHA! MOMENT</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-foreword.html">Foreword</a>
+    </li>
+    <li>
+      <a href="DOHB-0-FM-introduction.html">Imagine a World Where Dev and Ops Become DevOps</a>
+      <ul>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_6">An Introduction to The DevOps Handbook</a>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_7">THE PROBLEM: SOMETHING IN YOUR ORGANIZATION MUST NEED IMPROVEMENT (OR YOU WOULDN’T BE READING THIS BOOK)</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_8">THE CORE, CHRONIC CONFLICT</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_9">DOWNWARD SPIRAL IN THREE ACTS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-25">WHY DOES THIS DOWNWARD SPIRAL HAPPEN EVERYWHERE?</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_10">THE COSTS: HUMAN AND ECONOMIC</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_11">THE ETHICS OF DEVOPS: THERE IS A BETTER WAY</a>
+          <ul>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#Page-__-27">BREAKING THE DOWNWARD SPIRAL WITH DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_12">THE BUSINESS VALUE OF DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_13">DEVOPS HELPS SCALE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-0-FM-introduction.html#sigil_toc_id_14">THE UNIVERSALITY OF THE SOLUTION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-0-FM-introduction.html#sigil_toc_id_15">THE DEVOPS HANDBOOK: AN ESSENTIAL GUIDE</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_01_text.html">Part I The Three Ways</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_01_text.html#sigil_toc_id_16">A BRIEF HISTORY</a>
+          <ul>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_17">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_18">THE AGILE MANIFESTO</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_19">AGILE INFRASTRUCTURE AND VELOCITY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_20">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-pt_01_text.html#sigil_toc_id_21">TOYOTA KATA</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_01.html">1 Agile, Continuous Delivery, and the Three Ways</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_22">THE MANUFACTURING VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#Page-__-43">THE TECHNOLOGY VALUE STREAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_23">FOCUS ON DEPLOYMENT LEAD TIME</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_24">Defining Lead Time vs. Processing Time</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#Page-__-45">The Common Scenario: Deployment Lead Times Requiring Months</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_01.html#sigil_toc_id_25">Our DevOps Ideal: Deployment Lead Times of Minutes</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_01.html#sigil_toc_id_26">OBSERVING “%C/A” AS A MEASURE OF REWORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_27">THE THREE WAYS: THE PRINCIPLES UNDERPINNING DEVOPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_01.html#sigil_toc_id_28">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_02.html">2 The First Way: The Principles of Flow</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_29">MAKE OUR WORK VISIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#Page-__-52">LIMIT WORK IN PROCESS (WIP)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_30">REDUCE BATCH SIZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_31">REDUCE THE NUMBER OF HANDOFFS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_32">CONTINUALLY IDENTIFY AND ELEVATE OUR CONSTRAINTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_33">ELIMINATE HARDSHIPS AND WASTE IN THE VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_02.html#sigil_toc_id_34">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_03.html">3 The Second Way: The Principles of Feedback</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_35">WORKING SAFELY WITHIN COMPLEX SYSTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-64">SEE PROBLEMS AS THEY OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_36">SWARM AND SOLVE PROBLEMS TO BUILD NEW KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_37">KEEP PUSHING QUALITY CLOSER TO THE SOURCE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#Page-__-69">ENABLE OPTIMIZING FOR DOWNSTREAM WORK CENTERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_03.html#sigil_toc_id_38">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_04.html">4 The Third Way: The Principles of Continual Learning and Experimentation</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_39">ENABLING ORGANIZATIONAL LEARNING AND A SAFETY CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_40">INSTITUTIONALIZE THE IMPROVEMENT OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_41">TRANSFORM LOCAL DISCOVERIES INTO GLOBAL IMPROVEMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#Page-__-78">INJECT RESILIENCE PATTERNS INTO OUR DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_42">LEADERS REINFORCE A LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_43">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_04.html#sigil_toc_id_44">PART I CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_02_text.html">Part II Where to Start</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_02_text.html#sigil_toc_id_45">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_05.html">5 Selecting Which Value Stream to Start With</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_46">GREENFIELD VS. BROWNFIELD SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_47">CONSIDER BOTH SYSTEMS OF RECORD AND SYSTEMS OF ENGAGEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_48">START WITH THE MOST SYMPATHETIC AND INNOVATIVE GROUPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#sigil_toc_id_49">EXPANDING DEVOPS ACROSS OUR ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_05.html#Page-__-96">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_06.html">6 Understanding the Work in Our Value Stream, Making it Visible, and Expanding it Across the Organization</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-100">IDENTIFYING THE TEAMS SUPPORTING OUR VALUE STREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#Page-__-101">CREATE A VALUE STREAM MAP TO SEE THE WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_50">CREATING A DEDICATED TRANSFORMATION TEAM</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_51">AGREE ON A SHARED GOAL</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_52">KEEP OUR IMPROVEMENT PLANNING HORIZONS SHORT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_53">RESERVE 20% OF CYCLES FOR NON-FUNCTIONAL REQUIREMENTS AND REDUCING TECHNICAL DEBT</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_06.html#sigil_toc_id_54">INCREASE THE VISIBILITY OF WORK</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_55">USE TOOLS TO REINFORCE DESIRED BEHAVIOR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_06.html#sigil_toc_id_56">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_07.html">7 How to Design Our Organization and Architecture with Conway’s Law in Mind</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_57">ORGANIZATIONAL ARCHETYPES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-118">PROBLEMS OFTEN CAUSED BY OVERLY FUNCTIONAL ORIENTATION (“OPTIMIZING FOR COST”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-119">ENABLE MARKET-ORIENTED TEAMS (“OPTIMIZING FOR SPEED”)</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_58">MAKING FUNCTIONAL ORIENTATION WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_59">TESTING, OPERATIONS, AND SECURITY AS EVERYONE’S JOB, EVERY DAY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_60">ENABLE EVERY TEAM MEMBER TO BE A GENERALIST</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_61">FUND NOT PROJECTS, BUT SERVICES AND PRODUCTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#Page-__-125">DESIGN TEAM BOUNDARIES IN ACCORDANCE WITH CONWAY’S LAW</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_62">CREATE LOOSELY-COUPLED ARCHITECTURES TO ENABLE DEVELOPER PRODUCTIVITY AND SAFETY</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_07.html#sigil_toc_id_63">KEEP TEAM SIZES SMALL (THE “TWO-PIZZA TEAM” RULE)</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_07.html#sigil_toc_id_64">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_08.html">8 How to Get Great Outcomes by Integrating Operations into the Daily Work of Development</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_65">CREATE SHARED SERVICES TO INCREASE DEVELOPER PRODUCTIVITY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_66">EMBED OPS ENGINEERS INTO OUR SERVICE TEAMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_67">ASSIGN AN OPS LIAISON TO EACH SERVICE TEAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_68">INTEGRATE OPS INTO DEV RITUALS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_69">INVITE OPS TO OUR DEV STANDUPS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_70">INVITE OPS TO OUR DEV RETROSPECTIVES</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_08.html#sigil_toc_id_71">MAKE RELEVANT OPS WORK VISIBLE ON SHARED KANBAN BOARDS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_72">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_08.html#sigil_toc_id_73">PART II CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_03.html">PART III—THE FIRST WAY: THE TECHNICAL PRACTICES OF FLOW</a>
+      <ul>
+        <li>
+          <a href="DOHB-ch_09.html">9 Create the Foundations of Our Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-149">ENABLE ON DEMAND CREATION OF DEV, TEST, AND PRODUCTION ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_74">CREATE OUR SINGLE REPOSITORY OF TRUTH FOR THE ENTIRE SYSTEM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#Page-__-153">MAKE INFRASTRUCTURE EASIER TO REBUILD THAN TO REPAIR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_75">MODIFY OUR DEFINITION OF DEVELOPMENT “DONE” TO INCLUDE RUNNING IN PRODUCTION-LIKE ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_09.html#sigil_toc_id_76">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_10.html">10 Enable Fast and Reliable Automated Testing</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_10.html#Page-__-161">CONTINUOUSLY BUILD, TEST, AND INTEGRATE OUR CODE AND ENVIRONMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_77">BUILD A FAST AND RELIABLE AUTOMATED VALIDATION TEST SUITE</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_78">CATCH ERRORS AS EARLY IN OUR AUTOMATED TESTING AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_79">ENSURE TESTS RUN QUICKLY (IN PARALLEL, IF NECESSARY)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_80">WRITE OUR AUTOMATED TESTS BEFORE WE WRITE THE CODE (“TEST-DRIVEN DEVELOPMENT”)</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_81">AUTOMATE AS MANY OF OUR MANUAL TESTS AS POSSIBLE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_82">INTEGRATE PERFORMANCE TESTING INTO OUR TEST SUITE</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_83">INTEGRATE NON-FUNCTIONAL REQUIREMENTS TESTING INTO OUR TEST SUITE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_84">PULL OUR ANDON CORD WHEN THE DEPLOYMENT PIPELINE BREAKS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_10.html#sigil_toc_id_85">WHY WE NEED TO PULL THE ANDON CORD</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_10.html#sigil_toc_id_86">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_11.html">11 Enable and Practice Continuous Integration</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_11.html#sigil_toc_id_87">SMALL BATCH DEVELOPMENT AND WHAT HAPPENS WHEN WE COMMIT CODE TO TRUNK INFREQUENTLY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-182">ADOPT TRUNK-BASED DEVELOPMENT PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_11.html#Page-__-185">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_12.html">12 Automate and Enable Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_88">AUTOMATE OUR DEPLOYMENT PROCESS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_89">ENABLE AUTOMATED SELF-SERVICE DEPLOYMENTS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_90">INTEGRATE CODE DEPLOYMENT INTO THE DEPLOYMENT PIPELINE</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-199">DECOUPLE DEPLOYMENTS FROM RELEASES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_91">ENVIRONMENT-BASED RELEASE PATTERNS</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_92">The Blue-Green Deployment Pattern</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_93">Dealing with Database Changes</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_94">The Canary and Cluster Immune System Release Patterns</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="DOHB-ch_12.html#sigil_toc_id_95">APPLICATION-BASED PATTERNS TO ENABLE SAFER RELEASES</a>
+                  <ul>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_96">Implement Feature Toggles</a>
+                    </li>
+                    <li>
+                      <a href="DOHB-ch_12.html#sigil_toc_id_97">Perform Dark Launches</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#Page-__-209">SURVEY OF CONTINUOUS DELIVERY AND CONTINUOUS DEPLOYMENT IN PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_12.html#sigil_toc_id_98">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_13.html">13 Architect for Low-Risk Releases</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-214">AN ARCHITECTURE THAT ENABLES PRODUCTIVITY, TESTABILITY, AND SAFETY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_99">ARCHITECTURAL ARCHETYPES: MONOLITHS VS. MICROSERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_100">USE THE STRANGLER APPLICATION PATTERN TO SAFELY EVOLVE OUR ENTERPRISE ARCHITECTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#Page-__-222">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_13.html#sigil_toc_id_101">PART III CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_04_text.html">PART IV—THE SECOND WAY: THE TECHNICAL PRACTICES OF FEEDBACK</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_04_text.html#sigil_toc_id_102">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_14.html">14 Create Telemetry to Enable Seeing and Solving Problems</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_14.html#Page-__-233">CREATE OUR CENTRALIZED TELEMETRY INFRASTRUCTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_103">CREATE APPLICATION LOGGING TELEMETRY THAT HELPS PRODUCTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_104">USE TELEMETRY TO GUIDE PROBLEM SOLVING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_105">ENABLE CREATION OF PRODUCTION METRICS AS PART OF DAILY WORK</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_106">CREATE SELF-SERVICE ACCESS TO TELEMETRY AND INFORMATION RADIATORS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_107">FIND AND FILL ANY TELEMETRY GAPS</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_108">APPLICATION AND BUSINESS METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#Page-__-247">INFRASTRUCTURE METRICS</a>
+                </li>
+                <li>
+                  <a href="DOHB-ch_14.html#sigil_toc_id_109">OVERLAYING OTHER RELEVANT INFORMATION ONTO OUR METRICS</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_14.html#sigil_toc_id_110">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_15.html">15 Analyze Telemetry to Better Anticipate Problems and Achieve Goals</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_111">USE MEANS AND STANDARD DEVIATIONS TO DETECT POTENTIAL PROBLEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_112">INSTRUMENT AND ALERT ON UNDESIRED OUTCOMES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_113">PROBLEMS THAT ARISE WHEN OUR TELEMETRY DATA HAS NON-GAUSSIAN DISTRIBUTION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_114">USING ANOMALY DETECTION TECHNIQUES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_15.html#sigil_toc_id_115">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_16.html">16 Enable Feedback So Development and Operations Can Safely Deploy Code</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_116">USE TELEMETRY TO MAKE DEPLOYMENTS SAFER</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_117">DEV SHARES PAGER ROTATION DUTIES WITH OPS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#Page-__-271">HAVE DEVELOPERS FOLLOW WORK DOWNSTREAM</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_118">HAVE DEVELOPERS INITIALLY SELF-MANAGE THEIR PRODUCTION SERVICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_16.html#sigil_toc_id_119">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_17.html">17 Integrate Hypothesis-Driven Development and A/B Testing into Our Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-283">A BRIEF HISTORY OF A/B TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-284">INTEGRATING A/B TESTING INTO OUR FEATURE TESTING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#sigil_toc_id_120">INTEGRATE A/B TESTING INTO OUR RELEASE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-286">INTEGRATING A/B TESTING INTO OUR FEATURE PLANNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_17.html#Page-__-288">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_18.html">18 Create Review and Coordination Processes to Increase Quality of Our Current Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_121">THE DANGERS OF CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_122">POTENTIAL DANGERS OF “OVERLY CONTROLLING CHANGES”</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-296">ENABLE COORDINATION AND SCHEDULING OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_123">ENABLE PEER REVIEW OF CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#Page-__-300">POTENTIAL DANGERS OF DOING MORE MANUAL TESTING AND CHANGE FREEZES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#section-below">ENABLE PAIR PROGRAMMING TO IMPROVE ALL OUR CHANGES</a>
+              <ul>
+                <li>
+                  <a href="DOHB-ch_18.html#Page-__-303">EVALUATING THE EFFECTIVENESS OF PULL REQUEST PROCESSES</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_124">FEARLESSLY CUT BUREAUCRATIC PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_125">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_18.html#sigil_toc_id_126">PART IV CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-pt_05_text.html">PART V—THE THIRD WAY: THE TECHNICAL PRACTICES OF CONTINUAL LEARNING AND EXPERIMENTATION</a>
+      <ul>
+        <li>
+          <a href="DOHB-pt_05_text.html#sigil_toc_id_127">Introduction</a>
+        </li>
+        <li>
+          <a href="DOHB-ch_19.html">19 Enable and Inject Learning into Daily Work</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-315">ESTABLISH A JUST, LEARNING CULTURE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_128">SCHEDULE BLAMELESS POST-MORTEM MEETINGS AFTER ACCIDENTS OCCUR</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_129">PUBLISH OUR POST-MORTEMS AS WIDELY AS POSSIBLE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_130">DECREASE INCIDENT TOLERANCES TO FIND EVER-WEAKER FAILURE SIGNALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-322">REDEFINE FAILURE AND ENCOURAGE CALCULATED RISK-TAKING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_131">INJECT PRODUCTION FAILURES TO ENABLE RESILIENCE AND LEARNING</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#Page-__-324">INSTITUTE GAME DAYS TO REHEARSE FAILURES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_19.html#sigil_toc_id_132">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_20.html">20 Convert Local Discoveries into Global Improvements</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_133">USE CHAT ROOMS AND CHAT BOTS TO AUTOMATE AND CAPTURE ORGANIZATIONAL KNOWLEDGE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_134">AUTOMATE STANDARDIZED PROCESSES IN SOFTWARE FOR RE-USE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_135">CREATE A SINGLE, SHARED SOURCE CODE REPOSITORY FOR OUR ENTIRE ORGANIZATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_136">SPREAD KNOWLEDGE BY USING AUTOMATED TESTS AS DOCUMENTATION AND COMMUNITIES OF PRACTICE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_137">DESIGN FOR OPERATIONS THROUGH CODIFIED NON-FUNCTIONAL REQUIREMENTS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_138">BUILD REUSABLE OPERATIONS USER STORIES INTO DEVELOPMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#Page-__-336">ENSURE TECHNOLOGY CHOICES HELP ACHIEVE ORGANIZATIONAL GOALS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_20.html#sigil_toc_id_139">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_21.html">21 Reserve Time to Create Organizational Learning and Improvement</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-342">INSTITUTIONALIZE RITUALS TO PAY DOWN TECHNICAL DEBT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_140">ENABLE EVERYONE TO TEACH AND LEARN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_141">SHARE YOUR EXPERIENCES FROM DEVOPS CONFERENCES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#Page-__-347">CREATE INTERNAL CONSULTING AND COACHES TO SPREAD PRACTICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_142">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_21.html#sigil_toc_id_143">CONCLUSION TO PART V</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_22.html">22 Information Security as Everyone’s Job, Every Day</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_144">INTEGRATE SECURITY INTO DEVELOPMENT ITERATION DEMONSTRATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-357">INTEGRATE SECURITY INTO DEFECT TRACKING AND POST-MORTEMS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_145">INTEGRATE PREVENTIVE SECURITY CONTROLS INTO SHARED SOURCE CODE REPOSITORIES AND SHARED SERVICES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-359">INTEGRATE SECURITY INTO OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_146">ENSURE SECURITY OF THE APPLICATION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_147">ENSURE SECURITY OF OUR SOFTWARE SUPPLY CHAIN</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#Page-__-366">ENSURE SECURITY OF THE ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_148">INTEGRATE INFORMATION SECURITY INTO PRODUCTION TELEMETRY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_149">CREATING SECURITY TELEMETRY IN OUR APPLICATIONS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_150">CREATING SECURITY TELEMETRY IN OUR ENVIRONMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_151">PROTECT OUR DEPLOYMENT PIPELINE</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_22.html#sigil_toc_id_152">CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23.html">23 Protecting the Deployment Pipeline</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_153">INTEGRATE SECURITY AND COMPLIANCE INTO CHANGE APPROVAL PROCESSES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_154">RE-CATEGORIZE THE MAJORITY OF OUR LOWER RISK CHANGES AS STANDARD CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_155">WHAT TO DO WHEN CHANGES ARE CATEGORIZED AS NORMAL CHANGES</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_156">REDUCE RELIANCE ON SEPARATION OF DUTY</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_157">ENSURE DOCUMENTATION AND PROOF FOR AUDITORS AND COMPLIANCE OFFICERS</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#Page-__-384">CONCLUSION</a>
+            </li>
+            <li>
+              <a href="DOHB-ch_23.html#sigil_toc_id_158">PART VI CONCLUSION</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-ch_23-CTA.html">A Call to Action</a>
+          <ul>
+            <li>
+              <a href="DOHB-ch_23-CTA.html#sigil_toc_id_159">Conclusion to the DevOps Handbook</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM.html">Appendices</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-1">APPENDIX 1 THE CONVERGENCE OF DEVOPS</a>
+          <ul>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_160">THE LEAN MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_161">THE AGILE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_162">THE VELOCITY CONFERENCE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_163">THE AGILE INFRASTRUCTURE MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_164">THE CONTINUOUS DELIVERY MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_165">THE TOYOTA KATA MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_166">THE LEAN STARTUP MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_167">THE LEAN UX MOVEMENT</a>
+            </li>
+            <li>
+              <a href="DOHB-END-BM.html#sigil_toc_id_168">THE RUGGED COMPUTING MOVEMENT</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-2">APPENDIX 2 THEORY OF CONSTRAINTS AND CORE, CHRONIC CONFLICTS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-3">APPENDIX 3 TABULAR FORM OF DOWNWARD SPIRAL</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-4">APPENDIX 4 THE DANGERS OF HANDOFFS AND QUEUES</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-5">APPENDIX 5 MYTHS OF INDUSTRIAL SAFETY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-6">APPENDIX 6 THE TOYOTA ANDON CORD</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-7">APPENDIX 7 COTS SOFTWARE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-8">APPENDIX 8 POST-MORTEM MEETINGS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-9">APPENDIX 9 THE SIMIAN ARMY</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM.html#appendix-10">APPENDIX 10 TRANSPARENT UPTIME</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html">Additional Resources</a>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-additional.html#_idParaDest-46">Endnotes</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_169">INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-409">PART I INTRODUCTION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_170">CHAPTER 1</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_171">CHAPTER 2</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_172">CHAPTER 3</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_173">CHAPTER 4</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_174">CHAPTER 5</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_175">CHAPTER 6</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_176">CHAPTER 7</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_177">CHAPTER 8</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_178">CHAPTER 9</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_179">CHAPTER 10</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_180">CHAPTER 11</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_181">CHAPTER 12</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_182">CHAPTER 13</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_183">CHAPTER 14</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-430">CHAPTER 15</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_184">CHAPTER 16</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_185">CHAPTER 17</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_186">CHAPTER 18</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_187">CHAPTER 19</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_188">CHAPTER 20</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_189">CHAPTER 21</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_190">CHAPTER 22</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#Page-__-445">CHAPTER 23</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_191">CONCLUSION</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-additional.html#sigil_toc_id_192">APPENDIX</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-index.html">Index</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-index.html#index_list">Symbols Numbers A B C D E F G H I J K L M N O P Q R S T U V W Y Z</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-ack.html">Acknowledgments</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_193">Jez Humble</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_194">John Willis</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#sigil_toc_id_195">Patrick Debois</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-ack.html#Page-__-494">Gene Kim</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="DOHB-END-BM-aut.html">Author Biographies</a>
+      <ul>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_196">GENE KIM</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_197">JEZ HUMBLE</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_198">PATRICK DEBOIS</a>
+        </li>
+        <li>
+          <a href="DOHB-END-BM-aut.html#sigil_toc_id_199">JOHN WILLIS</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+  </div>
+  
+
+  <div class="calibreEbNav">
+    
+      <a href="DOHB-pt_04_text.html" class="calibreAPrev">previous page</a>
+    
+
+    <a href="../../../p4zbp-8mxvm.html" class="calibreAHome"> start</a>
+
+    
+      <a href="DOHB-ch_15.html" class="calibreANext"> next page</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,799 @@
+._idfootnote {
+    font-size: 0.75em;
+    margin-left: 1em;
+    text-align: left;
+    text-indent: -1em
+    }
+._idfootnotelink {
+    color: #118aca;
+    line-height: 1.2;
+    text-decoration: none
+    }
+._idfootnotes {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    page-break-inside: auto
+    }
+.attrib {
+    -epub-text-align-last: left;
+    display: block;
+    font-family: "Brandon Light", "Brandon Grotesque", sans-serif;
+    font-size: 1.125em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 200;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    line-height: 1.23;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    orphans: 2;
+    text-align: right;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.bio {
+    display: table-cell;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: inherit;
+    width: 15%
+    }
+.bio1 {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon_reg", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.2;
+    margin-bottom: 1.8em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    page-break-after: avoid;
+    text-align: center
+    }
+.bio2 {
+    display: table-cell;
+    padding-bottom: 1em;
+    padding-left: 15px;
+    padding-right: 1px;
+    padding-top: 1px;
+    text-align: inherit;
+    vertical-align: top
+    }
+.black {
+    color: #000
+    }
+.blockquote {
+    -epub-text-align-last: left;
+    display: block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    margin-bottom: 1em;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 1em;
+    orphans: 2;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.blue {
+    color: #118aca
+    }
+.blue1 {
+    color: #118aca;
+    line-height: 1.2
+    }
+.body {
+    -epub-text-align-last: left;
+    display: block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    orphans: 2;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.bullets {
+    display: list-item;
+    margin-bottom: 1em
+    }
+.calibre {
+    -epub-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Tisa OT", "Bitter", Chaparral, Garamond, Georgia, serif;
+    font-size: 1em;
+    font-variant: none;
+    hyphens: auto;
+    line-height: 1.5;
+    margin-bottom: 0;
+    margin-left: 5pt;
+    margin-right: 5pt;
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0
+    }
+.calibre1 {
+    color: #118aca;
+    text-decoration: none
+    }
+.calibre2 {
+    display: none;
+    height: auto;
+    left: 25px;
+    opacity: 0;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    z-index: 2147483647
+    }
+.calibre3 {
+    display: none;
+    height: auto;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2147483647
+    }
+.calibre4 {
+    display: inline-block;
+    height: auto;
+    left: 25px;
+    opacity: 0.8;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    z-index: 2147483647
+    }
+.calibre5 {
+    font-family: inherit;
+    font-style: italic
+    }
+.calibre6 {
+    font-family: inherit;
+    font-weight: bold
+    }
+.calibre7 {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon_reg", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.41667em;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.2;
+    margin-bottom: 1.01em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1.5em;
+    page-break-after: avoid
+    }
+.calibre8 {
+    display: block
+    }
+.calibre9 {
+    line-height: 1.2
+    }
+.calibre10 {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    page-break-inside: avoid
+    }
+.calibre11 {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon_reg", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.125em;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.15;
+    margin-bottom: -0.58em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1.5em;
+    page-break-after: avoid
+    }
+.calibre12 {
+    color: #118aca;
+    display: block;
+    list-style-type: disc;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    padding-bottom: 0;
+    padding-left: 28px;
+    padding-right: 0;
+    padding-top: 0
+    }
+.calibre13 {
+    background-color: #118aca;
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: 0;
+    border-left-color: transparent;
+    border-left-style: solid;
+    border-left-width: 0;
+    border-right-color: transparent;
+    border-right-style: solid;
+    border-right-width: 0;
+    border-top-color: transparent;
+    border-top-style: solid;
+    border-top-width: 0;
+    color: #118aca;
+    display: block;
+    height: 1px;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.5em
+    }
+.calibre14 {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon_reg", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.125em;
+    font-style: italic;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.23;
+    margin-bottom: -0.61em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1.5em;
+    page-break-after: avoid
+    }
+.calibre15 {
+    color: #118aca;
+    display: block;
+    list-style-type: decimal;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    padding-bottom: 0;
+    padding-left: 28px;
+    padding-right: 0;
+    padding-top: 0
+    }
+.calibre16 {
+    display: block;
+    line-height: 1.2
+    }
+.calibre17 {
+    color: #118aca;
+    display: block;
+    list-style-type: circle;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    padding-bottom: 0;
+    padding-left: 28px;
+    padding-right: 0;
+    padding-top: 0
+    }
+.calibre18 {
+    border-collapse: collapse;
+    border-spacing: 2px;
+    display: table;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    text-indent: 0;
+    width: 100%
+    }
+.calibre19 {
+    display: table-row-group;
+    vertical-align: middle
+    }
+.calibre20 {
+    display: table-row;
+    vertical-align: inherit
+    }
+.calibre21 {
+    height: auto;
+    margin-top: 0;
+    width: 100%
+    }
+.calibre22 {
+    display: none;
+    height: auto;
+    left: 26px;
+    opacity: 0;
+    position: absolute;
+    top: 359.094px;
+    width: 100%;
+    z-index: 2147483647
+    }
+.captions {
+    -epub-text-align-last: left;
+    display: block;
+    font-size: 0.75em;
+    font-style: italic;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    line-height: 1.34;
+    margin-bottom: 1em;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1em;
+    orphans: 2;
+    page-break-inside: avoid;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2;
+    width: 80%
+    }
+.captions1 {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: bold
+    }
+.captions2 {
+    font-family: inherit;
+    font-style: normal
+    }
+.case-study {
+    -epub-text-align-last: left;
+    display: block;
+    font-family: "Brandon_reg", Helvetica, "HelveticaNeue", sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    margin-bottom: 1em;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 1em;
+    orphans: 2;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.case-study-block-quote {
+    -epub-text-align-last: left;
+    display: block;
+    font-family: "Brandon_reg", Helvetica, "HelveticaNeue", sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    margin-bottom: 1em;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 1em;
+    orphans: 2;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.case-study-header {
+    -epub-hyphens: none;
+    -epub-text-align-last: left;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    background-color: #118aca;
+    color: white;
+    display: block;
+    font-size: 1.125em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    hyphens: none;
+    line-height: 1.15;
+    margin-bottom: 0.58em;
+    margin-left: 0.58em;
+    margin-right: 0.58em;
+    margin-top: 0.58em;
+    orphans: 2;
+    padding-bottom: 0.58em;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 0.8625em;
+    page-break-after: avoid;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.case-study1 {
+    color: #118aca;
+    display: block;
+    font-family: "Brandon_reg", Helvetica, "HelveticaNeue", sans-serif;
+    list-style-type: disc;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    padding-bottom: 0;
+    padding-left: 56px;
+    padding-right: 0;
+    padding-top: 0
+    }
+.chapter-number {
+    color: #118aca;
+    float: left;
+    font-size: 5.7em;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0.04em;
+    margin-top: -0.25em
+    }
+.chapter-number-b {
+    color: #118aca;
+    float: left;
+    font-size: 5.7em;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0.04em;
+    margin-top: -0.175em
+    }
+.chapter-number-b1 {
+    color: #118aca;
+    float: left;
+    font-size: 1.41176em;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0.04em;
+    margin-top: -0.175em
+    }
+.chapter-number-c {
+    color: #118aca;
+    float: left;
+    font-size: 5.7em;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0.04em;
+    margin-top: -0.05em
+    }
+.chapter-number-c1 {
+    color: #118aca;
+    float: left;
+    font-size: 1.41176em;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0.04em;
+    margin-top: -0.05em
+    }
+.chapter-number1 {
+    color: #118aca;
+    float: left;
+    font-size: 1.41176em;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0.04em;
+    margin-top: -0.25em
+    }
+.chapter-title {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    color: #118aca;
+    display: block;
+    font-family: "Brandon_med", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.41667em;
+    font-weight: bold;
+    hyphens: none;
+    line-height: 1.52;
+    margin-bottom: 0;
+    margin-left: 25%;
+    margin-right: 0;
+    margin-top: 0;
+    padding-top: 3.03em;
+    page-break-after: avoid
+    }
+.chapter-title-b {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon_med", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.41667em;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.265;
+    margin-bottom: 3.03em;
+    margin-left: 25%;
+    margin-right: 0;
+    margin-top: 0;
+    max-width: 350px;
+    padding-top: 3.03em;
+    page-break-after: avoid
+    }
+.chapter-title1 {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon_med", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.41667em;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.52;
+    margin-bottom: 3.03em;
+    margin-left: 25%;
+    margin-right: 0;
+    margin-top: 0;
+    padding-top: 0;
+    page-break-after: avoid
+    }
+.copyright {
+    -epub-text-align-last: left;
+    display: block;
+    font-size: 0.75em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    line-height: 1.34;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    orphans: 2;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    text-transform: none;
+    widows: 2
+    }
+.cover {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    page-break-inside: avoid;
+    width: 100%
+    }
+.dblink {
+    color: #513;
+    text-decoration: none
+    }
+.endnotes {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    color: #000;
+    display: block;
+    font-family: "Brandon_reg", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.125em;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 2.7;
+    margin-bottom: -1.16em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1.8em;
+    page-break-after: avoid
+    }
+.ep_cover_page {
+    height: auto;
+    width: 100%
+    }
+.footnotes {
+    color: #118aca;
+    font-size: 0.75em;
+    line-height: 1.2;
+    vertical-align: super
+    }
+.footnotes1 {
+    color: #118aca;
+    font-size: 1em;
+    line-height: 1.2;
+    vertical-align: super
+    }
+.footnotes2 {
+    -epub-text-align-last: left;
+    display: block;
+    font-size: 0.77778em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    line-height: 1.34;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    orphans: 2;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.index_map {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon_reg", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.125em;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.15;
+    margin-bottom: 1em;
+    margin-left: 33%;
+    margin-right: 33%;
+    margin-top: 1em;
+    page-break-after: avoid;
+    text-align: center
+    }
+.index-main {
+    -epub-text-align-last: left;
+    display: block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    orphans: 2;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.index-separator {
+    -epub-text-align-last: left;
+    display: block;
+    font-family: "Brandon_med", "Merriweather Sans", Helvetica, "HelveticaNeue", sans-serif;
+    font-size: 1.125em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    line-height: 1.23;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    orphans: 2;
+    page-break-after: avoid;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.index-sub {
+    -epub-text-align-last: left;
+    display: block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    hyphenate-limit-last: always;
+    hyphenate-limit-lines: 2;
+    margin-bottom: 0;
+    margin-left: 15px;
+    margin-right: 0;
+    margin-top: 0;
+    orphans: 2;
+    text-decoration: none;
+    text-transform: none;
+    widows: 2
+    }
+.logo {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    margin-top: 0;
+    padding-top: 2em;
+    page-break-inside: avoid;
+    width: 25%
+    }
+.nowrap {
+    white-space: nowrap
+    }
+.pagebreak {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    page-break-after: always;
+    page-break-inside: avoid
+    }
+.preface {
+    -epub-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    adobe-hyphenate: none;
+    display: block;
+    font-family: "Brandon Light", "Brandon Grotesque", sans-serif;
+    font-size: 1.125em;
+    font-style: italic;
+    font-weight: normal;
+    hyphens: none;
+    line-height: 1.15;
+    margin-bottom: -0.58em;
+    margin-left: 15px;
+    margin-right: 0;
+    margin-top: 1.5em;
+    page-break-after: avoid
+    }
+.roman_num {
+    font-family: "Roboto Slab", "Tisa OT", "Bitter", Chaparral, Garamond, Georgia, serif;
+    font-size: 1em
+    }
+.sub-bullets {
+    display: list-item;
+    list-style-type: none;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    text-indent: -20px
+    }
+.table {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 0;
+    page-break-inside: avoid;
+    width: 90%
+    }

@@ -1,0 +1,106 @@
+@page {
+    margin-bottom: 5pt;
+    margin-top: 5pt
+    }
+@font-face {
+    font-family: "Merriweather Sans";
+    font-style: normal;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/MerriweatherSans-Regular.ttf)
+    }
+@font-face {
+    font-family: "Merriweather Sans";
+    font-style: normal;
+    font-weight: bold;
+    src: url(OEBPS/Styles/fonts/MerriweatherSans-Bold.ttf)
+    }
+@font-face {
+    font-family: "Merriweather Sans";
+    font-style: italic;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/MerriweatherSans-Italic.ttf)
+    }
+@font-face {
+    font-family: "Merriweather Sans";
+    font-style: italic;
+    font-weight: bold;
+    src: url(OEBPS/Styles/fonts/MerriweatherSans-BoldItalic.ttf)
+    }
+@font-face {
+    font-family: "Bitter";
+    font-style: normal;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/Bitter-Regular.ttf)
+    }
+@font-face {
+    font-family: "Bitter";
+    font-style: normal;
+    font-weight: bold;
+    src: url(OEBPS/Styles/fonts/Bitter-Bold.ttf)
+    }
+@font-face {
+    font-family: "Bitter";
+    font-style: italic;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/Bitter-Italic.ttf)
+    }
+@font-face {
+    font-family: "Roboto Slab";
+    font-style: normal;
+    font-weight: bold;
+    src: url(OEBPS/Styles/fonts/RobotoSlab-Bold.ttf)
+    }
+@font-face {
+    font-family: "Brandon_med";
+    font-style: normal;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/Brandon_med.otf)
+    }
+@font-face {
+    font-family: "Brandon_reg";
+    font-style: normal;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/Brandon_reg.otf)
+    }
+@font-face {
+    font-family: "Brandon Light";
+    font-style: italic;
+    font-weight: 200;
+    src: url(OEBPS/Styles/fonts/Brandon_light_it.otf)
+    }
+@font-face {
+    font-family: "Brandon Light";
+    font-style: normal;
+    font-weight: 200;
+    src: url(OEBPS/Styles/fonts/Brandon_light.otf)
+    }
+@font-face {
+    font-family: "Tisa OT";
+    font-style: normal;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/TisaOT.otf)
+    }
+@font-face {
+    font-family: "Tisa OT";
+    font-style: normal;
+    font-weight: 600;
+    src: url(OEBPS/Styles/fonts/TisaOT-Black.otf)
+    }
+@font-face {
+    font-family: "Tisa OT";
+    font-style: normal;
+    font-weight: bold;
+    src: url(OEBPS/Styles/fonts/TisaOT-Bold.otf)
+    }
+@font-face {
+    font-family: "Tisa OT";
+    font-style: italic;
+    font-weight: normal;
+    src: url(OEBPS/Styles/fonts/TisaOT-Ita.otf)
+    }
+@font-face {
+    font-family: "Tisa OT";
+    font-style: italic;
+    font-weight: bold;
+    src: url(OEBPS/Styles/fonts/TisaOT-BoldIta.otf)
+    }
